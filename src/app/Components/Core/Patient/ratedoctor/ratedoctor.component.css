@@ -1,0 +1,12 @@
+.btn-rate {
+    background-color: #43acc2 !important;
+    color: #fff !important;
+    border-color: #43acc2 !important;
+    
+  }
+  
+  .btn-rate:hover {
+    background-color: #fff !important;
+    color: #43acc2 !important;
+    border-color: #43acc2 !important;
+  }

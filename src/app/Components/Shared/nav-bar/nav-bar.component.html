@@ -1,0 +1,27 @@
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" style="padding-left: 20px; padding-right: 20px;">
+  <div class="col-md-3 mb-2 mb-md-0">
+    <a href="#" class="navbar-brand">
+      <img src="assets/logo.png" class="logo-img" alt="Logo">
+    </a>
+  </div>
+
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <li><a routerLink="/home" routerLinkActive="active" class="nav-link px-2">Home</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active" class="nav-link px-2">Contact US</a></li>
+    <li><a routerLink="/doctor/alldoctors" routerLinkActive="active" class="nav-link px-2">All Doctors</a></li>
+    <li><a routerLink="/patient/allpatients" routerLinkActive="active" class="nav-link px-2">All Patients</a></li>
+
+
+  </ul>
+
+  <button class="btn btn-success" routerLink="/patient/add">Add Patient</button>
+  <button class="btn btn-success" routerLink="/doctor/add">Add Doctor</button>
+
+  <div class="col-md-3 text-end">
+    <button type="button" class="btn btn-outline-success me-2" routerLink="/doctor/signin">Doctor Sign-in</button>
+    <button type="button" class="btn btn-success" routerLink="/doctor/signup">Doctor Sign-up</button>
+    <div class="mb-3"></div>
+    <button type="button" class="btn btn-outline-primary me-2" routerLink="/patient/signin">Patient Sign-in</button>
+    <button type="button" class="btn btn-primary" routerLink="/patient//signup">Patient Sign-up</button>
+  </div>
+</header>

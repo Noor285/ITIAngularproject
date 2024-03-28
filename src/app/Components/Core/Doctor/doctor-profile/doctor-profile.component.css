@@ -1,0 +1,38 @@
+h1{
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 96px;
+}
+h5{
+  color: #979797;
+}
+.doctorJob{
+  color:  #6cc2ed;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+#editProBtn{
+  font-size: 1.1rem;
+  background-color:  #6cc2ed;
+  color: #FFFFFF;
+  width:8rem;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+.headColor{
+  color:  #6cc2ed;
+}
+.Pinfo{
+  color:#000000;
+  font-weight: 600;
+  font-size: 1.6rem;
+  max-width: 80%;
+  line-height: 3.5rem;
+  border-radius: 25px;
+  padding: 4px 5px;
+  background: rgba(230, 240, 237, 1);
+}

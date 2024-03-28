@@ -1,0 +1,68 @@
+<div class="w-75 mx-auto py-4">
+  <div class="container mt-5 p-5">
+
+    <div class="card">
+      <p-table
+          [value]="patients"
+          [paginator]="true"
+          [rows]="5"
+          [showCurrentPageReport]="true"
+          [tableStyle]="{ 'min-width': '50rem' }"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [rowsPerPageOptions]="[5, 10, 20]">
+          <ng-template pTemplate="header">
+              <tr>
+                <td>#</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>DOB</td>
+                <td>Gender</td>
+                <td>Edit</td>
+                <td>Remove</td>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-pat>
+              <tr>
+                <td>
+                  {{pat?.id}}
+                </td>
+                <td>
+                  {{pat?.name}}
+                </td>
+                <td>
+                  {{pat?.email}}
+                </td>
+                <td>
+                  {{pat?.phone}}
+                </td>
+                <td>
+                  {{pat?.dob}}
+                </td>
+                <td>
+                  {{pat?.gender}}
+                </td>
+                <td>
+                  <button class="btn btn-info" [value]="pat.id" (click)="navDoc(pat?.id)">Edit</button>
+                </td>
+                <td>
+                  <button class="btn btn-danger" [value]="pat.id" (click)="deletePat(pat.id)">Remove</button>
+                </td>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="paginatorleft">
+              <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+          </ng-template>
+          <ng-template pTemplate="paginatorright">
+              <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+          </ng-template>
+
+      </p-table>
+      <button class="btn btn-success" routerLink="/patient/add">Add Patient</button>
+
+    </div>
+
+    <!-- Add button to navigate to add patient page -->
+
+  </div>
+</div>

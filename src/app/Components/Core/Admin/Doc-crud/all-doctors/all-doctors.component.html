@@ -1,0 +1,107 @@
+<!-- <div class="w-75 mx-auto py-4">
+  <div class="container mt-5 p-5">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th *ngFor="let head of headElements" scope="col">{{ head }} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let doctor of Doctors; index as i">
+          <td>
+            {{doctor.Name}}
+          </td>
+          <td>
+            {{doctor.NationalID}}
+          </td>
+          <td>
+            {{doctor.Governance}}
+          </td>
+          <td>
+            {{doctor.Address}}
+          </td>
+          <td>
+            {{doctor.Gender}}
+          </td>
+          <td>
+            <button class="btn btn-info" routerLink="/doctor/edit">Edit</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="Delete(i)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-success" routerLink="/doctor/add">Add Doctor</button>
+
+
+  </div>
+</div> -->
+
+
+
+
+<div class="card">
+  <p-table
+      [value]="Doctors"
+      [paginator]="true"
+      [rows]="5"
+      [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 20]">
+      <ng-template pTemplate="header">
+          <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>National ID</td>
+            <td>Specialty</td>
+            <td>Gender</td>
+            <td>Governorate</td>
+            <td>Address</td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-doc>
+          <tr>
+            <td>
+              {{doc.doctor?.name}}
+            </td>
+            <td>
+              {{doc.doctor?.email}}
+            </td>
+            <td>
+              {{doc.doctor?.nationalID}}
+            </td>
+            <td>
+              {{doc.doctor?.specialityID}}
+            </td>
+            <td>
+              {{doc.doctor?.gender}}
+            </td>
+            <td>
+              {{doc.doctor?.governance}}
+            </td>
+            <td>
+              {{doc.doctor?.address}}
+            </td>
+
+            <td>
+              <button class="btn btn-info" #docId [value]="doc.doctor.id" (click)="navDoc(doc.doctor.id)">Edit</button>
+            </td>
+            <td>
+              <button class="btn btn-danger" [value]="doc.doctor.id" (click)="deleteDoc(doc.doctor.id)">Remove</button>
+            </td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+      </ng-template>
+      <ng-template pTemplate="paginatorright">
+          <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+      </ng-template>
+  </p-table>
+  <button class="btn btn-success" routerLink="/doctor/add">Add Doctor</button>
+
+</div>

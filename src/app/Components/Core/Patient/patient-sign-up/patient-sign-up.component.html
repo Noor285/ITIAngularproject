@@ -1,0 +1,125 @@
+<div class="w-75 mx-auto py-4">
+<div class="container mt-5 p-5">
+  <div class="row" style="background-color: white; box-shadow: 0px 0px 10px rgba(0, 0, 0.1, 0.2); padding: 5px;  border-radius: 10px;">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+          <div class="login-container m-5">
+              <h2 style="color: #6CC2ED;">Sign-up</h2>
+              <form id="registration-form" [formGroup]="RegistrationForm" (ngSubmit)="handleSignUp(RegistrationForm)"
+                  style="padding-top: 10px;">
+                  <!-- Name -->
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" formControlName="name" class="form-control mb-4" placeholder="Name" id="name"
+                        [ngClass]="{
+                            'is-valid': nameControl.valid && nameControl.touched,
+                            'is-invalid': (nameControl.invalid && nameControl.touched) || (nameControl.errors && nameControl.dirty)
+                        }" />
+                    <div class="valid-feedback">Name Looks good!</div>
+                    <div class="invalid-feedback" *ngIf="nameControl.hasError('required')">Name is required</div>
+                    <div class="invalid-feedback" *ngIf="nameControl.hasError('minlength')">Name must be at least 3 characters long</div>
+                    <div class="invalid-feedback" *ngIf="nameControl.hasError('pattern')">Name must contain only letters</div>
+                </div>
+                
+
+                  <!-- Email -->
+                  <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" formControlName="email" class="form-control mb-4" placeholder="Email"
+                          id="email" [ngClass]="{
+                              'is-valid': emailControl.valid && emailControl.touched,
+                              'is-invalid': (emailControl.invalid && emailControl.touched) || (emailControl.errors && emailControl.dirty)
+                          }" />
+                      <div class="valid-feedback">Email Looks good!</div>
+                      <div class="invalid-feedback">Email is required and must be a valid email address</div>
+                  </div>
+
+                  <!-- Password -->
+                  <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" formControlName="password" class="form-control mb-4"
+                          placeholder="Password" id="password" [ngClass]="{
+                              'is-valid': passwordControl.valid && passwordControl.touched,
+                              'is-invalid': (passwordControl.invalid && passwordControl.touched) || (passwordControl.errors && passwordControl.dirty)
+                          }" />
+                      <div class="valid-feedback">Password Looks good!</div>
+                      <div class="invalid-feedback">Password is required and must be at least 6 characters long</div>
+                  </div>
+
+                  <!-- Confirm Password -->
+                  <div class="form-group">
+                      <label for="confirmPassword">Confirm Password</label>
+                      <input type="password" formControlName="confirmPassword" class="form-control mb-4"
+                          placeholder="Confirm Password" id="confirmPassword" [ngClass]="{
+                              'is-valid': confirmPasswordControl.valid && confirmPasswordControl.touched,
+                              'is-invalid': (confirmPasswordControl.invalid && confirmPasswordControl.touched) || (confirmPasswordControl.errors && confirmPasswordControl.dirty)
+                          }" />
+                      <div class="valid-feedback">Passwords match!</div>
+                      <div class="invalid-feedback">Passwords must match</div>
+                  </div>
+
+                  <!-- Phone -->
+                  <div class="form-group">
+                      <label for="phone">Phone</label>
+                      <input type="number" formControlName="phone" class="form-control mb-4" placeholder="Phone"
+                          id="phone" [ngClass]="{
+                              'is-valid': phoneControl.valid && phoneControl.touched,
+                              'is-invalid': (phoneControl.invalid && phoneControl.touched) || (phoneControl.errors && phoneControl.dirty)
+                          }" />
+                      <div class="valid-feedback">Phone Looks good!</div>
+                      <div class="invalid-feedback">Phone is required and must be 11 digits long</div>
+                  </div>
+
+                  <!-- Date of Birth -->
+                  <div class="form-group">
+                      <label for="dob">Date of Birth</label>
+                      <input type="date" formControlName="dob" class="form-control mb-4" placeholder="Date of Birth"
+                          id="dob" [ngClass]="{
+                              'is-valid': dobControl.valid && dobControl.touched,
+                              'is-invalid': (dobControl.invalid && dobControl.touched) || (dobControl.errors && dobControl.dirty)
+                          }" />
+                      <div class="valid-feedback">Date of Birth Looks good!</div>
+                      <div class="invalid-feedback">Date of Birth is required</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="gender " class="mb-2">Gender</label>
+                    <select formControlName="gender" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option value="1">Male</option>
+                      <option value="2">Female</option>
+                    </select>
+
+                    <div *ngIf="RegistrationForm.get('gender')?.errors && RegistrationForm.get('gender')?.touched" class="text-danger m-1">
+                      <p *ngIf="RegistrationForm.get('gender')?.getError('required')" class="m-0">Gender is Required</p>
+                    </div>
+                  </div>
+
+
+                  <button type="submit" class="btn btn-outline-info btn-send">Submit</button>
+                  
+              </form>
+
+
+          </div>
+          <!-- Create Account Link -->
+          <div class="mb-5">
+            <span class="txt1" style="font-weight: bold ;">Login :</span>
+            <a class="txt2" href="#" routerLink="/patient/signin"> Already have an Account
+                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            </a>
+        </div>
+          <br>
+
+
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-10 d-flex align-items-center justify-content-center">
+          <div class="image-section" style="border-radius: 10px;">
+              <img src="assets/Login.jpeg" alt="Login Image" class="img-fluid">
+          </div>
+      </div>
+
+      <div class="col-md-1"></div>
+  </div>
+</div>
+</div>

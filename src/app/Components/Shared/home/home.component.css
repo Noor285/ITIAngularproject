@@ -1,0 +1,22 @@
+.btn-custom-primary {
+    background-color: #6cc2ed !important;
+    color: #fff !important;
+    border-color: #6cc2ed !important;
+    text-transform:capitalize;
+  }
+
+.btn-custom-primary:hover {
+
+    background-color: #fff !important;
+    color: #6cc2ed !important;
+    border-color: #6cc2ed !important;
+  }
+  .text-test{
+    columns: #6cc2ed;
+  }
+
+.headingDocCard{
+  color: #6cc2ed;
+
+}
+
