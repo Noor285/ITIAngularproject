@@ -10,6 +10,8 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-material-components/datetime-picker": "^16.0.1",
+    "@angular-material-components/file-input": "^16.0.1",
     "@angular/animations": "^16.2.0",
     "@angular/cdk": "^16.2.14",
     "@angular/common": "^16.2.0",
@@ -23,6 +25,8 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "font-awesome": "^4.7.0",
+    "ngx-mat-timepicker": "^17.1.0",
+    "ngx-material-timepicker": "^13.1.1",
     "primeng": "^17.12.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

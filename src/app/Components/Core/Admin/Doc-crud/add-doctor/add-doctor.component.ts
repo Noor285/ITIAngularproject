@@ -58,6 +58,8 @@ export class AddDoctorComponent implements OnInit ,  AfterViewInit {
   handleAdd(createForm:FormGroup)
   {
     // console.log(createForm.value);
+    if(createForm.valid)
+    {
       createForm.value.Gender = +createForm.value.Gender;
       createForm.value.Status = +createForm.value.Status;
       createForm.value.SpecialityID = +createForm.value.SpecialityID;
@@ -73,7 +75,11 @@ export class AddDoctorComponent implements OnInit ,  AfterViewInit {
           this.apiError = error.message;
         }
       });
-
+    }
+    else
+        {
+          this.createForm.markAllAsTouched();
+        }
     // if(createForm.valid)
     // {
     //   createForm.value.gender = +createForm.value.gender;

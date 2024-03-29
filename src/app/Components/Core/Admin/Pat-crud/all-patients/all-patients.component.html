@@ -10,19 +10,19 @@
           [tableStyle]="{ 'min-width': '50rem' }"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [rowsPerPageOptions]="[5, 10, 20]">
-          <ng-template pTemplate="header">
-              <tr>
-                <td>#</td>
+          <ng-template pTemplate="header" >
+              <tr style="font-weight: bold; text-align: center;">
+                <td>Id</td>
                 <td>Name</td>
                 <td>Email</td>
                 <td>Phone</td>
-                <td>DOB</td>
+                <td>Date of Birth</td>
                 <td>Gender</td>
                 <td>Edit</td>
                 <td>Remove</td>
               </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-pat>
+          <ng-template pTemplate="body" let-pat >
               <tr>
                 <td>
                   {{pat?.id}}
@@ -37,10 +37,10 @@
                   {{pat?.phone}}
                 </td>
                 <td>
-                  {{pat?.dob}}
+                  {{pat?.dob |date:'longDate'}}
                 </td>
                 <td>
-                  {{pat?.gender}}
+                  {{pat?.gender | gender}}
                 </td>
                 <td>
                   <button class="btn btn-info" [value]="pat.id" (click)="navDoc(pat?.id)">Edit</button>
@@ -58,11 +58,11 @@
           </ng-template>
 
       </p-table>
-      <button class="btn btn-success" routerLink="/patient/add">Add Patient</button>
 
     </div>
 
     <!-- Add button to navigate to add patient page -->
+    <button class="btn btn-success mt-3" routerLink="/patient/add">Add Patient</button>
 
   </div>
 </div>

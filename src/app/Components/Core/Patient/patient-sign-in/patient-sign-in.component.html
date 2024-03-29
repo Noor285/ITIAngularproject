@@ -9,11 +9,11 @@
       </div>
 
       <div class="card-body">
-
-        <form (ngSubmit)="handleSignIn(signInForm)" class="m-3 row" [formGroup]="signInForm">
+        <!-- (ngSubmit)="handleSignIn(signInForm)" -->
+        <form  class="m-3 row" [formGroup]="signInForm">
             <div class="col-md-1"></div>
 
-            <!-- ----------------------- **** Section 1 ***** ----------------------- -->
+            <!-- ----------------------- ** Section 1 *** ----------------------- -->
 
             <div class="col-md-5">
 
@@ -26,7 +26,7 @@
               </div>
             </div>
 
-            <!-- ----------------------- **** Section 2 ***** ----------------------- -->
+            <!-- ----------------------- ** Section 2 *** ----------------------- -->
 
             <div class="col-md-5 mt-5">
 
@@ -57,10 +57,10 @@
               <!-- ----------------------- Sign In Button ----------------------- -->
 
               <div class="text-start m-3">
-                <button type="submit" routerLink="/patient/patientprofial" class="btn btn-info btn-send mt-3 w-50">
+                <button routerLink="/patient/profile" class="btn btn-info btn-send mt-3 w-50">
 
-                  <!-- <i *ngIf="isLoading" class="bi bi-arrow-clockwise"></i> -->
-                  <i *ngIf="isLoading"  class="fas fa-spinner fa-spin"></i>
+
+                  <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
 
                   <span *ngIf="!isLoading">Sign In</span>
 
@@ -92,4 +92,3 @@
     </div>
   </div>
 </div>
-

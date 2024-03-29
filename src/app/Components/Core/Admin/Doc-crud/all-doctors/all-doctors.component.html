@@ -1,49 +1,7 @@
-<!-- <div class="w-75 mx-auto py-4">
+<div class="w-75 mx-auto py-4">
   <div class="container mt-5 p-5">
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th *ngFor="let head of headElements" scope="col">{{ head }} </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let doctor of Doctors; index as i">
-          <td>
-            {{doctor.Name}}
-          </td>
-          <td>
-            {{doctor.NationalID}}
-          </td>
-          <td>
-            {{doctor.Governance}}
-          </td>
-          <td>
-            {{doctor.Address}}
-          </td>
-          <td>
-            {{doctor.Gender}}
-          </td>
-          <td>
-            <button class="btn btn-info" routerLink="/doctor/edit">Edit</button>
-          </td>
-          <td>
-            <button class="btn btn-danger" (click)="Delete(i)">Remove</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <button class="btn btn-success" routerLink="/doctor/add">Add Doctor</button>
-
-
-  </div>
-</div> -->
-
-
-
-
-<div class="card">
+    <div class="card">
   <p-table
       [value]="Doctors"
       [paginator]="true"
@@ -53,7 +11,8 @@
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [rowsPerPageOptions]="[5, 10, 20]">
       <ng-template pTemplate="header">
-          <tr>
+          <tr style="font-weight: bold; padding: 30px; text-align: center;">
+            <td>ID</td>
             <td>Name</td>
             <td>Email</td>
             <td>National ID</td>
@@ -65,6 +24,9 @@
       </ng-template>
       <ng-template pTemplate="body" let-doc>
           <tr>
+            <td>
+              {{doc.doctor?.ID}}
+            </td>
             <td>
               {{doc.doctor?.name}}
             </td>
@@ -102,6 +64,11 @@
           <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
       </ng-template>
   </p-table>
-  <button class="btn btn-success" routerLink="/doctor/add">Add Doctor</button>
 
+</div>
+
+<button class="btn btn-success mt-3" routerLink="/doctor/add">Add Doctor</button>
+
+
+</div>
 </div>

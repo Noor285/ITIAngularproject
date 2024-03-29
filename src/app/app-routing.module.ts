@@ -17,10 +17,10 @@ import { PatientSignInComponent } from './Components/Core/Patient/patient-sign-i
 import { PatientSignUpComponent } from './Components/Core/Patient/patient-sign-up/patient-sign-up.component';
 import { PatientProfileComponent } from './Components/Core/Patient/patient-profile/patient-profile.component';
 import { PaymentComponent } from './Components/Core/Patient/payment/payment.component';
-import { RatedoctorComponent } from './Components/Core/Patient/ratedoctor/ratedoctor.component';
 import { DoctorProfileComponent } from './Components/Core/Doctor/doctor-profile/doctor-profile.component';
 import { PaymentDetailsComponent } from './Components/Core/Patient/payment-details/payment-details.component';
 import { AllAppointmentsComponent } from './Components/Core/Patient/all-appointments/all-appointments.component';
+import { AppointmentRequestsComponent } from './Components/Core/Doctor/appointment-requests/appointment-requests.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,7 +38,6 @@ const routes: Routes = [
   {path: 'patient/profile' , component:PatientProfileComponent , },
   {path: 'patient/patientprofial/payment' , component:PaymentComponent , },
   {path: 'patient/patientprofial/paymentdetails' , component:PaymentDetailsComponent },
-  {path: 'patient/patientprofial/rateDoctor' , component:RatedoctorComponent , },
 
   {path: 'doctor/signup' , component:DoctorSignUpComponent, title:'Doctor Sign Up ' },
   {path: 'doctor/signin' , component:DoctorSignInComponent, title:'Doctor Sign In ' },
@@ -46,7 +45,8 @@ const routes: Routes = [
   {path:'doctor/add', component: AddDoctorComponent , title:'Add Doctor'},
   {path: 'doctor/edit/:docId' , component:EditDoctorComponent },
   {path: 'doctor/appointment' , component:DoctorAppointmentComponent },
-  {path: 'doctor/profile' , component:DoctorProfileComponent },
+  {path: 'doctor/profile/:docId' , component:DoctorProfileComponent },
+  {path: 'doctor/appointment/req', component: AppointmentRequestsComponent},
 
 
   { path: '**', component: NotfoundComponent }

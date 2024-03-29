@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IDoctor, IDoctor2 } from '../Models/i-doctor';
 import { Observable } from 'rxjs';
@@ -9,8 +9,18 @@ import { Speciality } from './../Models/speciality';
   providedIn: 'root'
 })
 export class DoctorService {
+  httpOption: { headers: HttpHeaders; };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    this.httpOption={
+      headers:new HttpHeaders({
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Accept',
+        Authorization: `mazen__${localStorage.getItem('token')}`
+      })
+    };
+  }
 
   getAllDoctors(): Observable<IDoctor[]> {
     return this.httpClient.get<IDoctor[]>(`https://localhost:7013/api/Doctor/Details`)};
@@ -34,6 +44,31 @@ export class DoctorService {
 
   getAllSpecialities(): Observable<any> {
     return this.httpClient.get<any>(`https://localhost:7013/api/Doctor/Speciality`); // Adjust the URL as per your API endpoint
+  }
+
+
+  /* Start edit appoint component */
+  getAllAppoint():Observable<any>
+  {
+    return this.httpClient.get('https://mazen.cyclic.app/doctor/',this.httpOption)
+  }
+  acceptAppoint(id:any):Observable<any>
+  {
+    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Confirm/${id}`,this.httpOption)
+  }
+  cancelAppoint(id:any):Observable<any>
+  {
+    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Reject/${id}`,this.httpOption)
+  }
+  getComingAppoint():Observable<any>
+  {
+    return this.httpClient.get(`https://mazen.cyclic.app/doctor/upcomingAppointments`,this.httpOption);
+  }
+  /* End edit appoint component */
+
+  getProfileDoc(id:any):Observable<any>
+  {
+    return this.httpClient.get(`https://localhost:7013/api/Doctor/Details/${id}`,this.httpOption)
   }
 
 }

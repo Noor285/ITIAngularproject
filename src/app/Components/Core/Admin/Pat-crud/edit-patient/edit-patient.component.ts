@@ -60,7 +60,7 @@ export class EditPatientComponent implements OnInit{
   }
 
   // handleEdit(): void {
-
+  //   if (this.editForm.valid) {
   //   console.log(this.editForm.value);
   //   this.editForm.value.gender = +this.editForm.value.gender!;
   //   this.editForm.value.status = +this.editForm.value.status!;
@@ -78,8 +78,13 @@ export class EditPatientComponent implements OnInit{
   //       console.error(error);
   //     }
   //   });
+  // }
+  // else {
+  //       this.editForm.markAllAsTouched();
+  //     }
 
   // }
 
+  
 
 }
