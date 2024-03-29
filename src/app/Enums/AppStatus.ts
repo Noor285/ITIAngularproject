@@ -1,1 +1,1 @@
-export enum AppStatus { Accepted , Rejected , Cancaled };
+export enum AppStatus { Accepted , Rejected , Cancaled , Pending };
