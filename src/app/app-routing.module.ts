@@ -20,6 +20,7 @@ import { PaymentComponent } from './Components/Core/Patient/payment/payment.comp
 import { RatedoctorComponent } from './Components/Core/Patient/ratedoctor/ratedoctor.component';
 import { DoctorProfileComponent } from './Components/Core/Doctor/doctor-profile/doctor-profile.component';
 import { PaymentDetailsComponent } from './Components/Core/Patient/payment-details/payment-details.component';
+import { AllAppointmentsComponent } from './Components/Core/Patient/all-appointments/all-appointments.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,7 +34,7 @@ const routes: Routes = [
   {path: 'patient/allpatients' , component:AllPatientsComponent, title:'Show All Patients' },
   {path:'patient/add', component: AddPatientComponent , title:'Add Patient'},
   {path: 'patient/edit/:patId' , component:EditPatientComponent , },
-  // title:'Edit Patient'
+  {path: 'patient/appointments' , component:AllAppointmentsComponent, title:'Appointments'},
   {path: 'patient/profile' , component:PatientProfileComponent , },
   {path: 'patient/patientprofial/payment' , component:PaymentComponent , },
   {path: 'patient/patientprofial/paymentdetails' , component:PaymentDetailsComponent },
@@ -46,10 +47,6 @@ const routes: Routes = [
   {path: 'doctor/edit/:docId' , component:EditDoctorComponent },
   {path: 'doctor/appointment' , component:DoctorAppointmentComponent },
   {path: 'doctor/profile' , component:DoctorProfileComponent },
-
-
-
-
 
 
   { path: '**', component: NotfoundComponent }

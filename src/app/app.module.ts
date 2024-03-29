@@ -37,6 +37,10 @@ import { RatedoctorComponent } from './Components/Core/Patient/ratedoctor/ratedo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { GenderPipe } from './Pipes/gender.pipe';
+import { RatingModule } from 'primeng/rating';
+import { DialogModule } from 'primeng/dialog';
+import { AppstatusPipe } from './Pipes/appstatus.pipe';
 
 @NgModule({
   declarations: [
@@ -69,7 +73,9 @@ import { TableModule } from 'primeng/table';
     DoctorSignInComponent,
     PatientSignInComponent,
     PatientSignUpComponent,
-    RatedoctorComponent
+    RatedoctorComponent,
+    GenderPipe,
+    AppstatusPipe
   ],
   imports: [
     BrowserModule,
@@ -79,7 +85,9 @@ import { TableModule } from 'primeng/table';
     FormsModule,
     BrowserAnimationsModule,
     ButtonModule,
-    TableModule
+    TableModule,
+    RatingModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
