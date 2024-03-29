@@ -1,45 +1,44 @@
 .custom-btn {
-    background-color: #6cc2ed ;
-    color: #fff !important;
-    border-color: #6cc2ed ;
-    text-transform:capitalize;
+  background-color: #6cc2ed;
+  color: #fff !important;
+  border-color: #6cc2ed;
+  text-transform: capitalize;
 }
 
 .custom-btn:hover {
-
-    background-color: #fff ;
-    color: #6cc2ed ;
-    border-color: #6cc2ed ;
+  background-color: #fff;
+  color: #6cc2ed !important;
+  border-color: #6cc2ed;
 }
+
 .headColor{
-    color: #6cc2ed;
+  color: #6cc2ed;
 }
 .Pinfo{
-    color:#000000;
-    font-weight: 600;
-    font-size: 1.6rem;
-    max-width: 80%;
-    line-height: 3.5rem;
-    border-radius: 10px;
-    margin: 3px;
-    background: rgba(230, 240, 237, 1);
+  color:#000000;
+  font-weight: 600;
+  font-size: 1.6rem;
+  max-width: 80%;
+  line-height: 3.5rem;
+  border-radius: 10px;
+  margin: 3px;
+  background: rgba(230, 240, 237, 1);
 }
 .toggle-btn{
-    font-size: 30px;
-    width: 10%;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 20px;
-    background-color: #C7C7C7;
-    color: #37474F;
+  font-size: 30px;
+  width: 10%;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 20px;
+  background-color: #C7C7C7;
+  color: #37474F;
 }
 .noteInfo{
-    background:rgba(230, 240, 237, 1) ;
-    height: 14rem;
-    border-radius:25px ;
+  background:rgba(230, 240, 237, 1) ;
+  height: 14rem;
+  border-radius:25px ;
 }
 .appointInfo{
-    border: #6cc2ed 2px solid;
-    border-radius: 20px;
+  border: #6cc2ed 2px solid;
+  border-radius: 20px;
 }
-

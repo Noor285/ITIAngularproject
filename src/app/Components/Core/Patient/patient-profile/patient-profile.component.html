@@ -3,20 +3,19 @@
     <div class="row align-items-center p-4">
       <section class="patient-profile  p-3">
         <div class="text-center py-4">
-          <h3 class="fw-bolder headColor fs-1"> Profile </h3>
-          <img src="assets/10292730-lady-patient-in-the-hospital.jpg " class="w-25" alt="account">
+          <h3 class="fw-bolder headColor fs-1"> Your Profile </h3>
         </div>
         <div class="row ">
           <div class="col-md-6 ">
-            <h4 class="headColor fw-bolder"> First Name </h4>
+            <h3 class="headColor fw-bolder"> Name </h3>
             <span class="bg-light">
-              <p class="Pinfo "> Ali Kareem</p>
+              <p class="Pinfo ">{{patientProfile?.name}}</p>
             </span>
           </div>
           <div class="col-md-4 offset-2">
-            <h4 class="headColor fw-bolder"> Phone Number</h4>
+            <h3 class="headColor fw-bolder"> Phone</h3>
             <span class="bg-light">
-              <p class="Pinfo">01234567890 </p>
+              <p class="Pinfo">{{patientProfile?.phone}}</p>
             </span>
           </div>
         </div>
@@ -24,28 +23,30 @@
           <div class="col-md-6 ">
             <h4 class="headColor fw-bolder">Email</h4>
             <span class="bg-light">
-              <p class="Pinfo ">ali@gmail.com </p>
+              <p class="Pinfo ">{{patientProfile?.email}}</p>
             </span>
           </div>
           <div class="col-md-4 offset-2">
-            <h4 class="headColor fw-bolder"> Address </h4>
-            <span class="bg-light">
-              <p class="Pinfo"> Sohag</p>
-            </span>
-          </div>
-
-          <!-- <div class="col-md-4 offset-2">
-            <h4 class="headColor fw-bolder"> Date Of Birth </h4>
-            <span class="bg-light">
-              <p class="Pinfo"> 1992-02-5</p>
-            </span>
-          </div> -->
-          <!-- <div class="col-md-4 offset-2">
             <h4 class="headColor fw-bolder"> Gender </h4>
             <span class="bg-light">
-              <p class="Pinfo"> Male</p>
+              <p class="Pinfo"> {{patientProfile?.gender | gender}}</p>
             </span>
-          </div> -->
+          </div>
+          <div class="row  py-4">
+            <div class="col-md-6 ">
+              <h4 class="headColor fw-bolder">Date Of Birth </h4>
+              <span class="bg-light">
+                <p class="Pinfo "> {{patientProfile?.dob |date:'longDate'}}</p>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-4 offset-2">
+            <div class="button-container" style="margin-bottom: 10px; margin-top: 10px;">
+              <!-- (click)="showDialog()" -->
+              <!-- <button type="button" class="btn btn-primary btn-lg px-3 gap-2 custom-btn" >Edit</button> -->
+          </div>
+          </div>
+
         </div>
       </section>
     </div>
@@ -53,68 +54,73 @@
 </header>
 <div class="container">
   <div class="row">
-    <h4 class="headColor fw-bolder text-center"> Appointments' Info</h4>
+    <h2 class="headColor fw-bolder text-center"> Appointments' Info</h2>
     <section class="appointInfo">
       <div class="row  py-4">
         <div class="col-md-6 ">
-          <h4 class="headColor fw-bolder">Time & Date</h4>
+          <h3 class="headColor fw-bolder">Time & Date</h3>
           <span class="bg-light">
-            <p class="Pinfo ">2024-03-26 At 09:00AM </p>
+            <p class="Pinfo ">2024-03-26 </p>
           </span>
         </div>
         <div class="col-md-4 offset-2">
-          <h4 class="headColor fw-bolder"> Doctor’s Name </h4>
+          <h3 class="headColor fw-bolder"> Doctor’s Name </h3>
           <span class="bg-light">
             <p class="Pinfo"> Doctor Salah </p>
           </span>
+
         </div>
-      </div>
-      <div class="text-center">
-        <!-- <img class="w-25 " alt="brianscans" srcset=""> -->
-      </div>
-      <h4 class="headColor fw-bolder"> Notes </h4>
-      <div>
-        <button class="toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-          aria-expanded="false" aria-controls="collapseExample">
-          <i class="fa-solid fa-plus"></i>
-        </button>
-        <div class="collapse" id="collapseExample">
-          <div class="noteInfo"> </div>
+        <div class="col-md-6 ">
+          <h3 class="headColor fw-bolder">Status</h3>
+          <span class="bg-light">
+            <p class="Pinfo ">Accepted </p>
+          </span>
         </div>
+
+        <div class="button-container" style="margin-bottom: 10px; margin-top: 10px;">
+          <button type="button" class="btn btn-primary btn-lg px-3 gap-2 custom-btn" (click)="showDialog()"> Rate Doctor</button>
       </div>
 
+      <div class="button-container">
+          <button type="button" class="btn btn-primary btn-lg px-3 gap-2 custom-btn" [routerLink]="['/patient/patientprofial/payment']"> Pay Now </button>
+      </div>
+
+
+      </div>
+
+
+       <!-- Rate D Dialog -->
+      <p-dialog [(visible)]="rateDialog" [style]="{ width: '500px' }" header="Rate Doctor" [modal]="true" styleClass="p-fluid">
+        <div class="container">
+
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-center" style="font-weight: bold; color: #43acc2;"> Rate Your Doctor</h5>
+                  <form #ratingForm="ngForm" (ngSubmit)="submitRating(ratingForm)">
+                    <div class="form-group mb-3">
+                      <label for="rating">Rating:</label>
+                      <select class="form-control" id="rating" name="rating" [(ngModel)]="selectedRating" required>
+                        <option value="" disabled selected>Select Rating</option>
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="3">3 - Good</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="1">1 - Poor</option>
+                      </select>
+                    </div>
+                    <!-- <div class="card flex justify-content-center">
+                      <p-rating [(ngModel)]="selectedRating"></p-rating>
+                  </div> -->
+                    <div class="form-group mb-3">
+                      <label for="notes" >Additional Notes:</label>
+                      <textarea class="form-control" id="notes" name="notes" rows="4" [(ngModel)]="additionalNotes"></textarea>
+                    </div>
+                    <button class="btn btn-info btn-rate mt-3" type="submit" style="width: 200px;">Submit Reating</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+      </p-dialog>
     </section>
-  </div>
-</div>
-
-<!--
-<button class="toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-aria-expanded="false" aria-controls="collapseExample">
-<i class="fa fa-plus"></i>
-</button>
-
-<div class="collapse" id="collapseExample">
-<div class="form-outline">
-  <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
-</div>
-<button class="btn btn-success my-3" type="submit">Save notes</button>
-</div> -->
-
-
-
-
-
-<div class="col-lg-6 mx-auto">
-
-  <div class="d-grid gap-2 d-sm-flex justify-content-sm-left">
-    <button type="button" class="btn btn-primary btn-lg px-3 gap-2 custom-btn"
-      [routerLink]="['/patient/patientprofial/payment']"> Pay Now </button>
-  </div>
-</div>
-<div class="col-lg-6 mx-auto">
-
-  <div class="d-grid gap-2 d-sm-flex justify-content-sm-left" style="padding-top: 10px;">
-    <button type="button" class="btn btn-primary btn-lg px-3 gap-2 custom-btn"
-      [routerLink]="['/patient/patientprofial/rateDoctor']"> Rate Doctor</button>
   </div>
 </div>

@@ -7,24 +7,20 @@ h5{
   color: #979797;
 }
 .doctorJob{
-  color:  #6cc2ed;
+  color: #1A998E;
   font-weight: 400;
   font-size: 36px;
 }
 
 #editProBtn{
-  font-size: 1.1rem;
-  background-color:  #6cc2ed;
+  font-size: 1.6rem;
+  background-color: #1A998E;
   color: #FFFFFF;
-  width:8rem;
+  width:10rem;
   border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
 }
 .headColor{
-  color:  #6cc2ed;
+  color: #1A998E;
 }
 .Pinfo{
   color:#000000;

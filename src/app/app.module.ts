@@ -4,6 +4,29 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import {MatSnackBar,  MatSnackBarModule, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import {MatDividerModule} from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
+
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './Components/Shared/nav-bar/nav-bar.component';
 import { FooterComponent } from './Components/Shared/footer/footer.component';
@@ -33,10 +56,8 @@ import { DoctorSignUpComponent } from './Components/Core/Doctor/doctor-sign-up/d
 import { DoctorSignInComponent } from './Components/Core/Doctor/doctor-sign-in/doctor-sign-in.component';
 import { PatientSignInComponent } from './Components/Core/Patient/patient-sign-in/patient-sign-in.component';
 import { PatientSignUpComponent } from './Components/Core/Patient/patient-sign-up/patient-sign-up.component';
-import { RatedoctorComponent } from './Components/Core/Patient/ratedoctor/ratedoctor.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
+import { GenderPipe } from './Components/pipe/gender.pipe';
+
 
 @NgModule({
   declarations: [
@@ -69,7 +90,7 @@ import { TableModule } from 'primeng/table';
     DoctorSignInComponent,
     PatientSignInComponent,
     PatientSignUpComponent,
-    RatedoctorComponent
+    GenderPipe
   ],
   imports: [
     BrowserModule,
@@ -79,7 +100,32 @@ import { TableModule } from 'primeng/table';
     FormsModule,
     BrowserAnimationsModule,
     ButtonModule,
-    TableModule
+    TableModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+    FormsModule,
+    MatProgressSpinnerModule, MatIconModule, MatSlideToggleModule, MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatDividerModule,
+    NgxMatFileInputModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    MatOptionModule,
+    DatePipe,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

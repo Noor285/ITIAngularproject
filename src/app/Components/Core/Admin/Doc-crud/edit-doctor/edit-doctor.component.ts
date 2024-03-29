@@ -116,27 +116,30 @@ export class EditDoctorComponent implements OnInit  {
   // }
 
   handleEdit(): void {
+    if (this.editForm.valid) {
+      console.log(this.editForm.value);
+      this.editForm.value.gender = +this.editForm.value.gender;
+      this.editForm.value.status = +this.editForm.value.status;
+      this.editForm.value.specialityID = +this.editForm.value.specialityID;
 
- console.log(this.editForm.value);
- this.editForm.value.gender = +this.editForm.value.gender;
- this.editForm.value.status = +this.editForm.value.status;
- this.editForm.value.specialityID = +this.editForm.value.specialityID;
+        this.doctorService.editDoctor(this.editForm.value).subscribe({
+        next:(response) => {
+          console.log('Edit added successfully:', response);
+          this.handleUpdate();
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/doctor/alldoctors']); // Replace '/your-route' with the route you want to navigate to after editing
+          })
+        },
+        error:(error) =>
+        {
+          console.error(error);
+        }
+      });
 
-  this.doctorService.editDoctor(this.editForm.value).subscribe({
-   next:(response) => {
-     console.log('Edit added successfully:', response);
-     this.handleUpdate();
-     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/doctor/alldoctors']); // Replace '/your-route' with the route you want to navigate to after editing
-     })
-   },
-   error:(error) =>
-   {
-     console.error(error);
-   }
- });
-
-
+      }
+    else {
+          this.editForm.markAllAsTouched();
+        }
 
   //   if (this.editForm.valid) {
   //     this.editForm.value.gender = +this.editForm.value.gender;
