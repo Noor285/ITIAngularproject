@@ -4,9 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
 import {MatSnackBar,  MatSnackBarModule, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
@@ -25,7 +22,6 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DatePipe } from '@angular/common';
-import { DialogModule } from 'primeng/dialog';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './Components/Shared/nav-bar/nav-bar.component';
@@ -56,8 +52,6 @@ import { DoctorSignUpComponent } from './Components/Core/Doctor/doctor-sign-up/d
 import { DoctorSignInComponent } from './Components/Core/Doctor/doctor-sign-in/doctor-sign-in.component';
 import { PatientSignInComponent } from './Components/Core/Patient/patient-sign-in/patient-sign-in.component';
 import { PatientSignUpComponent } from './Components/Core/Patient/patient-sign-up/patient-sign-up.component';
-<<<<<<< HEAD
-import { RatedoctorComponent } from './Components/Core/Patient/ratedoctor/ratedoctor.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -65,10 +59,6 @@ import { GenderPipe } from './Pipes/gender.pipe';
 import { RatingModule } from 'primeng/rating';
 import { DialogModule } from 'primeng/dialog';
 import { AppstatusPipe } from './Pipes/appstatus.pipe';
-=======
-import { GenderPipe } from './Components/pipe/gender.pipe';
-
->>>>>>> c5ae13cd4e8559b5b7a7500fa97e2418c9f4a4f6
 
 @NgModule({
   declarations: [
@@ -101,15 +91,11 @@ import { GenderPipe } from './Components/pipe/gender.pipe';
     DoctorSignInComponent,
     PatientSignInComponent,
     PatientSignUpComponent,
-<<<<<<< HEAD
-    RatedoctorComponent,
     GenderPipe,
     AppstatusPipe
-=======
-    GenderPipe
->>>>>>> c5ae13cd4e8559b5b7a7500fa97e2418c9f4a4f6
   ],
   imports: [
+    RatingModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -118,9 +104,6 @@ import { GenderPipe } from './Components/pipe/gender.pipe';
     BrowserAnimationsModule,
     ButtonModule,
     TableModule,
-<<<<<<< HEAD
-    RatingModule,
-=======
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatDatepickerModule,
@@ -145,7 +128,6 @@ import { GenderPipe } from './Components/pipe/gender.pipe';
     MatDialogModule,
     MatOptionModule,
     DatePipe,
->>>>>>> c5ae13cd4e8559b5b7a7500fa97e2418c9f4a4f6
     DialogModule
   ],
   providers: [],
