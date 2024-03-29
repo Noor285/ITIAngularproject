@@ -1,1 +1,77 @@
-<p>all-appointments works!</p>
+<h2 class="headColor fw-bolder text-center">Appointments' Info</h2>
+<div class="container mb-3" *ngFor="let app of appointmentDocs">
+  <div class="row">
+    <section class="appointInfo">
+      <div class="row  py-4 justify-content-around">
+        <div class="col-md-3 ">
+          <h3 class="headColor fw-bolder">Date</h3>
+          <span class="bg-light">
+            <p class="Pinfo text-center">{{app.appointement.date | date}}</p>
+          </span>
+        </div>
+        <div class="col-md-3">
+          <h3 class="headColor fw-bolder"> Doctor’s Name </h3>
+          <span class="bg-light">
+            <p class="Pinfo text-center"> {{app.doctor.name}} </p>
+          </span>
+
+        </div>
+        <div class="col-md-3 m-2">
+          <h3 class="headColor fw-bolder"> Status </h3>
+          <span class="bg-light">
+            <p class="Pinfo text-center" [ngClass]="{
+              'text-success' : app.appointement.status == 0,
+              'text-danger' : app.appointement.status == 1 || app.appointement.status == 2
+            }">{{app.appointement.status | appstatus}}</p>
+          </span>
+        </div>
+
+      <div class="button-container text-end " [ngClass]="{
+        'd-none': app.appointement.status != 0,
+      }">
+        <button type="button" class="btn btn-primary btn-lg px-3 gap-2 custom-btn me-2" (click)="showDialog()"> Rate Doctor</button>
+        <button type="button" class="btn btn-primary btn-lg px-3 gap-2 custom-btn" [routerLink]="['/patient/patientprofial/payment']"> Pay Now </button>
+      </div>
+
+
+      </div>
+
+
+       <!-- Rate D Dialog -->
+      <p-dialog [(visible)]="rateDialog" [style]="{ width: '500px' }" header="Rate Doctor" [modal]="true" styleClass="p-fluid">
+        <div class="container">
+
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-center" style="font-weight: bold; color: #43acc2;"> Rate Your Doctor</h5>
+                  <form #ratingForm="ngForm" (ngSubmit)="submitRating(ratingForm)">
+                    <div class="form-group mb-3">
+                      <label for="rating">Rating:</label>
+                      <select class="form-control" id="rating" name="rating" [(ngModel)]="selectedRating" required>
+                        <option value="" disabled selected>Select Rating</option>
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="3">3 - Good</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="1">1 - Poor</option>
+                      </select>
+                    </div>
+                    <!-- <div class="card flex justify-content-center">
+                      <p-rating [(ngModel)]="selectedRating"></p-rating>
+                  </div> -->
+                    <div class="form-group mb-3">
+                      <label for="notes" >Additional Notes:</label>
+                      <textarea class="form-control" id="notes" name="notes" rows="4" [(ngModel)]="additionalNotes"></textarea>
+                    </div>
+                    <button class="btn btn-info btn-rate mt-3" type="submit" style="width: 200px;">Submit Reating</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+      </p-dialog>
+
+
+    </section>
+  </div>
+</div>
