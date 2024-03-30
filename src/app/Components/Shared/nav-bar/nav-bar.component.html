@@ -15,13 +15,11 @@
   </ul>
 
   <div class="col-md-3 text-end">
-    <button type="button" class="btn btn-outline-success me-2" routerLink="/doctor/signin">Doctor Sign-in</button>
-    <button type="button" class="btn btn-success" routerLink="/doctor/signup">Doctor Sign-up</button>
-    <div class="mb-3"></div>
-    <button type="button" class="btn btn-outline-primary me-2" routerLink="/patient/signin">Patient Sign-in</button>
-    <button type="button" class="btn btn-primary" routerLink="/patient/signup">Patient Sign-up</button>
+    <button *ngIf="role == ''" type="button" class="btn btn-outline-success me-2" routerLink="/signin">Sign-in</button>
+    <button *ngIf="role == ''" type="button" class="btn btn-success me-2" routerLink="/doctor/signup">Doctor Sign-up</button>
+    <button *ngIf="role == ''" type="button" class="btn btn-primary" routerLink="/patient/signup">Patient Sign-up</button>
   </div>
   <div>
-    <button type="button" class="btn btn-dark" routerLink="/login">Log Out</button>
+    <button *ngIf="role != ''" type="button" (click)="Logout()" class="btn btn-dark">Log Out</button>
   </div>
 </header>
