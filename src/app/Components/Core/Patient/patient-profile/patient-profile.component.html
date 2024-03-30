@@ -9,13 +9,13 @@
           <div class="col-md-6 ">
             <h3 class="headColor fw-bolder"> Name </h3>
             <span class="bg-light">
-              <p class="Pinfo ">{{patientProfile?.name}}</p>
+              <p class="Pinfo text-center">{{patientProfile?.name}}</p>
             </span>
           </div>
           <div class="col-md-4 offset-2">
             <h3 class="headColor fw-bolder"> Phone</h3>
             <span class="bg-light">
-              <p class="Pinfo">{{patientProfile?.phone}}</p>
+              <p class="Pinfo text-center">{{patientProfile?.phone}}</p>
             </span>
           </div>
         </div>
@@ -23,20 +23,20 @@
           <div class="col-md-6 ">
             <h4 class="headColor fw-bolder">Email</h4>
             <span class="bg-light">
-              <p class="Pinfo ">{{patientProfile?.email}}</p>
+              <p class="Pinfo text-center">{{patientProfile?.email}}</p>
             </span>
           </div>
           <div class="col-md-4 offset-2">
             <h4 class="headColor fw-bolder"> Gender </h4>
             <span class="bg-light">
-              <p class="Pinfo"> {{patientProfile?.gender | gender}}</p>
+              <p class="Pinfo text-center"> {{patientProfile?.gender | gender}}</p>
             </span>
           </div>
           <div class="row  py-4">
             <div class="col-md-6 ">
               <h4 class="headColor fw-bolder">Date Of Birth </h4>
               <span class="bg-light">
-                <p class="Pinfo "> {{patientProfile?.dob |date:'longDate'}}</p>
+                <p class="Pinfo text-center"> {{patientProfile?.dob |date:'longDate'}}</p>
               </span>
             </div>
           </div>
@@ -52,75 +52,3 @@
     </div>
   </div>
 </header>
-<div class="container">
-  <div class="row">
-    <h2 class="headColor fw-bolder text-center"> Appointments' Info</h2>
-    <section class="appointInfo">
-      <div class="row  py-4">
-        <div class="col-md-6 ">
-          <h3 class="headColor fw-bolder">Time & Date</h3>
-          <span class="bg-light">
-            <p class="Pinfo ">Mar 30, 2024</p>
-          </span>
-        </div>
-        <div class="col-md-4 offset-2">
-          <h3 class="headColor fw-bolder"> Doctor’s Name </h3>
-          <span class="bg-light">
-            <p class="Pinfo"> test</p>
-          </span>
-
-        </div>
-        <div class="col-md-6 ">
-          <h3 class="headColor fw-bolder">Status</h3>
-          <span class="bg-light">
-            <p class="Pinfo ">Accepted </p>
-          </span>
-        </div>
-
-        <div class="button-container" style="margin-bottom: 10px; margin-top: 10px;">
-          <button type="button" class="btn btn-primary btn-lg px-3 gap-2 custom-btn" (click)="showDialog()"> Rate Doctor</button>
-      </div>
-
-      <div class="button-container">
-          <button type="button" class="btn btn-primary btn-lg px-3 gap-2 custom-btn" [routerLink]="['/patient/patientprofial/payment']"> Pay Now </button>
-      </div>
-
-
-      </div>
-
-
-       <!-- Rate D Dialog -->
-      <p-dialog [(visible)]="rateDialog" [style]="{ width: '500px' }" header="Rate Doctor" [modal]="true" styleClass="p-fluid">
-        <div class="container">
-
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title text-center" style="font-weight: bold; color: #43acc2;"> Rate Your Doctor</h5>
-                  <form #ratingForm="ngForm" (ngSubmit)="submitRating(ratingForm)">
-                    <div class="form-group mb-3">
-                      <label for="rating">Rating:</label>
-                      <select class="form-control" id="rating" name="rating" [(ngModel)]="selectedRating" required>
-                        <option value="" disabled selected>Select Rating</option>
-                        <option value="5">5 - Excellent</option>
-                        <option value="4">4 - Very Good</option>
-                        <option value="3">3 - Good</option>
-                        <option value="2">2 - Fair</option>
-                        <option value="1">1 - Poor</option>
-                      </select>
-                    </div>
-                    <!-- <div class="card flex justify-content-center">
-                      <p-rating [(ngModel)]="selectedRating"></p-rating>
-                  </div> -->
-                    <div class="form-group mb-3">
-                      <label for="notes" >Additional Notes:</label>
-                      <textarea class="form-control" id="notes" name="notes" rows="4" [(ngModel)]="additionalNotes"></textarea>
-                    </div>
-                    <button class="btn btn-info btn-rate mt-3" type="submit" style="width: 200px;">Submit Reating</button>
-                  </form>
-                </div>
-              </div>
-            </div>
-      </p-dialog>
-    </section>
-  </div>
-</div>
