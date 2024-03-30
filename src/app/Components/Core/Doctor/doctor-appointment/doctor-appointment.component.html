@@ -3,44 +3,43 @@
 
     <div class="col-md-12  text-center">
       <h1 class="doctorJob fw-bolder text-center"> Profile </h1>
-      <img class="w-25 rounded-5" [src]="imgSrc">
     </div>
   </div>
   <div class="row  ">
     <div class="col-md-6 ">
       <h4 class="headColor fw-bolder"> Name </h4>
       <span class="bg-light">
-        <p class="Pinfo"> Ahmed Gamal </p>
+        <p class="Pinfo text-center"> {{docProfileData.doctor.name}} </p>
       </span>
     </div>
     <div class="col-md-6">
       <h4 class="headColor fw-bolder"> Specialties </h4>
       <span class="bg-light">
-        <p class="Pinfo"> Onocology </p>
+        <p class="Pinfo text-center"> {{docProfileData.speciality.name}} </p>
       </span>
     </div>
     <div class="col-md-6 ">
       <h4 class="headColor fw-bolder"> E-mail </h4>
       <span class="bg-light">
-        <p class="Pinfo ">ahmed@gmail.com </p>
+        <p class="Pinfo text-center">{{docProfileData.doctor.email}}</p>
       </span>
     </div>
     <div class="col-md-6">
-      <h4 class="headColor fw-bolder"> Address </h4>
+      <h4 class="headColor fw-bolder"> Governance </h4>
       <span class="bg-light">
-        <p class="Pinfo">Beni Suif</p>
+        <p class="Pinfo text-center">{{docProfileData.doctor.governance}}</p>
       </span>
     </div>
     <div class="col-md-6">
       <h4 class="headColor fw-bolder"> Phone Number </h4>
       <span class="bg-light">
-        <p class="Pinfo"> 01234567890</p>
+        <p class="Pinfo text-center">{{docProfileData.doctor.phone}}</p>
       </span>
     </div>
     <div class="col-md-6">
-      <h4 class="headColor fw-bolder"> Clinic Address </h4>
+      <h4 class="headColor fw-bolder"> Address </h4>
       <span class="bg-light">
-        <p class="Pinfo"> Beni-suif Beba</p>
+        <p class="Pinfo text-center">{{docProfileData.doctor.address}}</p>
       </span>
     </div>
     <div class="col-md-6">
@@ -97,80 +96,81 @@
 
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-6 col-sm-12 col-lg-3">
         <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>2024-3-26</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock "> 09:00 Am</i> </h4>
-          <p class=" text-danger"> 500 pound </p>
-
-          <p class="text-success"> Availbale</p>
+          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Saturday</h3>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">Mar 26 2022</i> </h4>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.saturday == '0'}">{{docProfileData.schedule.saturday == "0" ? "Not Avaliable" : docProfileData.schedule.saturday}}</i> </h4>
+          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
           <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'patient'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-6 col-sm-12 col-lg-3">
         <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>2024-3-26</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock "> 09:00 Am</i> </h4>
-          <p class=" text-danger"> 500 pound </p>
-          <p class="text-success"> Availbale</p>
+          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Sunday</h3>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">Mar 26 2022</i> </h4>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.sunday == '0'}">{{docProfileData.schedule.sunday == "0" ? "Not Avaliable" : docProfileData.schedule.sunday}}</i> </h4>
+          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
           <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'patient'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-6 col-sm-12 col-lg-3">
         <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>2024-3-26</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock "> 09:00 Am</i> </h4>
-          <p class=" text-danger"> 500 pound </p>
-          <p class="text-success"> Availbale</p>
+          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Monday</h3>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">Mar 26 2022</i> </h4>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.monday== '0'}">{{docProfileData.schedule.monday == "0" ? "Not Avaliable" : docProfileData.schedule.monday}}</i> </h4>
+          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
           <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'patient'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-6 col-sm-12 col-lg-3">
         <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>2024-3-26</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock "> 09:00 Am</i> </h4>
-          <p class=" text-danger"> 500 pound </p>
-
-          <p class="text-danger"> Already Booked</p>
+          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Tuesday</h3>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">Mar 26 2022</i> </h4>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.tuesday == '0'}">{{docProfileData.schedule.tuesday == "0" ? "Not Avaliable" : docProfileData.schedule.tuesday}}</i> </h4>
+          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
           <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button routerLink="/patient/patientprofial/payment" disabled class="book-btn  m-3 p-3" type="button"> Book
-          </button>
+          <button *ngIf="role == 'patient'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-6 col-sm-12 col-lg-3">
         <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>2024-3-26</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock "> 09:00 Am</i> </h4>
-          <p class=" text-danger"> 500 pound </p>
-
-          <p class="text-success"> Availbale</p>
+          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Wednesday</h3>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">Mar 26 2022</i> </h4>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock" [ngClass]="{'text-danger': docProfileData.schedule.wednesday == '0'}">{{docProfileData.schedule.wednesday == "0" ? "Not Avaliable" : docProfileData.schedule.wednesday}}</i> </h4>
+          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
           <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'patient'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-6 col-sm-12 col-lg-3">
         <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>2024-3-26</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock "> 09:00 Am</i> </h4>
-          <p class=" text-danger"> 500 pound </p>
-
-          <p class="text-success"> Availbale</p>
+          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Thursday</h3>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">Mar 26 2022</i> </h4>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.thursday == '0'}">{{docProfileData.schedule.thursday == "0" ? "Not Avaliable" : docProfileData.schedule.thursday}}</i> </h4>
+          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
           <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'patient'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-6 col-sm-12 col-lg-3">
         <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>2024-3-26</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock "> 09:00 Am</i> </h4>
-          <p class=" text-danger"> 500 pound </p>
-
-          <p class="text-success"> Availbale</p>
+          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Friday</h3>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">Mar 26 2022</i> </h4>
+          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.friday== '0'}">{{docProfileData.schedule.friday == "0" ? "Not Avaliable" : docProfileData.schedule.friday}}</i> </h4>
+                    <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
           <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button routerLink="/profial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'patient'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Book </button>
+          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
         </div>
       </div>
 

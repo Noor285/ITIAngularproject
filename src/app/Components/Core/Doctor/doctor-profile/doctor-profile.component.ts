@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DoctorService } from 'src/app/Services/doctor.service';
@@ -8,11 +8,12 @@ import { DoctorService } from 'src/app/Services/doctor.service';
   templateUrl: './doctor-profile.component.html',
   styleUrls: ['./doctor-profile.component.css']
 })
-export class DoctorProfileComponent implements OnInit  {
+export class DoctorProfileComponent implements AfterViewInit  {
   openSnackBar() {
     throw new Error('Method not implemented.');
   }
-  docId : any = 2;
+  id:number = parseInt(localStorage.getItem("id") ?? "");
+  role:string = localStorage.getItem("role") ?? "";
   docProfileData:any;
   errRespon:any;
   comingAppoint:any=[];
@@ -29,15 +30,26 @@ export class DoctorProfileComponent implements OnInit  {
     },
     error:(err:any)=>{this.errRespon=err;this.openSnackBar()}
   }
-  constructor(private _DoctorService:DoctorService,private _Router:Router,private _snackBar: MatSnackBar){
+  constructor(private _DoctorService:DoctorService,private router:Router,private _snackBar: MatSnackBar){
   }
-  ngOnInit(): void {
-    this._DoctorService.getProfileDoc(2).subscribe((res)=>{
+  ngAfterViewInit(): void {
+    if(Number.isNaN(this.id))
+    {
+      alert("you are not logged in");
+      this.router.navigate(['patient/signin']);
+      return;
+    }
+    else if (this.role != "doctor")
+    {
+      alert("you are not authorized to enter this page");
+      this.router.navigate(['unauthorized']);
+      return;
+    }
+    this._DoctorService.getProfileDoc(this.id).subscribe((res)=>{
       this.docProfileData=res;
+      this.IsWait = false;
       console.log(this.docProfileData);
     })
-    this._DoctorService.getProfileDoc(this.docId).subscribe(this.observerForProfileDoc);
-    console.log(this.docProfileData);
   //   this._DoctorService.getComingAppoint(1).subscribe((data)=>{
   //     if(data.message=='Done'){
   //       this.comingAppoint=data.appointments;
