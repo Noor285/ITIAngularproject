@@ -25,7 +25,7 @@
       <ng-template pTemplate="body" let-doc>
           <tr>
             <td>
-              {{doc.doctor?.ID}}
+              {{doc.doctor?.id}}
             </td>
             <td>
               {{doc.doctor?.name}}
@@ -37,10 +37,10 @@
               {{doc.doctor?.nationalID}}
             </td>
             <td>
-              {{doc.doctor?.specialityID}}
+              {{doc.speciality.name}}
             </td>
             <td>
-              {{doc.doctor?.gender}}
+              {{doc.doctor?.gender | gender}}
             </td>
             <td>
               {{doc.doctor?.governance}}
