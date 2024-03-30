@@ -23,10 +23,10 @@ export class EditDoctorComponent implements OnInit  {
   constructor(private router: Router, private activatedroute: ActivatedRoute, private doctorService: DoctorService) {
     this.docId = this.activatedroute.snapshot.paramMap.get("docId");
     console.log(this.docId);
-
    }
 
    editForm :FormGroup = new FormGroup({
+    id : new FormControl(null),
     name : new FormControl(null , [Validators.required , Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
     email : new FormControl(null , [Validators.required, Validators.email]),
     nationalID : new FormControl(null , [Validators.required , Validators.pattern(/^[0-9]{14}$/)]),
@@ -60,12 +60,14 @@ export class EditDoctorComponent implements OnInit  {
 
 
     this.doctorService.getDoctorById(this.docId).subscribe((res) => {
-      console.log(res);
+      console.log();
+
       this.receDoc = res;
-      this.editForm.controls['name'].setValue(this.receDoc.name);
+    this.editForm.controls['id'].setValue(this.receDoc.id);
+    this.editForm.controls['name'].setValue(this.receDoc.name);
     this.editForm.controls['email'].setValue(this.receDoc.email)
     this.editForm.controls['nationalID'].setValue(this.receDoc.nationalID)
-    this.editForm.controls['dob'].setValue(this.receDoc.dob)
+    this.editForm.controls['dob'].setValue(new Date(res.dob).toISOString().split("T")[0]);
     this.editForm.controls['governance'].setValue(this.receDoc.governance)
     this.editForm.controls['gender'].setValue(this.receDoc.gender)
     this.editForm.controls['address'].setValue(this.receDoc.address)
@@ -121,15 +123,15 @@ export class EditDoctorComponent implements OnInit  {
   // }
 
   handleEdit(): void {
-    console.log( this.editForm.value.specialityID)
+    console.log( this.editForm.valid)
     if (this.editForm.valid) {
 
-      console.log("scsd");
+
       this.editForm.value.gender = +this.editForm.value.gender;
       this.editForm.value.status = +this.editForm.value.status;
       this.editForm.value.specialityID = +this.editForm.value.specialityID;
 
-
+      console.log(this.editForm);
         this.doctorService.editDoctor(this.editForm.value).subscribe({
         next:(response) => {
           console.log('Edit added successfully:', response);
