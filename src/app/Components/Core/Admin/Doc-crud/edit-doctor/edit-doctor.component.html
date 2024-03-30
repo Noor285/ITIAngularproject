@@ -9,11 +9,11 @@
 
       <div class="card-body">
 
-        <form (ngSubmit)="handleEdit()" class="m-3 row" [formGroup]="editForm">
+        <form class="m-3 row" [formGroup]="editForm">
           <!-- ----------------------- Name ----------------------- -->
           <div class="mb-3">
             <label for="name" class="mb-2">Name</label>
-            <input type="text" formControlName="name"  id="name" class="form-control" />
+            <input type="text" formControlName="name" id="name" class="form-control" />
 
             <div *ngIf="editForm.get('name')?.errors && editForm.get('name')?.touched" class="text-danger m-1 sm">
               <p *ngIf="editForm.get('name')?.getError('minlength')" class="m-0">Name minimum lenth is 3</p>
@@ -27,7 +27,8 @@
             <input type="email" formControlName="email" id="email" class="form-control" />
 
             <div *ngIf="editForm.get('email')?.errors && editForm.get('email')?.touched" class="text-danger m-1">
-              <p *ngIf="editForm.get('email')?.getError('email')" class="m-0">Email is InValid should be (email@gmail.com)</p>
+              <p *ngIf="editForm.get('email')?.getError('email')" class="m-0">Email is InValid should be
+                (email@gmail.com)</p>
               <p *ngIf="editForm.get('email')?.getError('required')" class="m-0">Email is Required</p>
             </div>
           </div>
@@ -59,7 +60,8 @@
             <label for="nationalID" class="mb-2">National ID</label>
             <input type="text" formControlName="nationalID" id="nationalID" class="form-control" />
 
-            <div *ngIf="editForm.get('nationalID')?.errors && editForm.get('nationalID')?.touched" class="text-danger m-1">
+            <div *ngIf="editForm.get('nationalID')?.errors && editForm.get('nationalID')?.touched"
+              class="text-danger m-1">
               <p *ngIf="editForm.get('nationalID')?.getError('pattern')" class="m-0">National ID must be 11 numbers</p>
               <p *ngIf="editForm.get('nationalID')?.getError('required')" class="m-0">National ID is Required</p>
             </div>
@@ -68,7 +70,7 @@
           <!-- ----------------------- Date Of Birth ----------------------- -->
           <div class="mb-3">
             <label for="dob" class="mb-2">Date Of Birth</label>
-            <input type="date" formControlName="dob" id="dob" class="form-control" />
+            <input type="datetime" formControlName="dob" id="dob" class="form-control" />
 
             <div *ngIf="editForm.get('dob')?.errors && editForm.get('dob')?.touched" class="text-danger m-1">
               <p *ngIf="editForm.get('dob')?.getError('min')" class="m-0">Can't Enter date less than 1964</p>
@@ -81,14 +83,17 @@
           <!-- ----------------------- Governorate  ----------------------- -->
           <div class="mb-3 mt-5">
             <label for="governance" class="mb-2">Governate </label>
-            <select formControlName="governance" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <input type="text" formControlName="governance" class="form-control">
+            <!-- <select formControlName="governance" class="form-select form-select-lg mb-3"
+              aria-label=".form-select-lg example">
               <option selected disabled>Open this select menu</option>
               <option value="1">One</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
-            </select>
+            </select> -->
 
-            <div *ngIf="editForm.get('governance')?.errors && editForm.get('governance')?.touched" class="text-danger m-1">
+            <div *ngIf="editForm.get('governance')?.errors && editForm.get('governance')?.touched"
+              class="text-danger m-1">
               <p *ngIf="editForm.get('governance')?.getError('required')" class="m-0">Governance is Required</p>
             </div>
           </div>
@@ -106,8 +111,12 @@
           <!-- ----------------------- Speciality  ----------------------- -->
           <div class="mb-3">
             <label for="specialityID " class="mb-2">Speciality </label>
-            <select [(ngModel)]="selectedSpeciality" formControlName="specialityID" class="form-select form-select-lg mb-3">
-              <option *ngFor="let speciality of specialities" [value]="speciality.ID">{{ speciality.name }}</option>
+
+            <select formControlName="specialityID" class="form-select form-select-lg mb-3">
+
+              <option *ngFor="let speciality of specialities" [value]="speciality.id ">{{ speciality.name }}
+              </option>
+
             </select>
 
             <div *ngIf="editForm.get('specialityID')?.errors && editForm.get('specialityID')?.touched"
@@ -121,9 +130,9 @@
             <label for="gender " class="mb-2">Gender</label>
             <select formControlName="gender" class="form-select form-select-lg mb-3"
               aria-label=".form-select-lg example">
-              <option value="1">Male</option>
-              <option value="2">Female</option>
-              <option value="3">Three</option>
+              <option value="0">Male</option>
+              <option value="1">Female</option>
+              <option value="2">PrefetNotToSay</option>
             </select>
 
             <div *ngIf="editForm.get('gender')?.errors && editForm.get('gender')?.touched" class="text-danger m-1">
@@ -138,24 +147,29 @@
             <input type="tel" formControlName="phone" id="phone" class="form-control" />
 
             <div *ngIf="editForm.get('phone')?.errors && editForm.get('phone')?.touched" class="text-danger m-1">
-              <p *ngIf="editForm.get('phone')?.getError('pattern')" class="m-0">Phone must be 11 digits and must start with 010 or 011 or 012 or 015</p>
+              <p *ngIf="editForm.get('phone')?.getError('pattern')" class="m-0">Phone must be 11 digits and must start
+                with 010 or 011 or 012 or 015</p>
               <p *ngIf="editForm.get('phone')?.getError('required')" class="m-0">Phone is Required</p>
             </div>
           </div>
           <!-- ----------------------- Appointment Price  ----------------------- -->
           <div class="mb-3">
             <label for="appointmentPrice" class="mb-2">Appointment Price </label>
-            <input type="number"  formControlName="appointmentPrice" id="appointmentPrice" class="form-control" />
+            <input type="number" formControlName="appointmentPrice" id="appointmentPrice" class="form-control" />
 
-            <div *ngIf="editForm.get('appointmentPrice')?.errors && editForm.get('appointmentPrice')?.touched" class="text-danger m-1">
-              <p *ngIf="editForm.get('appointmentPrice')?.getError('min')" class="m-0">Appointment Price Can't be less than 100</p>
-              <p *ngIf="editForm.get('appointmentPrice')?.getError('max')" class="m-0">Appointment Price Can't be more than 600</p>
-              <p *ngIf="editForm.get('appointmentPrice')?.getError('required')" class="m-0">AppointmentPrice is Required</p>
+            <div *ngIf="editForm.get('appointmentPrice')?.errors && editForm.get('appointmentPrice')?.touched"
+              class="text-danger m-1">
+              <p *ngIf="editForm.get('appointmentPrice')?.getError('min')" class="m-0">Appointment Price Can't be less
+                than 100</p>
+              <p *ngIf="editForm.get('appointmentPrice')?.getError('max')" class="m-0">Appointment Price Can't be more
+                than 600</p>
+              <p *ngIf="editForm.get('appointmentPrice')?.getError('required')" class="m-0">AppointmentPrice is Required
+              </p>
             </div>
           </div>
 
           <!-- routerLink="/doctor/alldoctors" -->
-          <button type="submit" class="btn btn-outline-info">Edit</button>
+          <button type="submit" (click)="handleEdit()" class="btn btn-outline-info">Edit</button>
 
         </form>
 

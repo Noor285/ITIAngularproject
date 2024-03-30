@@ -29,8 +29,9 @@ export class DoctorService {
     return this.httpClient.post<IDoctor>(`https://localhost:7013/api/Doctor/Create`, doctor);
   }
 
-  editDoctor(updatedDoctor: IDoctor2): Observable<IDoctor2> {
-    return this.httpClient.put<IDoctor2>(`https://localhost:7013/api/Doctor/Update`, updatedDoctor);
+  editDoctor(updatedDoctor: object): Observable<any> {
+    console.log(updatedDoctor)
+    return this.httpClient.put(`https://localhost:7013/api/Doctor/Update`, updatedDoctor);
   }
 
   getDoctorById(doctortId: number): Observable<IDoctor2> {

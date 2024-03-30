@@ -14,6 +14,8 @@ import { DoctorService } from 'src/app/Services/doctor.service';
 export class EditDoctorComponent implements OnInit  {
 
 
+
+
   docId :any;
   receDoc : any;
 
@@ -29,7 +31,7 @@ export class EditDoctorComponent implements OnInit  {
     email : new FormControl(null , [Validators.required, Validators.email]),
     nationalID : new FormControl(null , [Validators.required , Validators.pattern(/^[0-9]{14}$/)]),
     specialityID : new FormControl(null , [Validators.required]),
-    dob : new FormControl(null , [Validators.required , Validators.min(new Date(1960, 12, 1).getTime()), Validators.max(new Date(2024, 2, 29).getTime())]),
+    dob : new FormControl(null , [Validators.required ]),
     gender : new FormControl(Gender.PreferNotToSay , [Validators.required]),
     governance : new FormControl("", [Validators.required]),
     address : new FormControl(null , [Validators.required]),
@@ -39,6 +41,9 @@ export class EditDoctorComponent implements OnInit  {
   });
 
   ngOnInit(): void {
+
+    this.getSpecialities()
+
     // this.editForm = new FormGroup({
     //   Name : new FormControl(null , [Validators.required , Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
     //   Email : new FormControl(null , [Validators.required, Validators.email]),
@@ -116,11 +121,14 @@ export class EditDoctorComponent implements OnInit  {
   // }
 
   handleEdit(): void {
+    console.log( this.editForm.value.specialityID)
     if (this.editForm.valid) {
-      console.log(this.editForm.value);
+
+      console.log("scsd");
       this.editForm.value.gender = +this.editForm.value.gender;
       this.editForm.value.status = +this.editForm.value.status;
       this.editForm.value.specialityID = +this.editForm.value.specialityID;
+
 
         this.doctorService.editDoctor(this.editForm.value).subscribe({
         next:(response) => {
