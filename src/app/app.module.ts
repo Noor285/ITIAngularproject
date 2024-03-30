@@ -47,10 +47,10 @@ import { EditPatientComponent } from './Components/Core/Admin/Pat-crud/edit-pati
 import { LogOutComponent } from './Components/Shared/log-out/log-out.component';
 import { AppointmentRequestsComponent } from './Components/Core/Doctor/appointment-requests/appointment-requests.component';
 import { ContactusComponent } from './Components/Core/contactus/contactus.component';
-import { NotfoundComponent } from './Components/Core/notfound/notfound.component';
+import { NotfoundComponent } from './Components/Shared/notfound/notfound.component';
 import { DoctorSignUpComponent } from './Components/Core/Doctor/doctor-sign-up/doctor-sign-up.component';
 import { DoctorSignInComponent } from './Components/Core/Doctor/doctor-sign-in/doctor-sign-in.component';
-import { PatientSignInComponent } from './Components/Core/Patient/patient-sign-in/patient-sign-in.component';
+import { PatientSignInComponent } from './Components/Shared/sign-in/sign-in.component';
 import { PatientSignUpComponent } from './Components/Core/Patient/patient-sign-up/patient-sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
@@ -59,6 +59,7 @@ import { GenderPipe } from './Pipes/gender.pipe';
 import { RatingModule } from 'primeng/rating';
 import { DialogModule } from 'primeng/dialog';
 import { AppstatusPipe } from './Pipes/appstatus.pipe';
+import { UnauthorizedComponent } from './Components/Shared/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { AppstatusPipe } from './Pipes/appstatus.pipe';
     PatientSignInComponent,
     PatientSignUpComponent,
     GenderPipe,
-    AppstatusPipe
+    AppstatusPipe,
+    UnauthorizedComponent
   ],
   imports: [
     RatingModule,

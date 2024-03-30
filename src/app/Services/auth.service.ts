@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { userInfo } from '../Models/userInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,7 @@ export class AuthService {
   }
 
 
-  PatientAndDoctorSignIn(userData:object):Observable<any>
+  PatientAndDoctorSignIn(userData:userInfo):Observable<any>
   {
     return this.httpClient.post(`https://localhost:7013/api/User/Login`, userData)
   }

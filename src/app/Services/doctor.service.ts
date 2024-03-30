@@ -51,15 +51,15 @@ export class DoctorService {
   /* Start edit appoint component */
   getAllAppoint(id:any):Observable<any>
   {
-    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Requested/doctor/${id}`)
+    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Requested/doctor=${id}`)
   }
   acceptAppoint(id:any):Observable<any>
   {
-    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Confirm/${id}`)
+    return this.httpClient.patch(`https://localhost:7013/api/Doctor/Appointment/Confirm/${id}`,"")
   }
   cancelAppoint(id:any):Observable<any>
   {
-    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Reject/${id}`)
+    return this.httpClient.patch(`https://localhost:7013/api/Doctor/Appointment/Reject/${id}`,"")
   }
   getComingAppoint(id:any):Observable<any>
   {
@@ -67,9 +67,9 @@ export class DoctorService {
   }
   /* End edit appoint component */
 
-  getProfileDoc(id:any):Observable<any>
+  getProfileDoc(id:any):Observable<IDoctor>
   {
-    return this.httpClient.get(`https://localhost:7013/api/Doctor/${id}`)
+    return this.httpClient.get<IDoctor>(`https://localhost:7013/api/Doctor/Details/${id}`)
   }
 
 }
