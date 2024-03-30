@@ -4,9 +4,9 @@ import { FormGroup , FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
 @Component({
-  selector: 'app-patient-sign-in',
-  templateUrl: './patient-sign-in.component.html',
-  styleUrls: ['./patient-sign-in.component.css']
+  selector: 'app-sign-in',
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.css']
 })
 export class PatientSignInComponent {
 
@@ -54,32 +54,42 @@ export class PatientSignInComponent {
   //   }
   //  }
 
-   handleSignIn( signInForm : FormGroup)
+   handleSignIn()
    {
     //  this.isLoading =true;
-     if (signInForm.valid) {
-     this.authService.PatientAndDoctorSignIn(signInForm.value).subscribe({
-       next:(Response )=>{
+     if (this.signInForm.valid) {
+      console.log(this.signInForm.value);
+     this.authService.PatientAndDoctorSignIn(this.signInForm.value).subscribe({
+       next:(Response)=>{
         //  this.isLoading=false;
-         if(Response .role === 'doctor'){
+         if(Response.role === 'doctor'){
          localStorage.setItem('role' , Response.role)
+         localStorage.setItem("id",Response.id);
          this.router.navigate(['/doctor/profile'])
          }
          if(Response .role === 'patient'){
            localStorage.setItem('role' , Response.role)
+           localStorage.setItem("id",Response.id);
            this.router.navigate(['/patient/profile'])
          }
-         error: (error : HttpErrorResponse) => {
+         if(Response .role === 'admin'){
+          localStorage.setItem('role' , Response.role)
+          this.router.navigate(['/admin/profile'])
+        }
+      },
+        error: (errors : HttpErrorResponse) => {
           //  this.isLoading = false;
-           if (error.status === 401) {
-             this.apiError = 'Unauthorized. Please check your credentials.';
-           } else if (error.status === 403) {
-             this.apiError = 'Forbidden. You are not allowed to access this resource.';
-           } else {
-             this.apiError = 'An unexpected error occurred. Please try again later.';
-           }
+          //  if (error.status === 401) {
+          //    this.apiError = 'Unauthorized. Please check your credentials.';
+          //  } else if (error.status === 403) {
+          //    this.apiError = 'Forbidden. You are not allowed to access this resource.';
+          //  } else {
+          //    this.apiError = 'An unexpected error occurred. Please try again later.';
+          //  }
+          console.log(errors);
+          this.apiError = errors.error;
          }
-       }
+
      })
     }
     else

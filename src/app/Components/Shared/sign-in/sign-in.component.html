@@ -2,7 +2,7 @@
   <div class="container mt-5 p-5">
     <div class="card shadow">
       <div class="mt-5 bg-white text-center" style="color: #43acc2;">
-        <h2> Patient Login </h2>
+        <h2> Login </h2>
         <div *ngIf="apiError.length > 0" class="text-danger mt-3">
           {{apiError}}
         </div>
@@ -10,7 +10,7 @@
 
       <div class="card-body">
         <!-- (ngSubmit)="handleSignIn(signInForm)" -->
-        <form  class="m-3 row" [formGroup]="signInForm">
+        <form (submit)="handleSignIn()"  class="m-3 row" [formGroup]="signInForm">
             <div class="col-md-1"></div>
 
             <!-- ----------------------- ** Section 1 *** ----------------------- -->
@@ -57,7 +57,7 @@
               <!-- ----------------------- Sign In Button ----------------------- -->
 
               <div class="text-start m-3">
-                <button routerLink="/patient/profile" class="btn btn-info btn-send mt-3 w-50">
+                <button type="submit" class="btn btn-info btn-send mt-3 w-50">
 
 
                   <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>

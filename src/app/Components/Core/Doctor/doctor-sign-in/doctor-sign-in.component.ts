@@ -71,7 +71,7 @@ export class DoctorSignInComponent {
         else
         {
 
-           this.apiError = "Email or Password Invaild"
+          this.apiError = "Email or Password Invaild"
         }
       }
     })
