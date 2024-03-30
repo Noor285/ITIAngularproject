@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DoctorService } from 'src/app/Services/doctor.service';
@@ -8,8 +8,9 @@ import { DoctorService } from 'src/app/Services/doctor.service';
   templateUrl: './appointment-requests.component.html',
   styleUrls: ['./appointment-requests.component.css']
 })
-export class AppointmentRequestsComponent implements OnInit {
-  id:any;
+export class AppointmentRequestsComponent implements AfterViewInit {
+  id:number = parseInt(localStorage.getItem("id") ?? "");
+  role:string = localStorage.getItem("role") ?? "";
   errRespon: any;
   IsWait: boolean = true;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
@@ -17,58 +18,45 @@ export class AppointmentRequestsComponent implements OnInit {
   appoints: any = [];
   comingAppoint:any=[];
   backgroundUrl: any = 'assets/home/Vector.png';
-  constructor(private _DoctorService: DoctorService, private _snackBar: MatSnackBar,private _Router:Router, private _ActivatedRoute:ActivatedRoute) { }
-  ngAfterViewInit(): void {
-    this.ngOnInit();
-  }
-  observerForAllAppoints = {
-    next: (data: any) => {
-      if (data.message == 'Done') {
-        this.IsWait = false;
-        this.appoints = data.appointments;
-        // for (let i = 0; i < this.appoints.length; i++) {
-        //   this.appointID = this.appoints[i]._id;
-        //   console.log(this.appointID);
-        // }
-        //console.log(this.appoints);
-        // console.log(this.appointID);
-      }
-    },
-    error: (err: any) => { this.errRespon = err; this.openSnackBar() }
-  }
+  constructor(private _DoctorService: DoctorService, private _snackBar: MatSnackBar,private router:Router, private _ActivatedRoute:ActivatedRoute) { }
 
   observerForAccept={
-    next:(data:any)=> {console.log(data);this.msgOfAcc();this.ngOnInit();},
+    next:(data:any)=> {console.log(data);this.msgOfAcc();this.ngAfterViewInit();},
     error:(err:any)=>{/*this.errRespon=err*/ console.log(err)}
   };
   observerForCancel={
-    next:(data:any)=> {console.log(data);this.msgOfRej();this.ngOnInit()},
+    next:(data:any)=> {console.log(data);this.msgOfRej();this.ngAfterViewInit()},
     error:(err:any)=>{/*this.errRespon=err*/ console.log(err)}
   };
 
-  ngOnInit(): void {
-    this._ActivatedRoute.paramMap.subscribe(params => {
-      this.id = params.get('doctorId'); // Assuming 'doctorId' is the parameter name
-      if (this.id) {
-        // this.loadAppointments();
-        this._DoctorService.getAllAppoint(2).subscribe(this.observerForAllAppoints);
-        console.log(this.observerForAllAppoints);
-
-        this._DoctorService.getComingAppoint(2).subscribe((data)=>{
-          console.log(data);
-
-          if(data.message=='Done'){
-            this.comingAppoint=data.appointments;
-            console.log(this.comingAppoint);
-        }
-      });
-      }
+  ngAfterViewInit(): void
+  {
+    if(Number.isNaN(this.id))
+    {
+      alert("you are not logged in");
+      this.router.navigate(['signin']);
+      return;
+    }
+    else if (this.role != "doctor")
+    {
+      alert("you are not authorized to enter this page");
+      this.router.navigate(['unauthorized']);
+      return;
+    }
+    // this.loadAppointments();
+    this._DoctorService.getAllAppoint(this.id).subscribe((res)=>{
+      this.IsWait = false;
+      console.log(res);
+      this.comingAppoint = res;
     });
 
   }
 
   acceptAppoint(id: any) {
-    return this._DoctorService.acceptAppoint(2).subscribe(this.observerForAccept);
+    return this._DoctorService.acceptAppoint(id).subscribe((res)=>{
+      console.log(res);
+      this.ngAfterViewInit();
+    });
   }
   msgOfAcc(){
     this._snackBar.open('Appointment Accepted', 'done', {
@@ -77,7 +65,10 @@ export class AppointmentRequestsComponent implements OnInit {
     });
   }
   cancelAppoint(id:any){
-    return this._DoctorService.cancelAppoint(2).subscribe(this.observerForCancel)
+    return this._DoctorService.cancelAppoint(id).subscribe((res)=>{
+      console.log(res);
+      this.ngAfterViewInit();
+    });;
   }
   msgOfRej(){
     this._snackBar.open('Appointment Canceled', 'done', {
@@ -105,7 +96,7 @@ export class AppointmentRequestsComponent implements OnInit {
   }
 
   openPatientProfile(pID: any = 1) {
-    return this._Router.navigate(['/profile','Patient', pID]);
+    return this.router.navigate(['/profile','Patient', pID]);
   }
 
 }
