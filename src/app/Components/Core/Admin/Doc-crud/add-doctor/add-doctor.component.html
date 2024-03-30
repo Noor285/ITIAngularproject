@@ -38,7 +38,7 @@
 
 
           <!-- ----------------------- Password ----------------------- -->
-          <!-- <div class="mb-3">
+          <div class="mb-3">
             <label for="password" class="mb-2">Password</label>
             <input type="password" formControlName="password" id="password" class="form-control" />
 
@@ -48,7 +48,7 @@
                 digitis</p>
               <p *ngIf="createForm.get('password')?.getError('required')" class="m-0">Password is Required</p>
             </div>
-          </div> -->
+          </div>
 
           <!-- -----------------------Confirm Password ----------------------- -->
           <!-- <div class="mb-3">
@@ -117,7 +117,7 @@
           <div class="mb-3">
             <label for="SpecialityID " class="mb-2">Speciality </label>
             <select [(ngModel)]="selectedSpeciality" formControlName="SpecialityID" class="form-select form-select-lg mb-3">
-              <option *ngFor="let speciality of specialities; let i = index " [value]="speciality.ID">{{ speciality.name }}</option>
+              <option *ngFor="let speciality of specialities; let i = index " [value]="speciality.ID">{{ speciality.Name }}</option>
             </select>
 
             <div *ngIf="createForm.get('SpecialityID')?.errors && createForm.get('SpecialityID')?.touched"

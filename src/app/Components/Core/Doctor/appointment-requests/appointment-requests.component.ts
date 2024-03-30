@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DoctorService } from 'src/app/Services/doctor.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { DoctorService } from 'src/app/Services/doctor.service';
   styleUrls: ['./appointment-requests.component.css']
 })
 export class AppointmentRequestsComponent implements OnInit {
+  id:any;
   errRespon: any;
   IsWait: boolean = true;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
@@ -16,7 +17,10 @@ export class AppointmentRequestsComponent implements OnInit {
   appoints: any = [];
   comingAppoint:any=[];
   backgroundUrl: any = 'assets/home/Vector.png';
-  constructor(private _DoctorService: DoctorService, private _snackBar: MatSnackBar,private _Router:Router) { }
+  constructor(private _DoctorService: DoctorService, private _snackBar: MatSnackBar,private _Router:Router, private _ActivatedRoute:ActivatedRoute) { }
+  ngAfterViewInit(): void {
+    this.ngOnInit();
+  }
   observerForAllAppoints = {
     next: (data: any) => {
       if (data.message == 'Done') {
@@ -43,17 +47,28 @@ export class AppointmentRequestsComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this._DoctorService.getAllAppoint().subscribe(this.observerForAllAppoints);
-    this._DoctorService.getComingAppoint().subscribe((data)=>{
-      if(data.message=='Done'){
-        this.comingAppoint=data.appointments;
-        console.log(this.comingAppoint);
-    }
-  });
+    this._ActivatedRoute.paramMap.subscribe(params => {
+      this.id = params.get('doctorId'); // Assuming 'doctorId' is the parameter name
+      if (this.id) {
+        // this.loadAppointments();
+        this._DoctorService.getAllAppoint(2).subscribe(this.observerForAllAppoints);
+        console.log(this.observerForAllAppoints);
+
+        this._DoctorService.getComingAppoint(2).subscribe((data)=>{
+          console.log(data);
+
+          if(data.message=='Done'){
+            this.comingAppoint=data.appointments;
+            console.log(this.comingAppoint);
+        }
+      });
+      }
+    });
+
   }
 
   acceptAppoint(id: any) {
-    return this._DoctorService.acceptAppoint(id).subscribe(this.observerForAccept);
+    return this._DoctorService.acceptAppoint(2).subscribe(this.observerForAccept);
   }
   msgOfAcc(){
     this._snackBar.open('Appointment Accepted', 'done', {
@@ -62,7 +77,7 @@ export class AppointmentRequestsComponent implements OnInit {
     });
   }
   cancelAppoint(id:any){
-    return this._DoctorService.cancelAppoint(id).subscribe(this.observerForCancel)
+    return this._DoctorService.cancelAppoint(2).subscribe(this.observerForCancel)
   }
   msgOfRej(){
     this._snackBar.open('Appointment Canceled', 'done', {
@@ -88,7 +103,8 @@ export class AppointmentRequestsComponent implements OnInit {
       verticalPosition: this.verticalPosition,
     });
   }
-  openPatientProfile(pID: any) {
+
+  openPatientProfile(pID: any = 1) {
     return this._Router.navigate(['/profile','Patient', pID]);
   }
 

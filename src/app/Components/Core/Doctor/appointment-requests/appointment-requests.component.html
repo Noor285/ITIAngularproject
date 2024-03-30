@@ -33,10 +33,9 @@
 
               <div *ngFor="let app of appoints ;let i=index" class="col-md-3 py-4 d-flex justify-content-center">
                   <div *ngIf="!IsWait" class="appointReq ">
-                      <h4 class=" fw-bolder heading-home"> {{app?.userId?.firstName+'
-                          '+app?.userId?.lastName}} </h4>
+                      <h4 class=" fw-bolder heading-home"> {{app?.userId?.name}} </h4>
                       <p class="fw-bold fs-4">{{app?.Date}}</p>
-                      <h6 class="fw-bold"><i class="fa fa-clock-o py-2"></i> {{app?.Time}}</h6>
+                      <!-- <h6 class="fw-bold"><i class="fa fa-clock-o py-2"></i> {{app?.Time}}</h6> -->
                       <h6 class="fw-bold"><i class="fa fa-map-marker py-2"></i> {{app?.userId?.address}}</h6>
                       <button type="submit" #acc (click)="cancelAppoint(acc.value)" [value]="app._id"
                           class="btn btn-danger mx-3">Decline</button>

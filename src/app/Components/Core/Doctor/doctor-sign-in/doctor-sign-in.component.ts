@@ -22,34 +22,66 @@ export class DoctorSignInComponent {
 
 
 
-  handleSignIn(signInForm:FormGroup)
-  {
-    this.isLoading = true;
-    if (signInForm.valid) {
-      console.log(signInForm.value);
-      this.authService.DoctorSignIn(signInForm.value).subscribe({
-        next:(response) =>
-        {
-          if(response.message === 'success')
-          {
-            // this.isLoading = false;
-            // this.router.navigate(['/home']);
-          }
-        },
-        error:(err) =>
-        {
-          this.isLoading = false;
-          this.apiError = err.error.msg;
-          console.log(err.error.msg);
-        }
-      });
-    this.signInForm.reset();
-    this.router.navigate(['/home']);
+  // handleSignIn(signInForm:FormGroup)
+  // {
+  //   this.isLoading = true;
+  //   if (signInForm.valid) {
+  //     console.log(signInForm.value);
+  //     this.authService.DoctorSignIn(signInForm.value).subscribe({
+  //       next:(response) =>
+  //       {
+  //         if(response.message === 'success')
+  //         {
+  //           // this.isLoading = false;
+  //           // this.router.navigate(['/home']);
+  //         }
+  //       },
+  //       error:(err) =>
+  //       {
+  //         this.isLoading = false;
+  //         this.apiError = err.error.msg;
+  //         console.log(err.error.msg);
+  //       }
+  //     });
+  //   this.signInForm.reset();
+  //   this.router.navigate(['/home']);
 
-    }
-    else {
-      this.isLoading = false;
-      this.signInForm.markAllAsTouched();
-    }
+  //   }
+  //   else {
+  //     this.isLoading = false;
+  //     this.signInForm.markAllAsTouched();
+  //   }
+  // }
+
+  handleSignIn( signInForm : FormGroup)
+  {
+    // this.isLoading =true;
+    if (signInForm.valid) {
+    this.authService.PatientAndDoctorSignIn(signInForm.value).subscribe({
+      next:(Response )=>{
+        // this.isLoading=false;
+        if(Response .role === 'doctor'){
+        localStorage.setItem('role' , Response.role)
+        this.router.navigate(['/doctor/profile'])
+        }
+        if(Response .role === 'patient'){
+          localStorage.setItem('role' , Response.role)
+          this.router.navigate(['/patient/profile'])
+        }
+        else
+        {
+
+           this.apiError = "Email or Password Invaild"
+        }
+      }
+    })
   }
+  else
+  {
+    this.signInForm.markAllAsTouched();
+  }
+
+  }
+
+
 }

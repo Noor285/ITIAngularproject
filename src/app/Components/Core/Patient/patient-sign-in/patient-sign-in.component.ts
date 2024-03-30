@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup , FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -21,9 +22,9 @@ export class PatientSignInComponent {
 
 
 
-  handleSignIn(signInForm:FormGroup)
-  {
-    console.log(signInForm.value)
+  // handleSignIn(signInForm:FormGroup)
+  // {
+  //   console.log(signInForm.value)
   //   this.isLoading = true;
   //   if (signInForm.valid) {
   //     console.log(signInForm.value);
@@ -51,5 +52,43 @@ export class PatientSignInComponent {
   //     this.isLoading = false;
   //     this.signInForm.markAllAsTouched();
   //   }
+  //  }
+
+   handleSignIn( signInForm : FormGroup)
+   {
+    //  this.isLoading =true;
+     if (signInForm.valid) {
+     this.authService.PatientAndDoctorSignIn(signInForm.value).subscribe({
+       next:(Response )=>{
+        //  this.isLoading=false;
+         if(Response .role === 'doctor'){
+         localStorage.setItem('role' , Response.role)
+         this.router.navigate(['/doctor/profile'])
+         }
+         if(Response .role === 'patient'){
+           localStorage.setItem('role' , Response.role)
+           this.router.navigate(['/patient/profile'])
+         }
+         error: (error : HttpErrorResponse) => {
+          //  this.isLoading = false;
+           if (error.status === 401) {
+             this.apiError = 'Unauthorized. Please check your credentials.';
+           } else if (error.status === 403) {
+             this.apiError = 'Forbidden. You are not allowed to access this resource.';
+           } else {
+             this.apiError = 'An unexpected error occurred. Please try again later.';
+           }
+         }
+       }
+     })
+    }
+    else
+    {
+      this.signInForm.markAllAsTouched();
+    }
+
    }
+
+
+
 }

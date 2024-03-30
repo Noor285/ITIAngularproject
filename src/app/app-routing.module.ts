@@ -45,7 +45,7 @@ const routes: Routes = [
   {path:'doctor/add', component: AddDoctorComponent , title:'Add Doctor'},
   {path: 'doctor/edit/:docId' , component:EditDoctorComponent },
   {path: 'doctor/appointment' , component:DoctorAppointmentComponent },
-  {path: 'doctor/profile/:docId' , component:DoctorProfileComponent },
+  {path: 'doctor/profile' , component:DoctorProfileComponent },
   {path: 'doctor/appointment/req', component: AppointmentRequestsComponent},
 
 

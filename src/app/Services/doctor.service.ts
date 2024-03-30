@@ -9,17 +9,17 @@ import { Speciality } from './../Models/speciality';
   providedIn: 'root'
 })
 export class DoctorService {
-  httpOption: { headers: HttpHeaders; };
+  // httpOption: { headers: HttpHeaders; };
 
   constructor(private httpClient: HttpClient) {
-    this.httpOption={
-      headers:new HttpHeaders({
-        'Content-Type':'application/json',
-        'Access-Control-Allow-Origin':'*',
-        'Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Accept',
-        Authorization: `mazen__${localStorage.getItem('token')}`
-      })
-    };
+    // this.httpOption={
+    //   headers:new HttpHeaders({
+    //     'Content-Type':'application/json',
+    //     'Access-Control-Allow-Origin':'*',
+    //     'Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Accept',
+    //     Authorization: `https://localhost:7013/api/User/Login__${localStorage.getItem('token')}`
+    //   })
+    // };
   }
 
   getAllDoctors(): Observable<IDoctor[]> {
@@ -46,29 +46,30 @@ export class DoctorService {
     return this.httpClient.get<any>(`https://localhost:7013/api/Doctor/Speciality`); // Adjust the URL as per your API endpoint
   }
 
+  // https://localhost:7013/api/Doctor/Appointment/Others/doctor=1
 
   /* Start edit appoint component */
-  getAllAppoint():Observable<any>
+  getAllAppoint(id:any):Observable<any>
   {
-    return this.httpClient.get('https://mazen.cyclic.app/doctor/',this.httpOption)
+    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Requested/doctor/${id}`)
   }
   acceptAppoint(id:any):Observable<any>
   {
-    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Confirm/${id}`,this.httpOption)
+    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Confirm/${id}`)
   }
   cancelAppoint(id:any):Observable<any>
   {
-    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Reject/${id}`,this.httpOption)
+    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Reject/${id}`)
   }
-  getComingAppoint():Observable<any>
+  getComingAppoint(id:any):Observable<any>
   {
-    return this.httpClient.get(`https://mazen.cyclic.app/doctor/upcomingAppointments`,this.httpOption);
+    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Accepted/doctor/${id}`);
   }
   /* End edit appoint component */
 
   getProfileDoc(id:any):Observable<any>
   {
-    return this.httpClient.get(`https://localhost:7013/api/Doctor/Details/${id}`,this.httpOption)
+    return this.httpClient.get(`https://localhost:7013/api/Doctor/${id}`)
   }
 
 }

@@ -50,14 +50,14 @@ export class AddDoctorComponent implements OnInit ,  AfterViewInit {
 
 
       console.log(res);
-      console.log(this.specialities[0].name);
+      console.log(this.specialities[0].Name);
     })
   }
 
 
   handleAdd(createForm:FormGroup)
   {
-    // console.log(createForm.value);
+    console.log(createForm.value);
     if(createForm.valid)
     {
       createForm.value.Gender = +createForm.value.Gender;

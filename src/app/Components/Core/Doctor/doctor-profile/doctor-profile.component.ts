@@ -9,7 +9,10 @@ import { DoctorService } from 'src/app/Services/doctor.service';
   styleUrls: ['./doctor-profile.component.css']
 })
 export class DoctorProfileComponent implements OnInit  {
-  docId : any;
+  openSnackBar() {
+    throw new Error('Method not implemented.');
+  }
+  docId : any = 2;
   docProfileData:any;
   errRespon:any;
   comingAppoint:any=[];
@@ -29,24 +32,28 @@ export class DoctorProfileComponent implements OnInit  {
   constructor(private _DoctorService:DoctorService,private _Router:Router,private _snackBar: MatSnackBar){
   }
   ngOnInit(): void {
+    this._DoctorService.getProfileDoc(2).subscribe((res)=>{
+      this.docProfileData=res;
+      console.log(this.docProfileData);
+    })
     this._DoctorService.getProfileDoc(this.docId).subscribe(this.observerForProfileDoc);
     console.log(this.docProfileData);
-    this._DoctorService.getComingAppoint().subscribe((data)=>{
-      if(data.message=='Done'){
-        this.comingAppoint=data.appointments;
-        console.log(this.comingAppoint);
-      }
-  });
+  //   this._DoctorService.getComingAppoint(1).subscribe((data)=>{
+  //     if(data.message=='Done'){
+  //       this.comingAppoint=data.appointments;
+  //       console.log(this.comingAppoint);
+  //     }
+  // });
   }
   //handel error
-  openSnackBar() {
-    this._snackBar.open(this.errRespon.error.message, 'retry', {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
-  }
-  openPatientProfile(pID: any) {
-    return this._Router.navigate(['/profile','Patient', pID]);
-  }
+  // openSnackBar() {
+  //   this._snackBar.open(this.errRespon.error.message, 'retry', {
+  //     horizontalPosition: this.horizontalPosition,
+  //     verticalPosition: this.verticalPosition,
+  //   });
+  // }
+  // openPatientProfile(pID: any) {
+  //   return this._Router.navigate(['/profile','Patient', pID]);
+  // }
 
 }
