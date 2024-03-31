@@ -22,8 +22,9 @@ export class NavBarComponent implements OnInit{
   role : string = localStorage.getItem("role") ?? "";
 
 
-  constructor(private router : Router, private authService:AuthService){}
+  constructor(private router : Router, public authService:AuthService){}
 
+  
 
 
   ngOnInit(): void {
@@ -110,6 +111,7 @@ export class NavBarComponent implements OnInit{
   {
     // localStorage.removeItem();
     localStorage.clear();
+    this.authService.setRole("");
     // this.authService.userData.next(null);
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/signin']); // Replace '/your-route' with the route you want to navigate to after editing
