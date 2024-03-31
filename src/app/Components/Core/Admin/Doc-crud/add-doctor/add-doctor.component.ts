@@ -1,3 +1,4 @@
+import { IDoctor } from 'src/app/Models/i-doctor';
 import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DoctorService } from 'src/app/Services/doctor.service';
 import { FormGroup , FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -5,6 +6,7 @@ import { Router } from '@angular/router';
 import { Gender } from 'src/app/Enums/Gender';
 import { Status } from 'src/app/Enums/Status';
 import { Speciality } from 'src/app/Models/speciality';
+import { IDoctorAdd } from 'src/app/Models/doctorAddDTO';
 
 @Component({
   selector: 'app-add-doctor',
@@ -23,7 +25,7 @@ export class AddDoctorComponent implements OnInit ,  AfterViewInit {
   createForm:FormGroup = new FormGroup({
     Name : new FormControl(null , [Validators.required , Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
     Email : new FormControl(null , [Validators.required, Validators.email]),
-    // password : new FormControl(null , [Validators.required, Validators.minLength(6)]),
+    password : new FormControl(null),
     NationalID : new FormControl(null , [Validators.required , Validators.pattern(/^[0-9]{14}$/)]),
     SpecialityID : new FormControl(null , [Validators.required]),
     DOB : new FormControl(null , [Validators.required , Validators.min(new Date(1960, 12, 1).getTime()), Validators.max(new Date(2024, 2, 29).getTime())]),
@@ -64,8 +66,15 @@ export class AddDoctorComponent implements OnInit ,  AfterViewInit {
       createForm.value.Gender = +createForm.value.Gender;
       createForm.value.Status = +createForm.value.Status;
       createForm.value.SpecialityID = +createForm.value.SpecialityID;
+      createForm.value.password = "123456789sS";
+      let doctor : IDoctor = createForm.value;
+      let doctorAdd : IDoctorAdd = {
+        Doctor : doctor,
+        password : createForm.value.password
+      };
+     
 
-       this.doctorService.addDoctor(createForm.value).subscribe({
+       this.doctorService.addDoctor(doctorAdd).subscribe({
         next:(response) => {
           console.log('Doctor added successfully:', response);
           this.router.navigate(['/doctor/alldoctors']);

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { PatientService } from 'src/app/Services/patient.service';
 import { Status } from 'src/app/Enums/Status';
 import { Gender } from 'src/app/Enums/Gender';
+import { IPatient } from 'src/app/Models/i-patient';
+import { IPatientAdd } from 'src/app/Models/patientAddDTO';
 
 @Component({
   selector: 'app-add-patient',
@@ -17,6 +19,7 @@ export class AddPatientComponent {
   createForm:FormGroup = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]),
       email: new FormControl('', [Validators.required, Validators.email]),
+      password : new FormControl(null),
       phone : new FormControl(null , [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
       dateOfBirth: new FormControl('', [Validators.required]),
       gender: new FormControl(Gender.PreferNotToSay, [Validators.required]),
@@ -30,10 +33,15 @@ handleAdd(createForm:FormGroup)
     {
       createForm.value.gender = +createForm.value.gender;
       createForm.value.status = +createForm.value.status;
+      createForm.value.password = "123456789sS";
+      let patient : IPatient = createForm.value;
+      let patientAdd : IPatientAdd = {
+        patient : patient,
+        password : createForm.value.password
+      };
+      console.log(patientAdd);
 
-      console.log(createForm.value);
-
-      this.patientService.addPatient(createForm.value).subscribe({
+      this.patientService.addPatient(patientAdd).subscribe({
         next:(response) => {
           console.log('Patient added successfully:', response);
           this.router.navigate(['/patient/allpatients']);
