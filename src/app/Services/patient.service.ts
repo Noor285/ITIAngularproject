@@ -4,6 +4,7 @@ import { IPatient } from './../Models/i-patient';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ISingleDocAppointment } from '../Models/SingleDoctorAppointment';
+import { IPatientAdd } from '../Models/patientAddDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +33,8 @@ export class PatientService {
     return this.httpClient.get<ISingleDocAppointment[]>(`https://localhost:7013/api/Patient/AppointmentDocs/${patientID}`)
   }
 
-  addPatient(patient: IPatient): Observable<IPatient> {
-    return this.httpClient.post<IPatient>(`https://localhost:7013/api/Patient/Create/`, patient);
+  addPatient(patient: IPatientAdd): Observable<IPatientAdd> {
+    return this.httpClient.post<IPatientAdd>(`https://localhost:7013/api/Patient/Create/`, patient);
   }
 
   editPatient(updatedPatient: IPatient): Observable<any> {

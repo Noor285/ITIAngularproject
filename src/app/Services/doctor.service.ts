@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { IDoctor, IDoctor2 } from '../Models/i-doctor';
 import { Observable } from 'rxjs';
 import { Speciality } from './../Models/speciality';
+import { IDoctorAdd } from '../Models/doctorAddDTO';
 
 
 @Injectable({
@@ -25,8 +26,8 @@ export class DoctorService {
   getAllDoctors(): Observable<IDoctor[]> {
     return this.httpClient.get<IDoctor[]>(`https://localhost:7013/api/Doctor/Details`)};
 
-  addDoctor(doctor: IDoctor): Observable<IDoctor> {
-    return this.httpClient.post<IDoctor>(`https://localhost:7013/api/Doctor/Create`, doctor);
+  addDoctor(doctor: IDoctorAdd): Observable<IDoctorAdd> {
+    return this.httpClient.post<IDoctorAdd>(`https://localhost:7013/api/Doctor/Create`, doctor);
   }
 
   editDoctor(updatedDoctor: IDoctor2): Observable<any> {
