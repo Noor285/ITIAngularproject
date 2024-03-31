@@ -9,6 +9,7 @@ import { userInfo } from '../Models/userInfo';
 export class AuthService {
 
    userData!: userInfo;
+   role : string = localStorage.getItem("role") ?? "";
 
   // userData = new BehaviorSubject(null);
 
@@ -31,6 +32,13 @@ export class AuthService {
 //     return localStorage.getItem('role');
 //   }
 
+ public returnRole(){
+    return this.role;
+  }
+
+  public setRole(role:string){
+    this.role = role;
+  }
 
 
   DoctorSignUp(userData:object):Observable<any>
