@@ -31,16 +31,19 @@ export class PatientSignInComponent {
         //  this.isLoading=false;
          if(Response.role === 'doctor'){
          localStorage.setItem('role' , Response.role)
+         this.authService.setRole(Response.role);
          localStorage.setItem("id",Response.id);
          this.router.navigate(['/doctor/profile'])
          }
          if(Response .role === 'patient'){
            localStorage.setItem('role' , Response.role)
            localStorage.setItem("id",Response.id);
+           this.authService.setRole(Response.role);
            this.router.navigate(['/patient/profile'])
          }
          if(Response .role === 'admin'){
           localStorage.setItem('role' , Response.role)
+          this.authService.setRole(Response.role);
           this.router.navigate(['/home'])
         }
       },
