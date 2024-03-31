@@ -63,4 +63,11 @@ export class PatientProfileComponent implements OnInit{
 
   }
 
+  navDoc(patId :any)
+  {
+    console.log(patId);
+    this.router.navigate([`/patient/profile/edit/${patId}`]);
+
+  }
+
 }

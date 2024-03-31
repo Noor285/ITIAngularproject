@@ -1,5 +1,13 @@
+#editProBtn{
+  font-size: 1.6rem;
+  background-color: #6bc1ed;
+  color: #FFFFFF;
+  width:10rem;
+  border-radius: 15px;
+}
+
 h1{
-  font-weight: 400;
+  font-weight: 200;
   font-size: 48px;
   line-height: 96px;
 }
@@ -7,20 +15,37 @@ h5{
   color: #979797;
 }
 .doctorJob{
-  color: #1A998E;
+  color: #6bc1ed;
   font-weight: 400;
   font-size: 36px;
 }
+.av-appoint{
+  color: #6bc1ed;
 
-#editProBtn{
-  font-size: 1.6rem;
-  background-color: #1A998E;
+}
+.book-card{
+  background: #FFFFFF;
+  border: 4px solid #6bc1ed;
+  border-radius: 30px;
+}
+.card-head{
+  color: #6bc1ed;
+  font-weight: 1000;
+  font-size: 25px;
+  padding: 10px;
+  margin: 10px;
+}
+.book-btn{
+  background-color: #6bc1ed;
   color: #FFFFFF;
-  width:10rem;
-  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 22px;
+  font-weight: 600;
 }
 .headColor{
-  color: #1A998E;
+  color: #6bc1ed;
 }
 .Pinfo{
   color:#000000;
@@ -31,4 +56,34 @@ h5{
   border-radius: 25px;
   padding: 4px 5px;
   background: rgba(230, 240, 237, 1);
+}
+
+.checked {
+  color: orange;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+.custom-select{
+  display: inline-block;
+  width: 100%;
+}
+.custom-select .select-styled {
+  display: inline-block;
+  padding: 8px 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #6bc1ed;
+  cursor: pointer;
+}
+
+.custom-select .text-style {
+  padding: 10px;
+font-size: 20px;
+  color:#6bc1ed;
+
+
 }

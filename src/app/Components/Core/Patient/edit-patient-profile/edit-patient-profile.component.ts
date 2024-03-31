@@ -1,28 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { PatientService } from 'src/app/Services/patient.service';
-import { Status } from 'src/app/Enums/Status';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Gender } from 'src/app/Enums/Gender';
+import { Status } from 'src/app/Enums/Status';
 import { IPatient } from 'src/app/Models/i-patient';
+import { PatientService } from 'src/app/Services/patient.service';
 
 @Component({
-  selector: 'app-edit-patient',
-  templateUrl: './edit-patient.component.html',
-  styleUrls: ['./edit-patient.component.css']
+  selector: 'app-edit-patient-profile',
+  templateUrl: './edit-patient-profile.component.html',
+  styleUrls: ['./edit-patient-profile.component.css']
 })
-export class EditPatientComponent implements OnInit{
+export class EditPatientProfileComponent {
 
-  // this.editForm = new FormGroup({
-  //   id: new FormControl(null, Validators.required), // Assuming the patient ID is required for editing
-  //   name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]),
-  //   email: new FormControl('', [Validators.required, Validators.email]),
-  //   phone: new FormControl(null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
-  //   dateOfBirth: new FormControl('', [Validators.required]),
-  //   gender: new FormControl(Gender.PreferNotToSay, [Validators.required]),
-  //   status: new FormControl(Status.Active, [Validators.required]),
-
-  patId :any;
+  patId :any = localStorage.getItem("id") ?? "";
   recePat : any;
 
 
@@ -73,7 +64,7 @@ export class EditPatientComponent implements OnInit{
         console.log('Edit added successfully:', response);
         // this.handleUpdate();
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-         this.router.navigate(['/patient/allpatients']); // Replace '/your-route' with the route you want to navigate to after editing
+         this.router.navigate(['/patient/profile']); // Replace '/your-route' with the route you want to navigate to after editing
         })
       },
       error:(error) =>
@@ -87,7 +78,4 @@ export class EditPatientComponent implements OnInit{
       }
 
   }
-
-
-
 }

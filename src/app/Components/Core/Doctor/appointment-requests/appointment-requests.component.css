@@ -1,7 +1,7 @@
 .signup-btn{
   margin-right:120px;
   width: 228px;
-  background: #1A998E;
+  background: #43acc2;
   box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.25);
   font-weight: 400;
   border-radius: 15px;
@@ -11,7 +11,7 @@
 }
 .heading-home
 {
-  color: #1A998E;
+  color: #43acc2;
 }
 .loginbtn {
   margin-right: 120px;
@@ -21,7 +21,7 @@
   border-radius: 15px;
   font-size: 24px;
   font-style: bolder;
-  color: #1A998E;
+  color: #43acc2;
   background: #FFFFFF;
 
 }

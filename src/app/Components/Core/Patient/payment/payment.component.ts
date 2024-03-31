@@ -14,7 +14,7 @@ export class PaymentComponent {
 
   ngOnInit(): void {
     this.paymentForm = this.formBuilder.group({
-      cardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
+      cardNumber: ['', [Validators.required, Validators.pattern(/^\d{0,16}$/)]],
       expiryDate: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)]], // Updated pattern
       cvv: ['', [Validators.required, Validators.pattern(/^\d{3,4}$/)]]
     });
@@ -34,4 +34,28 @@ export class PaymentComponent {
       this.paymentForm.markAllAsTouched();
     }
   }
+
+  limitCvvNumLength(event: Event): void {
+      const inputElement = event.target as HTMLInputElement;
+      const currentValue = inputElement.value;
+      const maxLength = 4;
+
+      if (currentValue.length > maxLength) {
+        inputElement.value = currentValue.slice(0, maxLength);
+        event.preventDefault(); // Cancel the input event
+      }
+  }
+
+
+  limitCardNumLength(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const currentValue = inputElement.value;
+    const maxLength = 16;
+
+    if (currentValue.length > maxLength) {
+      inputElement.value = currentValue.slice(0, maxLength);
+      event.preventDefault(); // Cancel the input event
+    }
+}
+
 }

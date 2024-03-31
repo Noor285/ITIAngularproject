@@ -22,6 +22,7 @@ import { PaymentDetailsComponent } from './Components/Core/Patient/payment-detai
 import { AppointmentRequestsComponent } from './Components/Core/Doctor/appointment-requests/appointment-requests.component';
 import { UnauthorizedComponent } from './Components/Shared/unauthorized/unauthorized.component';
 import { AllAppointmentsComponent } from './Components/Core/Patient/all-appointments/all-appointments.component';
+import { EditDoctorProfileComponent } from './Components/Core/Doctor/edit-doctor-profile/edit-doctor-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -37,10 +38,11 @@ const routes: Routes = [
   {path: 'patient/edit/:patId' , component:EditPatientComponent , },
   // title:'Edit Patient'
   {path: 'patient/profile' , component:PatientProfileComponent , },
+  {path: 'patient/profile/edit/:patId' , component:EditDoctorProfileComponent },
   {path: 'patient/patientprofial/payment' , component:PaymentComponent , },
   {path: 'patient/patientprofial/paymentdetails' , component:PaymentDetailsComponent },
-
   {path: 'patient/appointment' , component:AllAppointmentsComponent},
+
   {path: 'doctor/signup' , component:DoctorSignUpComponent, title:'Doctor Sign Up ' },
   {path: 'doctor/signin' , component:DoctorSignInComponent, title:'Doctor Sign In ' },
   {path: 'doctor/alldoctors' , component:AllDoctorsComponent, title:'Show All Doctors' },
@@ -48,6 +50,7 @@ const routes: Routes = [
   {path: 'doctor/edit/:docId' , component:EditDoctorComponent },
   {path: 'doctor/appointment' , component:DoctorAppointmentComponent },
   {path: 'doctor/profile' , component:DoctorProfileComponent },
+  {path: 'doctor/profile/edit/:docId' , component:EditDoctorProfileComponent },
   {path: 'doctor/appointment/req', component: AppointmentRequestsComponent},
 
 

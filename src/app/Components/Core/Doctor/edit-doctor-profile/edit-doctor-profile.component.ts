@@ -1,25 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Gender } from 'src/app/Enums/Gender';
 import { Status } from 'src/app/Enums/Status';
-import { IDoctor } from 'src/app/Models/i-doctor';
 import { DoctorService } from 'src/app/Services/doctor.service';
 
 @Component({
-  selector: 'app-edit-doctor',
-  templateUrl: './edit-doctor.component.html',
-  styleUrls: ['./edit-doctor.component.css']
+  selector: 'app-edit-doctor-profile',
+  templateUrl: './edit-doctor-profile.component.html',
+  styleUrls: ['./edit-doctor-profile.component.css']
 })
-export class EditDoctorComponent implements OnInit  {
+export class EditDoctorProfileComponent {
 
-
-
-
-  docId :any;
+  docId :any = localStorage.getItem("id") ?? "";
   receDoc : any;
 
-//  handleUpdate(){}
+ handleUpdate(){}
   constructor(private router: Router, private activatedroute: ActivatedRoute, private doctorService: DoctorService) {
     this.docId = this.activatedroute.snapshot.paramMap.get("docId");
     console.log(this.docId);
@@ -93,9 +89,9 @@ export class EditDoctorComponent implements OnInit  {
         this.doctorService.editDoctor(this.editForm.value).subscribe({
         next:(response) => {
           console.log('Edit added successfully:', response);
-          // this.handleUpdate();
+          this.handleUpdate();
           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.router.navigate(['/doctor/alldoctors']); // Replace '/your-route' with the route you want to navigate to after editing
+            this.router.navigate(['/doctor/profile']); // Replace '/your-route' with the route you want to navigate to after editing
           })
         },
         error:(error) =>
@@ -110,6 +106,5 @@ export class EditDoctorComponent implements OnInit  {
         }
 
   }
-
 
 }

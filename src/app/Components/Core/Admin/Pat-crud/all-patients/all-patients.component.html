@@ -11,41 +11,41 @@
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [rowsPerPageOptions]="[5, 10, 20]">
           <ng-template pTemplate="header" >
-              <tr style="font-weight: bold; text-align: center;">
-                <td>Id</td>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Phone</td>
-                <td>Date of Birth</td>
-                <td>Gender</td>
-                <td>Edit</td>
-                <td>Remove</td>
+            <tr style="font-weight: bold;text-align: center; border-bottom: 1px solid #ccc;">
+              <td style="padding: 20px;">#</td>
+                <td style="padding: 20px;">Name</td>
+                <td style="padding: 20px;">Email</td>
+                <td style="padding: 20px;">Phone</td>
+                <td style="padding: 20px;">Date of Birth</td>
+                <td style="padding: 20px;">Gender</td>
+                <td style="padding: 20px;">Edit</td>
+                <td style="padding: 20px;">Remove</td>
               </tr>
           </ng-template>
           <ng-template pTemplate="body" let-pat >
               <tr>
-                <td>
+                <td style="padding-left: 2rem;">
                   {{pat?.id}}
                 </td>
-                <td>
+                <td style="padding-left: 2rem;">
                   {{pat?.name}}
                 </td>
-                <td>
+                <td style="padding-left: 2rem;">
                   {{pat?.email}}
                 </td>
-                <td>
+                <td style="padding-left: 2rem;">
                   {{pat?.phone}}
                 </td>
-                <td>
+                <td style="padding-left: 2rem;">
                   {{pat?.dob |date:'longDate'}}
                 </td>
-                <td>
+                <td style="padding-left: 2.5rem;">
                   {{pat?.gender | gender}}
                 </td>
-                <td>
+                <td style="padding-left: 2rem;">
                   <button class="btn btn-info" [value]="pat.id" (click)="navDoc(pat?.id)">Edit</button>
                 </td>
-                <td>
+                <td style="padding-left: 3rem;">
                   <button class="btn btn-danger" [value]="pat.id" (click)="deletePat(pat.id)">Remove</button>
                 </td>
               </tr>

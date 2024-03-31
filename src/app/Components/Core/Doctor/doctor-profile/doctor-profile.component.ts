@@ -20,18 +20,11 @@ export class DoctorProfileComponent implements AfterViewInit  {
   IsWait: boolean = true;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  observerForProfileDoc={
-    next:(data:any)=>{
-      if (data.message = 'Done') {
-        this.docProfileData=data.doctor;
-        this.IsWait=false;
-        console.log(this.docProfileData);
-      }
-    },
-    error:(err:any)=>{this.errRespon=err;this.openSnackBar()}
-  }
-  constructor(private _DoctorService:DoctorService,private router:Router,private _snackBar: MatSnackBar){
-  }
+
+
+  constructor(private _DoctorService:DoctorService,private router:Router,private _snackBar: MatSnackBar){}
+
+
   ngAfterViewInit(): void {
     if(Number.isNaN(this.id))
     {
@@ -50,22 +43,13 @@ export class DoctorProfileComponent implements AfterViewInit  {
       this.IsWait = false;
       console.log(this.docProfileData);
     })
-  //   this._DoctorService.getComingAppoint(1).subscribe((data)=>{
-  //     if(data.message=='Done'){
-  //       this.comingAppoint=data.appointments;
-  //       console.log(this.comingAppoint);
-  //     }
-  // });
   }
-  //handel error
-  // openSnackBar() {
-  //   this._snackBar.open(this.errRespon.error.message, 'retry', {
-  //     horizontalPosition: this.horizontalPosition,
-  //     verticalPosition: this.verticalPosition,
-  //   });
-  // }
-  // openPatientProfile(pID: any) {
-  //   return this._Router.navigate(['/profile','Patient', pID]);
-  // }
+
+  navDoc(docId :any)
+  {
+    console.log(docId);
+    this.router.navigate([`/doctor/profile/edit/${docId}`]);
+
+  }
 
 }

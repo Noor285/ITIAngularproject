@@ -29,9 +29,9 @@ export class DoctorService {
     return this.httpClient.post<IDoctor>(`https://localhost:7013/api/Doctor/Create`, doctor);
   }
 
-  editDoctor(updatedDoctor: object): Observable<any> {
+  editDoctor(updatedDoctor: IDoctor2): Observable<any> {
     console.log(updatedDoctor)
-    return this.httpClient.put(`https://localhost:7013/api/Doctor/Update`, updatedDoctor);
+    return this.httpClient.put<IDoctor2>(`https://localhost:7013/api/Doctor/Update`, updatedDoctor);
   }
 
   getDoctorById(doctortId: number): Observable<IDoctor2> {
@@ -68,7 +68,7 @@ export class DoctorService {
   }
   /* End edit appoint component */
 
-  getProfileDoc(id:any):Observable<IDoctor>
+  getProfileDoc(id:any):Observable<any>
   {
     return this.httpClient.get<IDoctor>(`https://localhost:7013/api/Doctor/Details/${id}`)
   }

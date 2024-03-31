@@ -21,39 +21,6 @@ export class PatientSignInComponent {
   })
 
 
-
-  // handleSignIn(signInForm:FormGroup)
-  // {
-  //   console.log(signInForm.value)
-  //   this.isLoading = true;
-  //   if (signInForm.valid) {
-  //     console.log(signInForm.value);
-  //     // this.authService.PatientSignIn(signInForm.value).subscribe({
-  //     //   next:(response) =>
-  //     //   {
-  //     //     if(response.message === 'success')
-  //     //     {
-  //     //       // this.isLoading = false;
-  //     //       // this.router.navigate(['/home']);
-  //     //     }
-  //     //   },
-  //     //   error:(err) =>
-  //     //   {
-  //     //     this.isLoading = false;
-  //     //     this.apiError = err.error.msg;
-  //     //     console.log(err.error.msg);
-  //     //   }
-  //     // });
-  //   this.signInForm.reset();
-  //   this.router.navigate(['/home']);
-
-  //   }
-  //   else {
-  //     this.isLoading = false;
-  //     this.signInForm.markAllAsTouched();
-  //   }
-  //  }
-
    handleSignIn()
    {
     //  this.isLoading =true;
@@ -74,7 +41,7 @@ export class PatientSignInComponent {
          }
          if(Response .role === 'admin'){
           localStorage.setItem('role' , Response.role)
-          this.router.navigate(['/admin/profile'])
+          this.router.navigate(['/home'])
         }
       },
         error: (errors : HttpErrorResponse) => {

@@ -36,11 +36,11 @@ export class PatientService {
     return this.httpClient.post<IPatient>(`https://localhost:7013/api/Patient/Create/`, patient);
   }
 
-  editPatient(updatedPatient: IPatient): Observable<IPatient> {
+  editPatient(updatedPatient: IPatient): Observable<any> {
     return this.httpClient.put<IPatient>(`https://localhost:7013/api/Patient/Update`, updatedPatient);
   }
 
-  getPatientById(patientId: number): Observable<IPatient> {
+  getPatientById(patientId: number): Observable<any> {
     return this.httpClient.get<IPatient>(`https://localhost:7013/api/Patient/${patientId}`);
   }
 
@@ -49,7 +49,7 @@ export class PatientService {
   }
 
 
-  getpatientProfileById(patientId: number): Observable<IPatient> {
+  getpatientProfileById(patientId: number): Observable<any> {
     return this.httpClient.get<IPatient>(`https://localhost:7013/api/Patient/${patientId}`);
   }
   postpatientRate(bodyOfreview: any): Observable<IPatient> {

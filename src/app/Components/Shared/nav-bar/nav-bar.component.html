@@ -8,11 +8,21 @@
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
     <li><a routerLink="/home" routerLinkActive="active" class="nav-link px-2">Home</a></li>
     <li><a routerLink="/contact" routerLinkActive="active" class="nav-link px-2">Contact US</a></li>
-    <li><a routerLink="/doctor/alldoctors" routerLinkActive="active" class="nav-link px-2">All Doctors</a></li>
-    <li><a routerLink="/patient/allpatients" routerLinkActive="active" class="nav-link px-2">All Patients</a></li>
 
+    <li><a *ngIf="role == 'admin'" routerLink="/doctor/alldoctors" routerLinkActive="active" class="nav-link px-2">All Doctors</a></li>
+    <li><a *ngIf="role == 'admin'" routerLink="/patient/allpatients" routerLinkActive="active" class="nav-link px-2">All Patients</a></li>
+
+    <li><a *ngIf="role == 'doctor'" routerLink="/doctor/profile" routerLinkActive="active" class="nav-link px-2">Doctor Profile</a></li>
+    <li><a *ngIf="role == 'doctor'" routerLink="/doctor/appointment" routerLinkActive="active" class="nav-link px-2">Doctor Appointment</a></li>
+    <li><a *ngIf="role == 'doctor'" routerLink="/doctor/appointment/req" routerLinkActive="active" class="nav-link px-2">Requested Appointment</a></li>
+
+
+    <li><a *ngIf="role == 'patient'" routerLink="/patient/profile" routerLinkActive="active" class="nav-link px-2">Patient Profile</a></li>
+    <li><a *ngIf="role == 'patient'" routerLink="/patient/appointment" routerLinkActive="active" class="nav-link px-2">Patient Appointment</a></li>
+    <li><a *ngIf="role == 'patient'" routerLink="/patient/appointment" routerLinkActive="active" class="nav-link px-2">Book Appointment</a></li>
 
   </ul>
+
 
   <div class="col-md-3 text-end">
     <button *ngIf="role == ''" type="button" class="btn btn-outline-success me-2" routerLink="/signin">Sign-in</button>

@@ -1,4 +1,4 @@
-<div class="w-75 mx-auto py-4">
+<div class="w-100 mx-auto py-4">
   <div class="container mt-5 p-5">
 
     <div class="card">
@@ -11,48 +11,50 @@
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [rowsPerPageOptions]="[5, 10, 20]">
       <ng-template pTemplate="header">
-          <tr style="font-weight: bold; padding: 30px; text-align: center;">
-            <td>ID</td>
-            <td>Name</td>
-            <td>Email</td>
-            <td>National ID</td>
-            <td>Specialty</td>
-            <td>Gender</td>
-            <td>Governorate</td>
-            <td>Address</td>
+        <tr style="font-weight: bold; margin-bottom: 30px; text-align: center; border-bottom: 1px solid #ccc;">
+          <td style="padding: 20px;">#</td>
+            <td style="padding: 20px;">Name</td>
+            <td style="padding: 20px;">Email</td>
+            <td style="padding: 20px;">Specialty</td>
+            <td style="padding: 20px;">Gender</td>
+            <td style="padding: 20px;">National ID</td>
+            <td style="padding: 20px;">Governorate</td>
+            <td style="padding: 20px;">Address</td>
+            <td style="padding: 20px;">Edit</td>
+            <td style="padding: 20px;">Delete</td>
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-doc>
           <tr>
-            <td>
+            <td style="padding-left: 1rem;">
               {{doc.doctor?.id}}
             </td>
-            <td>
+            <td style="padding-left: 2rem;">
               {{doc.doctor?.name}}
             </td>
-            <td>
+            <td style="padding-left: 2rem;">
               {{doc.doctor?.email}}
             </td>
-            <td>
-              {{doc.doctor?.nationalID}}
-            </td>
-            <td>
+            <td style="padding-left: 2rem;">
               {{doc.speciality.name}}
             </td>
-            <td>
+            <td style="padding-left: 2rem;">
               {{doc.doctor?.gender | gender}}
             </td>
-            <td>
+            <td style="padding-left: 2rem;">
+              {{doc.doctor?.nationalID}}
+            </td>
+            <td style="padding-left: 2rem; text-align: center;">
               {{doc.doctor?.governance}}
             </td>
-            <td>
+            <td style="padding-left: 2rem;">
               {{doc.doctor?.address}}
             </td>
 
-            <td>
+            <td style="padding-left: 1rem;">
               <button class="btn btn-info" #docId [value]="doc.doctor.id" (click)="navDoc(doc.doctor.id)">Edit</button>
             </td>
-            <td>
+            <td style="padding-left: 1rem;">
               <button class="btn btn-danger" [value]="doc.doctor.id" (click)="deleteDoc(doc.doctor.id)">Remove</button>
             </td>
           </tr>

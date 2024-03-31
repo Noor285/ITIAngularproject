@@ -23,6 +23,7 @@ export class AddDoctorComponent implements OnInit ,  AfterViewInit {
   createForm:FormGroup = new FormGroup({
     Name : new FormControl(null , [Validators.required , Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
     Email : new FormControl(null , [Validators.required, Validators.email]),
+    // password : new FormControl(null , [Validators.required, Validators.minLength(6)]),
     NationalID : new FormControl(null , [Validators.required , Validators.pattern(/^[0-9]{14}$/)]),
     SpecialityID : new FormControl(null , [Validators.required]),
     DOB : new FormControl(null , [Validators.required , Validators.min(new Date(1960, 12, 1).getTime()), Validators.max(new Date(2024, 2, 29).getTime())]),

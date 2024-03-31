@@ -36,5 +36,10 @@
   color: #8a8f90;
 }
 
+label{
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

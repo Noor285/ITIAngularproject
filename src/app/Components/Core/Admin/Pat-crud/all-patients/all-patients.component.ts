@@ -37,7 +37,7 @@ export class AllPatientsComponent implements OnInit {
   navDoc(patId :any)
   {
     console.log(patId);
-    this.router.navigate([`/doctor/edit/${patId}`]);
+    this.router.navigate([`/patient/edit/${patId}`]);
 
   }
 
@@ -49,7 +49,7 @@ export class AllPatientsComponent implements OnInit {
           window.location.reload();
         },
         error: (error) => {
-          console.error('Error deleting doctor:', error);
+          console.error('Error deleting patient:', error);
         }
       });
     }

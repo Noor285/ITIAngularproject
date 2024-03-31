@@ -60,6 +60,8 @@ import { RatingModule } from 'primeng/rating';
 import { DialogModule } from 'primeng/dialog';
 import { AppstatusPipe } from './Pipes/appstatus.pipe';
 import { UnauthorizedComponent } from './Components/Shared/unauthorized/unauthorized.component';
+import { EditPatientProfileComponent } from './Components/Core/Patient/edit-patient-profile/edit-patient-profile.component';
+import { EditDoctorProfileComponent } from './Components/Core/Doctor/edit-doctor-profile/edit-doctor-profile.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +96,9 @@ import { UnauthorizedComponent } from './Components/Shared/unauthorized/unauthor
     PatientSignUpComponent,
     GenderPipe,
     AppstatusPipe,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    EditPatientProfileComponent,
+    EditDoctorProfileComponent
   ],
   imports: [
     RatingModule,

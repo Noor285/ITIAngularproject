@@ -42,3 +42,12 @@
   border: #6cc2ed 2px solid;
   border-radius: 20px;
 }
+
+#editProBtn{
+  font-size: 1.6rem;
+  background-color: #6bc1ed;
+  color: #FFFFFF;
+  width:10rem;
+  border-radius: 15px;
+}
+

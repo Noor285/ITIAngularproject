@@ -2,12 +2,12 @@
   <div class="container mt-5 p-5">
     <div class="card shadow">
       <div class="card-header">
-        <h4>Add New Doctor
+        <h2>Add New Doctor
           <a routerLink="/doctor/alldoctors" class="btn btn-outline-primary float-end">Back</a>
           <div *ngIf="apiError.length > 0" class="text-danger mt-3">
             {{apiError}}
           </div>
-        </h4>
+        </h2>
       </div>
 
       <div class="card-body">
@@ -38,7 +38,7 @@
 
 
           <!-- ----------------------- Password ----------------------- -->
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label for="password" class="mb-2">Password</label>
             <input type="password" formControlName="password" id="password" class="form-control" />
 
@@ -48,7 +48,7 @@
                 digitis</p>
               <p *ngIf="createForm.get('password')?.getError('required')" class="m-0">Password is Required</p>
             </div>
-          </div>
+          </div> -->
 
           <!-- -----------------------Confirm Password ----------------------- -->
           <!-- <div class="mb-3">
@@ -87,20 +87,17 @@
           </div>
 
 
-          <!-- ----------------------- ernorate   ----------------------- -->
-          <div class="mb-3 mt-5">
-            <label for="Governance" class="mb-2">Governanceernorate </label>
-            <select formControlName="Governance" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-              <option selected disabled>Open this select menu</option>
-              <option value="cairo">One</option>
-              <option value="cairo1">Two</option>
-              <option value="cairo2">Three</option>
-            </select>
+             <!-- ----------------------- Governorate  ----------------------- -->
+             <div class="mb-3">
+              <label for="Governance" class="mb-2">Governate </label>
+              <input type="text" formControlName="Governance" class="form-control">
 
-            <div *ngIf="createForm.get('Governance')?.errors && createForm.get('Governance')?.touched" class="text-danger m-1">
-              <p *ngIf="createForm.get('Governance')?.getError('required')" class="m-0">Governanceernance is Required</p>
+              <div *ngIf="createForm.get('Governance')?.errors && createForm.get('Governance')?.touched"
+                class="text-danger m-1">
+                <p *ngIf="createForm.get('Governance')?.getError('required')" class="m-0">Governance is Required</p>
+              </div>
             </div>
-          </div>
+
 
           <!-- ----------------------- Address ----------------------- -->
           <div class="mb-3">
@@ -113,33 +110,38 @@
             </div>
           </div>
 
-          <!-- ----------------------- Speciality  ----------------------- -->
-          <div class="mb-3">
-            <label for="SpecialityID " class="mb-2">Speciality </label>
-            <select [(ngModel)]="selectedSpeciality" formControlName="SpecialityID" class="form-select form-select-lg mb-3">
-              <option *ngFor="let speciality of specialities; let i = index " [value]="speciality.ID">{{ speciality.Name }}</option>
-            </select>
+            <!-- ----------------------- Speciality  ----------------------- -->
+            <div class="mb-3">
+              <label for="SpecialityID " class="mb-2">Speciality </label>
 
-            <div *ngIf="createForm.get('SpecialityID')?.errors && createForm.get('SpecialityID')?.touched"
-              class="text-danger m-1">
-              <p *ngIf="createForm.get('SpecialityID')?.getError('required')" class="m-0">speciality is Required</p>
+              <select formControlName="SpecialityID" class="form-select form-select-md mb-3">
+
+                <option *ngFor="let speciality of specialities" [value]="speciality.id ">{{ speciality.name }}
+                </option>
+
+              </select>
+
+              <div *ngIf="createForm.get('SpecialityID')?.errors && createForm.get('SpecialityID')?.touched"
+                class="text-danger m-1">
+                <p *ngIf="createForm.get('SpecialityID')?.getError('required')" class="m-0">speciality is Required</p>
+              </div>
             </div>
-          </div>
 
-          <!-- ----------------------- Gender  ----------------------- -->
-          <div class="mb-3">
-            <label for="Gender " class="mb-2">Gender</label>
-            <select formControlName="Gender" class="form-select form-select-lg mb-3"
-              aria-label=".form-select-lg example">
-              <option value="1">Male</option>
-              <option value="2">Female</option>
-              <option value="3">Three</option>
-            </select>
 
-            <div *ngIf="createForm.get('Gender')?.errors && createForm.get('Gender')?.touched" class="text-danger m-1">
-              <p *ngIf="createForm.get('Gender')?.getError('required')" class="m-0">Gender is Required</p>
-            </div>
+         <!-- ----------------------- Gender  ----------------------- -->
+         <div class="mb-3">
+          <label for="Gender " class="mb-2">Gender</label>
+          <select formControlName="Gender" class="form-select form-select-md mb-3"
+            aria-label=".form-select-lg example">
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+            <option value="2">PrefetNotToSay</option>
+          </select>
+
+          <div *ngIf="createForm.get('Gender')?.errors && createForm.get('Gender')?.touched" class="text-danger m-1">
+            <p *ngIf="createForm.get('Gender')?.getError('required')" class="m-0">Gender is Required</p>
           </div>
+        </div>
 
 
           <!-- ----------------------- Phone  ----------------------- -->
@@ -155,13 +157,13 @@
           </div>
           <!-- ----------------------- Appointment Price  ----------------------- -->
           <div class="mb-3">
-            <label for="AppointmentPrice" class="mb-2">Appointment AppointmentPrice </label>
+            <label for="AppointmentPrice" class="mb-2">Appointment Price </label>
             <input type="number" formControlName="AppointmentPrice" id="AppointmentPrice" class="form-control" />
 
             <div *ngIf="createForm.get('AppointmentPrice')?.errors && createForm.get('AppointmentPrice')?.touched" class="text-danger m-1">
-              <p *ngIf="createForm.get('AppointmentPrice')?.getError('min')" class="m-0">AppointmentPrice Can't be less than 100</p>
-              <p *ngIf="createForm.get('AppointmentPrice')?.getError('max')" class="m-0">AppointmentPrice Can't be more than 600</p>
-              <p *ngIf="createForm.get('AppointmentPrice')?.getError('required')" class="m-0">AppointmentPrice is Required</p>
+              <p *ngIf="createForm.get('AppointmentPrice')?.getError('min')" class="m-0">Appointment Price Can't be less than 100</p>
+              <p *ngIf="createForm.get('AppointmentPrice')?.getError('max')" class="m-0">Appointment Price Can't be more than 5000</p>
+              <p *ngIf="createForm.get('AppointmentPrice')?.getError('required')" class="m-0">Appointment Price is Required</p>
             </div>
           </div>
 

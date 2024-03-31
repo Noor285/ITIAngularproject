@@ -9,7 +9,7 @@
 
         <div class="form-group">
           <label for="cardNumber">Card Number</label>
-          <input type="text" formControlName="cardNumber" class="form-control" [ngClass]="{
+          <input type="text" formControlName="cardNumber" (input)="limitCardNumLength($event)" class="form-control" [ngClass]="{
                                'is-valid': paymentForm.get('cardNumber')?.valid && paymentForm.get('cardNumber')?.touched,
                                'is-invalid': (paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched) || (paymentForm.get('cardNumber')?.errors && paymentForm.get('cardNumber')?.dirty)
                              }">
@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
           <label for="cvv">CVV</label>
-          <input type="text" formControlName="cvv" class="form-control" [ngClass]="{
+          <input type="text" formControlName="cvv" (input)="limitCvvNumLength($event)" class="form-control" [ngClass]="{
                                'is-valid': paymentForm.get('cvv')?.valid && paymentForm.get('cvv')?.touched,
                                'is-invalid': (paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched) || (paymentForm.get('cvv')?.errors && paymentForm.get('cvv')?.dirty)
                              }">
