@@ -40,7 +40,7 @@ export class EditPatientComponent implements OnInit{
   editForm = new FormGroup({
     id: new FormControl(''), // Assuming the patient ID is required for editing
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]),
-    email: new FormControl('', [Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]),
+    email: new FormControl('', [Validators.required,Validators.email, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]),
     phone: new FormControl('', [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
     dob: new FormControl('', [Validators.required]),
     gender: new FormControl(Gender.PreferNotToSay, [Validators.required]),

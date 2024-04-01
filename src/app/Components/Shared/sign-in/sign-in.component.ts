@@ -33,13 +33,13 @@ export class PatientSignInComponent {
          localStorage.setItem('role' , Response.role)
          this.authService.setRole(Response.role);
          localStorage.setItem("id",Response.id);
-         this.router.navigate(['/doctor/profile'])
+         this.router.navigate(['/doctor/home'])
          }
          if(Response .role === 'patient'){
            localStorage.setItem('role' , Response.role)
            localStorage.setItem("id",Response.id);
            this.authService.setRole(Response.role);
-           this.router.navigate(['/patient/profile'])
+           this.router.navigate(['/patient/home'])
          }
          if(Response .role === 'admin'){
           localStorage.setItem('role' , Response.role)
@@ -69,6 +69,10 @@ export class PatientSignInComponent {
 
    }
 
+   showPassword: boolean = false;
 
+   togglePasswordVisibility(): void {
+       this.showPassword = !this.showPassword;
+   }
 
 }

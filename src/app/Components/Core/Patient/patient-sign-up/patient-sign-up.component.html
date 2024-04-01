@@ -1,125 +1,177 @@
 <div class="w-75 mx-auto py-4">
-<div class="container mt-5 p-5">
-  <div class="row" style="background-color: white; box-shadow: 0px 0px 10px rgba(0, 0, 0.1, 0.2); padding: 5px;  border-radius: 10px;">
-      <div class="col-md-1"></div>
-      <div class="col-md-5">
-          <div class="login-container m-5">
-              <h2 style="color: #6CC2ED;">Sign-up</h2>
-              <form id="registration-form" [formGroup]="RegistrationForm" (ngSubmit)="handleSignUp(RegistrationForm)"
-                  style="padding-top: 10px;">
-                  <!-- Name -->
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" formControlName="name" class="form-control mb-4" placeholder="Name" id="name"
-                        [ngClass]="{
-                            'is-valid': nameControl.valid && nameControl.touched,
-                            'is-invalid': (nameControl.invalid && nameControl.touched) || (nameControl.errors && nameControl.dirty)
-                        }" />
-                    <div class="valid-feedback">Name Looks good!</div>
-                    <div class="invalid-feedback" *ngIf="nameControl.hasError('required')">Name is required</div>
-                    <div class="invalid-feedback" *ngIf="nameControl.hasError('minlength')">Name must be at least 3 characters long</div>
-                    <div class="invalid-feedback" *ngIf="nameControl.hasError('pattern')">Name must contain only letters</div>
+    <div class="container mt-5 p-5">
+        <div class="row"
+            style="background-color: white; box-shadow: 0px 0px 10px rgba(0, 0, 0.1, 0.2); padding: 5px;  border-radius: 10px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <div class="login-container m-5">
+                    <p class="h1" style="color: #1A998E;">Sign-up</p>
+                    <form (ngSubmit)="handleAdd(createForm)" class="m-3" [formGroup]="createForm">
+                        <!-- ----------------------- Name ----------------------- -->
+                        <div class="mb-3">
+
+                            <label for="name" class="mb-2">Name</label>
+                            <input type="text" formControlName="name" id="name" class="form-control" />
+                            <div *ngIf="createForm.get('name')?.errors && createForm.get('name')?.touched"
+                                class="text-danger m-1 sm">
+                                <p *ngIf="createForm.get('name')?.getError('minlength')" class="m-0">Name minimum lenth
+                                    is 3</p>
+                                <p *ngIf="createForm.get('name')?.getError('pattern')" class="m-0">Enter Characters Only
+                                </p>
+                                <p *ngIf="createForm.get('name')?.getError('required')" class="m-0">Name is Required</p>
+                            </div>
+                        </div>
+
+                        <!-- ----------------------- Email ----------------------- -->
+                        <div class="mb-3">
+                            <label for="email" class="mb-2">Email</label>
+                            <input type="email" formControlName="email" id="email" class="form-control" />
+
+                            <div *ngIf="createForm.get('email')?.errors && createForm.get('email')?.touched"
+                                class="text-danger m-1">
+                                <p *ngIf="createForm.get('email')?.getError('email')" class="m-0">Email is InValid
+                                    should be (email@gmail.com)</p>
+                                <!-- <p *ngIf="createForm.get('email')?.getError('pattern')" class="m-0">Email is InValid should be (email@gmail.com)</p> -->
+                                <p *ngIf="createForm.get('email')?.getError('required')" class="m-0">Email is Required
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <!-- ----------------------- Password ----------------------- -->
+
+                        <div class="mb-3">
+                            <label for="password" class="mb-2">Password</label>
+                            <div class="input-group">
+                                <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"
+                                    id="password" class="form-control" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text" (click)="togglePasswordVisibility()">
+                                        <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div *ngIf="createForm.get('password')?.errors && createForm.get('password')?.touched"
+                                class="text-danger m-1">
+                                <p *ngIf="createForm.get('password')?.getError('required')" class="m-0">Password is
+                                    Required</p>
+                                <p *ngIf="createForm.get('password')?.getError('pattern')" class="m-0">Password is
+                                    Invalid:
+                                <ul class="m-0">
+                                    <li>At least one lowercase letter (a-z)</li>
+                                    <li>At least one uppercase letter (A-Z)</li>
+                                    <li>At least one digit (0-9)</li>
+                                    <li>At least one special character (!@#$%&*()_+)</li>
+                                    <li>At least 8 characters long</li>
+                                    <li>Cannot contain spaces</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+
+                        <!-- -----------------------Confirm Password ----------------------- -->
+
+                        <div class="form-group mb-3">
+                            <label for="confirmPassword" class="mb-2">Confirm Password</label>
+                            <div class="input-group">
+                                <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="confirmPassword"
+                                    class="form-control" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text" (click)="togglePasswordVisibility()">
+                                        <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div *ngIf="createForm.get('confirmPassword')?.errors && createForm.get('confirmPassword')?.touched"
+                                class="text-danger m-1">
+                                <p *ngIf="createForm.get('confirmPassword')?.getError('required')" class="m-0">Confirm
+                                    Password is required</p>
+                                <p *ngIf="createForm.get('confirmPassword')?.getError('passwordMismatch')" class="m-0">
+                                    Passwords do not match</p>
+                            </div>
+                        </div>
+
+                        <!-- ----------------------- Date Of Birth ----------------------- -->
+                        <div class="mb-3">
+                            <label for="dob" class="mb-2">Date Of Birth</label>
+                            <input type="date" formControlName="dob" id="dob" class="form-control" [min]="dateMin"
+                                [max]="dateMax" />
+
+                            <div *ngIf="createForm.get('dob')?.errors && createForm.get('dob')?.touched"
+                                class="text-danger m-1">
+                                <p *ngIf="createForm.get('dob')?.getError('min')" class="m-0">Can't Enter date less than
+                                    1964</p>
+                                <p *ngIf="createForm.get('dob')?.getError('max')" class="m-0">Can't Enter date more than
+                                    1999</p>
+                                <p *ngIf="createForm.get('dob')?.getError('required')" class="m-0">date Of Birth is
+                                    Required</p>
+                            </div>
+                        </div>
+
+                        <!-- ----------------------- Phone  ----------------------- -->
+                        <div class="mb-3">
+                            <label for="phone" class="mb-2">Phone</label>
+                            <input type="tel" formControlName="phone" id="phone" class="form-control"
+                                (input)="enforceMinMaxPhone($event)" />
+
+                            <div *ngIf="createForm.get('phone')?.errors && createForm.get('phone')?.touched"
+                                class="text-danger m-1">
+                                <p *ngIf="createForm.get('phone')?.getError('pattern')" class="m-0">Phone must be 11
+                                    digits and must start
+                                    with 010 or 011 or 012 or 015</p>
+                                <p *ngIf="createForm.get('phone')?.getError('required')" class="m-0">Phone is Required
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- ----------------------- Gender  ----------------------- -->
+                        <div class="mb-3">
+                            <label for="gender " class="mb-2">Gender</label>
+                            <select formControlName="gender" class="form-select form-select-md mb-3"
+                                aria-label=".form-select-lg example">
+                                <option value="0">Male</option>
+                                <option value="1">Female</option>
+                                <option value="2">PrefetNotToSay</option>
+                            </select>
+
+                            <div *ngIf="createForm.get('gender')?.errors && createForm.get('gender')?.touched"
+                                class="text-danger m-1">
+                                <p *ngIf="createForm.get('gender')?.getError('required')" class="m-0">Gender is Required
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="text-start">
+                            <button type="submit" class="btn btn-send w-50">Sign Up</button>
+                        </div>
+                    </form>
+
+
                 </div>
-                
-
-                  <!-- Email -->
-                  <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" formControlName="email" class="form-control mb-4" placeholder="Email"
-                          id="email" [ngClass]="{
-                              'is-valid': emailControl.valid && emailControl.touched,
-                              'is-invalid': (emailControl.invalid && emailControl.touched) || (emailControl.errors && emailControl.dirty)
-                          }" />
-                      <div class="valid-feedback">Email Looks good!</div>
-                      <div class="invalid-feedback">Email is required and must be a valid email address</div>
-                  </div>
-
-                  <!-- Password -->
-                  <div class="form-group">
-                      <label for="password">Password</label>
-                      <input type="password" formControlName="password" class="form-control mb-4"
-                          placeholder="Password" id="password" [ngClass]="{
-                              'is-valid': passwordControl.valid && passwordControl.touched,
-                              'is-invalid': (passwordControl.invalid && passwordControl.touched) || (passwordControl.errors && passwordControl.dirty)
-                          }" />
-                      <div class="valid-feedback">Password Looks good!</div>
-                      <div class="invalid-feedback">Password is required and must be at least 6 characters long</div>
-                  </div>
-
-                  <!-- Confirm Password -->
-                  <div class="form-group">
-                      <label for="confirmPassword">Confirm Password</label>
-                      <input type="password" formControlName="confirmPassword" class="form-control mb-4"
-                          placeholder="Confirm Password" id="confirmPassword" [ngClass]="{
-                              'is-valid': confirmPasswordControl.valid && confirmPasswordControl.touched,
-                              'is-invalid': (confirmPasswordControl.invalid && confirmPasswordControl.touched) || (confirmPasswordControl.errors && confirmPasswordControl.dirty)
-                          }" />
-                      <div class="valid-feedback">Passwords match!</div>
-                      <div class="invalid-feedback">Passwords must match</div>
-                  </div>
-
-                  <!-- Phone -->
-                  <div class="form-group">
-                      <label for="phone">Phone</label>
-                      <input type="number" formControlName="phone" class="form-control mb-4" placeholder="Phone"
-                          id="phone" [ngClass]="{
-                              'is-valid': phoneControl.valid && phoneControl.touched,
-                              'is-invalid': (phoneControl.invalid && phoneControl.touched) || (phoneControl.errors && phoneControl.dirty)
-                          }" />
-                      <div class="valid-feedback">Phone Looks good!</div>
-                      <div class="invalid-feedback">Phone is required and must be 11 digits long</div>
-                  </div>
-
-                  <!-- Date of Birth -->
-                  <div class="form-group">
-                      <label for="dob">Date of Birth</label>
-                      <input type="date" formControlName="dob" class="form-control mb-4" placeholder="Date of Birth"
-                          id="dob" [ngClass]="{
-                              'is-valid': dobControl.valid && dobControl.touched,
-                              'is-invalid': (dobControl.invalid && dobControl.touched) || (dobControl.errors && dobControl.dirty)
-                          }" />
-                      <div class="valid-feedback">Date of Birth Looks good!</div>
-                      <div class="invalid-feedback">Date of Birth is required</div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="gender " class="mb-2">Gender</label>
-                    <select formControlName="gender" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                      <option value="1">Male</option>
-                      <option value="2">Female</option>
-                    </select>
-
-                    <div *ngIf="RegistrationForm.get('gender')?.errors && RegistrationForm.get('gender')?.touched" class="text-danger m-1">
-                      <p *ngIf="RegistrationForm.get('gender')?.getError('required')" class="m-0">Gender is Required</p>
-                    </div>
-                  </div>
+                <!-- Create Account Link -->
+                <div class="mb-5">
+                    <span class="txt1" style="font-weight: bold ;">Login :</span>
+                    <a class="txt2" href="#" routerLink="/signin"> Already have an Account
+                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <br>
 
 
-                  <button type="submit" class="btn btn-outline-info btn-send">Submit</button>
-                  
-              </form>
+            </div>
 
+            <div class="col-md-5 mt-5">
+                <div style="height: 100px;"></div>
+                <div class="image-section" style="display: flex; text-align: center;">
+                    <img src="assets/signup/amico.png" alt="Login Image" class="img-fluid">
+                </div>
+            </div>
 
-          </div>
-          <!-- Create Account Link -->
-          <div class="mb-5">
-            <span class="txt1" style="font-weight: bold ;">Login :</span>
-            <a class="txt2" href="#" routerLink="/patient/signin"> Already have an Account
-                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-            </a>
+            <div class="col-md-1"></div>
         </div>
-          <br>
-
-
-      </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-10 d-flex align-items-center justify-content-center">
-          <div class="image-section" style="border-radius: 10px;">
-              <img src="assets/Login.jpeg" alt="Login Image" class="img-fluid">
-          </div>
-      </div>
-
-      <div class="col-md-1"></div>
-  </div>
-</div>
+    </div>
 </div>

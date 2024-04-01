@@ -1,89 +1,176 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormGroup , FormControl, Validators, FormBuilder } from '@angular/forms';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Gender } from 'src/app/Enums/Gender';
+import { Status } from 'src/app/Enums/Status';
+import { IDoctorAdd } from 'src/app/Models/doctorAddDTO';
+import { IDoctor } from 'src/app/Models/i-doctor';
 import { AuthService } from 'src/app/Services/auth.service';
+import { DoctorService } from 'src/app/Services/doctor.service';
 
 @Component({
-  selector: 'app-doctor-sign-up',
-  templateUrl: './doctor-sign-up.component.html',
-  styleUrls: ['./doctor-sign-up.component.css']
+    selector: 'app-doctor-sign-up',
+    templateUrl: './doctor-sign-up.component.html',
+    styleUrls: ['./doctor-sign-up.component.css']
 })
-export class DoctorSignUpComponent {
+export class DoctorSignUpComponent implements OnInit, AfterViewInit {
 
-  isLoading : boolean = false;
-  apiError:string = '';
+    apiError: string = '';
+    egyptGovernorates: string[] = [
+        "Ad Dakahlia",
+        "Al Bahr al Ahmar",
+        "Al Buhayrah",
+        "Al Fayoum",
+        "Al Gharbia",
+        "Alexandria",
+        "Aswan",
+        "Assyut",
+        "Beni Suef",
+        "Cairo",
+        "Daqahlia",
+        "Damietta",
+        "Faiyum",
+        "Gharbia",
+        "Giza",
+        "Ismailia",
+        "Kafr el-Sheikh",
+        "Luxor",
+        "Matruh",
+        "Minya",
+        "Monufia",
+        "New Valley",
+        "North Sinai",
+        "Port Said",
+        "Qalyubia",
+        "Red Sea",
+        "Sharqia",
+        "South Sinai",
+        "Suez",
+        "Suhag",
+    ];
 
-  constructor(private authService:AuthService , private router: Router) { }
+    createForm: FormGroup;
 
-  signUpForm:FormGroup = new FormGroup({
-    name : new FormControl(null , [Validators.required , Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
-    email : new FormControl(null , [Validators.required, Validators.email]),
-    password : new FormControl(null , [Validators.required, Validators.minLength(6)]),
-    rePassword : new FormControl(null , [Validators.required, Validators.minLength(6)]),
-    nationalId : new FormControl(null , [Validators.required , Validators.pattern(/^[0-9]{14}$/)]),
-    speciality : new FormControl(null , [Validators.required]),
-    dateOfBirth : new FormControl(null , [Validators.required , Validators.min(new Date(1960, 12, 1).getTime()), Validators.max(new Date(2024, 2, 29).getTime())]),
-    gender : new FormControl(null , [Validators.required]),
-    gov : new FormControl(null , [Validators.required]),
-    address : new FormControl(null , [Validators.required]),
-    phone : new FormControl(null , [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
-    price : new FormControl(null , [Validators.required , Validators.min(100) , Validators.max(5000)]),
-  },{ validators : this.passwordmatch});
-  // { validators: this.passwordmatch }
+    constructor(private fb: FormBuilder, private router: Router, private doctorService: DoctorService) {
 
-
-  // passwordMatchValidator(signUpForm: FormGroup)
-  // {
-  //   const password = signUpForm.get('password')?.value;
-  //   const confirmPassword = signUpForm.get('confirmPassword')?.value;
-
-  //   return password === confirmPassword ? null : { passwordmatch: 'Passwords do not match' };
-  // }
-
-  passwordmatch(signUpForm: any) {
-    const passwordControl = signUpForm.get('password')?.value;
-    const rePasswordControl = signUpForm.get('rePassword')?.value;
-
-    if (passwordControl !== rePasswordControl )
-    {
-      rePasswordControl.setErrors({passwordmatch : 'Not Matched'})
-      return {passwordmatch : 'Not Matched'}
-
+        this.createForm = this.fb.group({
+            Name: [null, [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]],
+            Email: [null, [Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]],
+            password: [null, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*)(?=.*[^\s]).{8,}$/)]],
+            confirmPassword: [null, [Validators.required]],
+            NationalID: [null, [Validators.required, Validators.pattern(/^[0-9]{14}$/)]],
+            SpecialityID: [null, [Validators.required]],
+            DOB: [null, [Validators.required]],
+            Gender: [Gender.Male, [Validators.required]],
+            Governance: ["Monufia", [Validators.required]],
+            Address: [null, [Validators.required]],
+            Phone: [null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]],
+            AppointmentPrice: [null, [Validators.required, Validators.min(100), Validators.max(5000)]],
+            Status: [Status.Active],
+        }, { validator: this.passwordMatchValidator });
     }
-    else
-    {
-      return null;
-    }
+
+    ngAfterViewInit(): void {
+        this.getSpecialities();
     }
 
-
-  handleSignUp(signUpForm:FormGroup)
-  {
-    this.isLoading = true;
-    if (signUpForm.valid) {
-      console.log(signUpForm.value);
-      this.authService.DoctorSignUp(signUpForm.value).subscribe({
-        next:(response) =>
-        {
-          if(response.message === 'success')
-          {
-            // this.isLoading = false;
-            // this.router.navigate(['/doctor/signin']);
-          }
-        },
-        error:(err) =>
-        {
-          this.isLoading = false;
-          this.apiError = err.error.msg;
-          console.log(err.error.msg);
+    enforceMinMaxPhone(el: any) {
+        el = el.target;
+        console.log(el.value.split("").length);
+        if (el.value.split("").length > 10) {
+            console.log(el.value.split("").slice(0, 11).join(""));
+            let elBefore = el.value.split("").slice(0, 11).join("");
+            this.createForm.controls['Phone'].setValue(elBefore);
         }
-      });
-    this.signUpForm.reset();
-    this.router.navigate(['/doctor/signin']);
+    }
+
+    enforceMinMaxNationalID(el: any) {
+        el = el.target;
+        console.log(el.value.split("").length);
+        if (el.value.split("").length > 13) {
+            console.log(el.value.split("").slice(0, 14).join(""));
+            let elBefore = el.value.split("").slice(0, 14).join("");
+            this.createForm.controls['NationalID'].setValue(elBefore);
+        }
+    }
+
+
+    specialities: any = [];
+    selectedSpeciality!: number;
+    date: Date = new Date();
+    dateMax: string = new Date(this.date.getFullYear() - 25, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
+    dateMin: string = new Date(this.date.getFullYear() - 80, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
+
+
+    gov: any = [];
+    ngOnInit(): void {
+        this.dateMax = new Date(this.date.getFullYear() - 25, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
+        this.dateMin = new Date(this.date.getFullYear() - 80, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
 
     }
-    else {
-      this.signUpForm.markAllAsTouched();
+
+    getSpecialities(): void {
+        this.doctorService.getAllSpecialities().subscribe((res) => {
+
+
+            this.specialities = res;
+
+
+            console.log(res);
+            console.log(this.specialities[0].Name);
+        })
     }
-  }
+
+
+    handleAdd(createForm: FormGroup) {
+        console.log(createForm.value);
+        if (createForm.valid) {
+            createForm.value.Gender = +createForm.value.Gender;
+            createForm.value.Status = +createForm.value.Status;
+            createForm.value.SpecialityID = +createForm.value.SpecialityID;
+            let doctor: IDoctor = createForm.value;
+            let doctorAdd: IDoctorAdd = {
+                Doctor: doctor,
+                password: createForm.value.password
+            };
+
+
+            this.doctorService.addDoctor(doctorAdd).subscribe({
+                next: (response) => {
+                    console.log('Doctor added successfully:', response);
+                    this.router.navigate(['/signin']);
+                },
+                error: (error) => {
+                    console.error(error);
+                    this.apiError = error.error;
+                }
+            });
+        }
+        else {
+            this.createForm.markAllAsTouched();
+        }
+    }
+
+
+    showPassword: boolean = false;
+
+    togglePasswordVisibility(): void {
+        this.showPassword = !this.showPassword;
+    }
+
+    passwordMatchValidator(formGroup: FormGroup) {
+        const password = formGroup.get('password')?.value;
+        const confirmPassword = formGroup.get('confirmPassword')?.value;
+
+        if (password !== confirmPassword && confirmPassword !== '') {
+            formGroup.get('confirmPassword')?.setErrors({ 'passwordMismatch': true });
+        } else {
+            // Check if both password and confirm password are filled before resetting error
+            if (password !== '' && confirmPassword !== '') {
+                formGroup.get('confirmPassword')?.setErrors(null);
+            }
+        }
+    }
+
+
 }

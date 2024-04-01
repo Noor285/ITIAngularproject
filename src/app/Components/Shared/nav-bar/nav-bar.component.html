@@ -6,20 +6,24 @@
   </div>
 
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-    <li><a routerLink="/home" routerLinkActive="active" class="nav-link px-2">Home</a></li>
-    <li><a routerLink="/contact" routerLinkActive="active" class="nav-link px-2">Contact US</a></li>
+    <li><a *ngIf="authService.returnRole() == ''" routerLink="/home" routerLinkActive="active" class="nav-link px-2">Home</a></li>
 
     <li><a *ngIf="authService.returnRole() == 'admin'" routerLink="/doctor/alldoctors" routerLinkActive="active" class="nav-link px-2">All Doctors</a></li>
     <li><a *ngIf="authService.returnRole() == 'admin'" routerLink="/patient/allpatients" routerLinkActive="active" class="nav-link px-2">All Patients</a></li>
 
+    <li><a *ngIf="authService.returnRole() == 'doctor'" routerLink="/doctor/home" routerLinkActive="active" class="nav-link px-2">Home</a></li>
     <li><a *ngIf="authService.returnRole() == 'doctor'" routerLink="/doctor/profile" routerLinkActive="active" class="nav-link px-2">Doctor Profile</a></li>
     <li><a *ngIf="authService.returnRole() == 'doctor'" routerLink="/doctor/appointment" routerLinkActive="active" class="nav-link px-2">Doctor Appointment</a></li>
     <li><a *ngIf="authService.returnRole() == 'doctor'" routerLink="/doctor/appointment/req" routerLinkActive="active" class="nav-link px-2">Requested Appointment</a></li>
 
-
+    <li><a *ngIf="authService.returnRole() == 'patient'" routerLink="/patient/home" routerLinkActive="active" class="nav-link px-2">Home</a></li>
     <li><a *ngIf="authService.returnRole() == 'patient'" routerLink="/patient/profile" routerLinkActive="active" class="nav-link px-2">Patient Profile</a></li>
     <li><a *ngIf="authService.returnRole() == 'patient'" routerLink="/patient/appointment" routerLinkActive="active" class="nav-link px-2">Patient Appointment</a></li>
     <li><a *ngIf="authService.returnRole() == 'patient'" routerLink="/patient/appointment" routerLinkActive="active" class="nav-link px-2">Book Appointment</a></li>
+
+
+    <li><a routerLink="/contact" routerLinkActive="active" class="nav-link px-2">Contact US</a></li>
+
 
   </ul>
 
@@ -30,6 +34,9 @@
     <button *ngIf="authService.returnRole() == ''" type="button" class="btn btn-primary" routerLink="/patient/signup">Patient Sign-up</button>
   </div>
   <div>
-    <button *ngIf="authService.returnRole() != ''" type="button" (click)="Logout()" class="btn btn-dark">Log Out</button>
+    <button *ngIf="authService.returnRole() != ''" type="button" (click)="Logout()" class="btn btn-danger">
+        Log Out
+        <i class='far fa-arrow-alt-circle-right'></i>
+    </button>
   </div>
 </header>

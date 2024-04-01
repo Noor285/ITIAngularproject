@@ -1,18 +1,18 @@
 .custom-btn {
-  background-color: #6cc2ed;
+  background-color: #1A998E;
   color: #fff !important;
-  border-color: #6cc2ed;
+  border-color: #1A998E;
   text-transform: capitalize;
 }
 
 .custom-btn:hover {
   background-color: #fff;
-  color: #6cc2ed !important;
-  border-color: #6cc2ed;
+  color: #1A998E !important;
+  border-color: #1A998E;
 }
 
 .headColor{
-  color: #6cc2ed;
+  color: #1A998E;
 }
 .Pinfo{
   color:#000000;
@@ -39,13 +39,13 @@
   border-radius:25px ;
 }
 .appointInfo{
-  border: #6cc2ed 2px solid;
+  border: #1A998E 2px solid;
   border-radius: 20px;
 }
 
 #editProBtn{
   font-size: 1.6rem;
-  background-color: #6bc1ed;
+  background-color: #1A998E;
   color: #FFFFFF;
   width:10rem;
   border-radius: 15px;

@@ -21,7 +21,7 @@ export class AllDoctorsComponent implements  AfterViewInit {
   // totalPages = 1;
 
 
-  constructor(private fb: FormBuilder, private doctorService: DoctorService ,private router :Router) {}
+  constructor(private doctorService: DoctorService ,private router :Router) {}
 
   ngAfterViewInit(): void {
     this.loadDoctors();

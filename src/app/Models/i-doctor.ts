@@ -2,6 +2,7 @@ import { Gender } from "../Enums/Gender";
 import { Status } from "../Enums/Status";
 
 export interface IDoctor {
+[x: string]: any;
   id:number,
   name : string,
   email : string,

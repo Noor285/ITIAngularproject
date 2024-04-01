@@ -1,98 +1,97 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Gender } from 'src/app/Enums/Gender';
+import { Status } from 'src/app/Enums/Status';
+import { IPatient } from 'src/app/Models/i-patient';
+import { IPatientAdd } from 'src/app/Models/patientAddDTO';
 import { AuthService } from 'src/app/Services/auth.service';
+import { PatientService } from 'src/app/Services/patient.service';
 
 @Component({
-  selector: 'app-patient-sign-up',
-  templateUrl: './patient-sign-up.component.html',
-  styleUrls: ['./patient-sign-up.component.css']
+    selector: 'app-patient-sign-up',
+    templateUrl: './patient-sign-up.component.html',
+    styleUrls: ['./patient-sign-up.component.css']
 })
 export class PatientSignUpComponent {
-  RegistrationForm!: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder,
-              private authService:AuthService ,
-              private router: Router) { }
+    date: Date = new Date();
+    dateMax: string = new Date(this.date.getFullYear() - 18, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
+    dateMin: string = new Date(this.date.getFullYear() - 100, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
 
-  ngOnInit(): void {
-    this.RegistrationForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]),      email: new FormControl('', [Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      confirmPassword: new FormControl('', [Validators.required]),
-      phone : new FormControl('' , [Validators.required]),
-      dob: new FormControl('', [Validators.required]),
-      gender: new FormControl('', [Validators.required])
-    }, { validator: this.passwordMatchValidator });
-  }
+    createForm: FormGroup;
 
-  get nameControl() {
-    return this.RegistrationForm.controls['name'];
-  }
-
-  get emailControl() {
-    return this.RegistrationForm.controls['email'];
-  }
-  get phoneControl() {
-    return this.RegistrationForm.controls['phone'];
-  }
-
-  get passwordControl() {
-    return this.RegistrationForm.controls['password'];
-  }
-
-  get confirmPasswordControl() {
-    return this.RegistrationForm.controls['confirmPassword'];
-  }
-
-  get dobControl() {
-    return this.RegistrationForm.controls['dob'];
-  }
-
-  get genderControl() {
-    return this.RegistrationForm.controls['gender'];
-  }
-
-  passwordMatchValidator(formGroup: FormGroup) {
-    const password = formGroup.get('password')?.value;
-    const confirmPassword = formGroup.get('confirmPassword')?.value;
-
-    if (password !== confirmPassword && confirmPassword !== '') {
-      formGroup.get('confirmPassword')?.setErrors({ 'passwordMismatch': true });
-    } else {
-      // Check if both password and confirm password are filled before resetting error
-      if (password !== '' && confirmPassword !== '') {
-        formGroup.get('confirmPassword')?.setErrors(null);
-      }
+    constructor(private fb: FormBuilder, private router: Router, private patientService: PatientService) {
+        // Initialize FormGroup with FormBuilder
+        this.createForm = this.fb.group({
+            name: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]],
+            email: ['', [Validators.required, Validators.email, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]],
+            password: [null, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*)(?=.*[^\s]).{8,}$/)]],
+            confirmPassword: [null, [Validators.required]],
+            phone: [null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]],
+            dob: ['', [Validators.required]],
+            gender: [Gender.PreferNotToSay, [Validators.required]],
+            status: [Status.Active, [Validators.required]],
+        }, { validator: this.passwordMatchValidator });
     }
-}
 
+    handleAdd(createForm: FormGroup) {
+        if (createForm.valid) {
+            createForm.value.gender = +createForm.value.gender;
+            createForm.value.status = +createForm.value.status;
+            // createForm.value.password = +createForm.value.password;
+            createForm.value.phone = `${createForm.value.phone}`
+            let patient: IPatient = createForm.value;
+            let patientAdd: IPatientAdd = {
+                patient: patient,
+                password: createForm.value.password
+            };
+            console.log(patientAdd);
 
-handleSignUp(RegistrationForm:FormGroup)
-{
-  if (RegistrationForm.valid) {
-    console.log(RegistrationForm.value);
-    this.authService.DoctorSignUp(RegistrationForm.value).subscribe({
-      next:(response) =>
-      {
-        if(response.message === 'success')
-        {
-          // this.router.navigate(['/doctor/signin']);
+            this.patientService.addPatient(patientAdd).subscribe({
+                next: (response) => {
+                    console.log('Patient added successfully:', response);
+                    this.router.navigate(['/signin']);
+                },
+                error: (error) => {
+                    console.error('Error adding patient:', error);
+                }
+            });
         }
-      },
-      error:(err) =>
-      {
+        else {
+            this.createForm.markAllAsTouched();
+        }
+    }
 
-        console.log(err.error.msg);
-      }
-    });
-  this.RegistrationForm.reset();
-  this.router.navigate(['/patient/signin']);
+    enforceMinMaxPhone(el: any) {
+        el = el.target;
+        console.log(el.value.split("").length);
+        if (el.value.split("").length > 10) {
+            console.log(el.value.split("").slice(0, 11).join(""));
+            let elBefore = el.value.split("").slice(0, 11).join("");
+            this.createForm.controls['phone'].setValue(elBefore);
+        }
+    }
 
-  }
-  else {
-    this.RegistrationForm.markAllAsTouched();
-  }
-}
+    showPassword: boolean = false;
+
+    togglePasswordVisibility(): void {
+        this.showPassword = !this.showPassword;
+    }
+
+    passwordMatchValidator(formGroup: FormGroup) {
+        const password = formGroup.get('password')?.value;
+        const confirmPassword = formGroup.get('confirmPassword')?.value;
+
+        if (password !== confirmPassword && confirmPassword !== '') {
+            formGroup.get('confirmPassword')?.setErrors({ 'passwordMismatch': true });
+        } else {
+            // Check if both password and confirm password are filled before resetting error
+            if (password !== '' && confirmPassword !== '') {
+                formGroup.get('confirmPassword')?.setErrors(null);
+            }
+        }
+    }
+
 }

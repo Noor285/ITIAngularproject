@@ -32,19 +32,18 @@ export class AllAppointmentsComponent implements AfterViewInit {
     this.rateDialog= true;
   }
 
-
-  submitRating(form: any) {
+  submitRating(form: any, event: Event) {
+    // Prevent default form submission behavior
+    event.preventDefault();
+  
     // Process your form submission here
     console.log("Submitted Rating:", this.selectedRating);
     console.log("Additional Notes:", this.additionalNotes);
     console.log(form.value);
-    // this._PatientService.postpatientRate(form.value).subscribe((res)=>{
-    //   console.log(res);
-    // });
-
-
+    // Close the dialog
+    this.rateDialog = false;
+  
     // Reset the form after submission
     form.resetForm();
-
   }
 }

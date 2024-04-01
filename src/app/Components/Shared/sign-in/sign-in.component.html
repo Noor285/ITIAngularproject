@@ -1,8 +1,8 @@
 <div class="w-75 mx-auto py-4">
   <div class="container mt-5 p-5">
     <div class="card shadow">
-      <div class="mt-5 bg-white text-center" style="color: #43acc2;">
-        <h2> Login </h2>
+      <div class="mt-5 bg-white text-center" style="color: #1A998E;">
+        <p class="h1"> Login </p>
         <div *ngIf="apiError.length > 0" class="text-danger mt-3">
           {{apiError}}
         </div>
@@ -13,20 +13,9 @@
         <form (submit)="handleSignIn()"  class="m-3 row" [formGroup]="signInForm">
             <div class="col-md-1"></div>
 
+ 
+
             <!-- ----------------------- ** Section 1 *** ----------------------- -->
-
-            <div class="col-md-5">
-
-              <!-- ----------------------- Image ----------------------- -->
-
-              <div class=" m-3 mb-5">
-                <div class="image-section">
-                  <img src="assets/Login.jpeg" alt="Login Image" class="w-80 img-fluid float-end">
-              </div>
-              </div>
-            </div>
-
-            <!-- ----------------------- ** Section 2 *** ----------------------- -->
 
             <div class="col-md-5 mt-5">
 
@@ -46,13 +35,20 @@
 
               <div class="mb-3">
                 <label for="password" class="mb-2">Password</label>
-                <input type="password" formControlName="password" id="password" class="form-control" />
-
-                <div *ngIf="signInForm.get('password')?.errors && signInForm.get('password')?.touched" class="text-danger m-1">
-                  <p *ngIf="signInForm.get('password')?.getError('minlength')" class="m-0">Password is InValid</p>
-                  <p *ngIf="signInForm.get('password')?.getError('required')" class="m-0">Password is Required</p>
+                <div class="input-group">
+                    <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" id="password" class="form-control" />
+                    <div class="input-group-append">
+                        <span class="input-group-text" (click)="togglePasswordVisibility()">
+                            <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
+                        </span>
+                    </div>
                 </div>
-              </div>
+            
+                <div *ngIf="signInForm.get('password')?.errors && signInForm.get('password')?.touched" class="text-danger m-1">
+                    <p *ngIf="signInForm.get('password')?.getError('minlength')" class="m-0">Password is Invalid</p>
+                    <p *ngIf="signInForm.get('password')?.getError('required')" class="m-0">Password is Required</p>
+                </div>
+            </div>
 
               <!-- ----------------------- Sign In Button ----------------------- -->
 
@@ -68,20 +64,21 @@
               </div>
 
 
-              <div>
-                <span class="txt1"> Forgot</span>
-                <a class="txt2" href="#"> Username / Password?</a>
-              </div>
-              <!-- Create Account Link -->
-              <div>
-                <span class="txt1"> Sign Up </span>
-                <a class="txt2" href="#" routerLink="/signup"> Create your Account
-                    <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                </a>
-              </div>
-
-
             </div>
+
+
+                <!-- ----------------------- ** Section 2 *** ----------------------- -->
+
+                <div class="col-md-5">
+
+                <!-- ----------------------- Image ----------------------- -->
+    
+                <div class=" m-3 mb-5">
+                    <div class="image-section">
+                    <img src="assets/login/amico.png" alt="Login Image" class="w-80 img-fluid float-end">
+                </div>
+                </div>
+                </div>
 
             <div class="col-md-1"></div>
 

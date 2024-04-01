@@ -35,9 +35,7 @@ import { PaymentDetailsComponent } from './Components/Core/Patient/payment-detai
 import { AppointmentDetailsComponent } from './Components/Core/Patient/appointment-details/appointment-details.component';
 import { BookAppointmentComponent } from './Components/Core/Patient/book-appointment/book-appointment.component';
 import { AllAppointmentsComponent } from './Components/Core/Patient/all-appointments/all-appointments.component';
-import { ShowAllDoctorsComponent } from './Components/Core/Patient/show-all-doctors/show-all-doctors.component';
 import { DoctorDetailsComponent } from './Components/Core/Patient/doctor-details/doctor-details.component';
-import { LogInComponent } from './Components/Shared/log-in/log-in.component';
 import { AddDoctorComponent } from './Components/Core/Admin/Doc-crud/add-doctor/add-doctor.component';
 import { EditDoctorComponent } from './Components/Core/Admin/Doc-crud/edit-doctor/edit-doctor.component';
 import { AllDoctorsComponent } from './Components/Core/Admin/Doc-crud/all-doctors/all-doctors.component';
@@ -49,7 +47,6 @@ import { AppointmentRequestsComponent } from './Components/Core/Doctor/appointme
 import { ContactusComponent } from './Components/Core/contactus/contactus.component';
 import { NotfoundComponent } from './Components/Shared/notfound/notfound.component';
 import { DoctorSignUpComponent } from './Components/Core/Doctor/doctor-sign-up/doctor-sign-up.component';
-import { DoctorSignInComponent } from './Components/Core/Doctor/doctor-sign-in/doctor-sign-in.component';
 import { PatientSignInComponent } from './Components/Shared/sign-in/sign-in.component';
 import { PatientSignUpComponent } from './Components/Core/Patient/patient-sign-up/patient-sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -62,6 +59,8 @@ import { AppstatusPipe } from './Pipes/appstatus.pipe';
 import { UnauthorizedComponent } from './Components/Shared/unauthorized/unauthorized.component';
 import { EditPatientProfileComponent } from './Components/Core/Patient/edit-patient-profile/edit-patient-profile.component';
 import { EditDoctorProfileComponent } from './Components/Core/Doctor/edit-doctor-profile/edit-doctor-profile.component';
+import { PatientHomeComponent } from './Components/Core/Patient/patient-home/patient-home.component';
+import { DoctorHomeComponent } from './Components/Core/Doctor/doctor-home/doctor-home.component';
 
 @NgModule({
   declarations: [
@@ -77,9 +76,7 @@ import { EditDoctorProfileComponent } from './Components/Core/Doctor/edit-doctor
     AppointmentDetailsComponent,
     BookAppointmentComponent,
     AllAppointmentsComponent,
-    ShowAllDoctorsComponent,
     DoctorDetailsComponent,
-    LogInComponent,
     AddDoctorComponent,
     EditDoctorComponent,
     AllDoctorsComponent,
@@ -91,14 +88,15 @@ import { EditDoctorProfileComponent } from './Components/Core/Doctor/edit-doctor
     ContactusComponent,
     NotfoundComponent,
     DoctorSignUpComponent,
-    DoctorSignInComponent,
     PatientSignInComponent,
     PatientSignUpComponent,
     GenderPipe,
     AppstatusPipe,
     UnauthorizedComponent,
     EditPatientProfileComponent,
-    EditDoctorProfileComponent
+    EditDoctorProfileComponent,
+    PatientHomeComponent,
+    DoctorHomeComponent
   ],
   imports: [
     RatingModule,

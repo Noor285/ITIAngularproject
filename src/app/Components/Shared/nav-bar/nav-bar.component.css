@@ -3,7 +3,7 @@
     height: auto; 
   }
   .nav-link {
-    color: #6cc2ed ;
+    color: #1A998E ;
   }
 
   .nav-link.active {
@@ -13,27 +13,27 @@
 
   /* Style for Patient button */
 .btn-outline-primary {
-  color: #6cc2ed !important;
-  border-color: #6cc2ed !important;
+  color: #1A998E !important;
+  border-color: #1A998E !important;
 }
 
 .btn-outline-primary:hover {
-  background-color: #6cc2ed !important;
+  background-color: #1A998E !important;
   color: #fff !important;
 }
 
 .btn-primary {
-  background-color: #6cc2ed !important;
+  background-color: #1A998E !important;
   color: #fff !important;
-  border-color: #43acc2 !important;
+  border-color: #1A998E !important;
   
 }
 
 .btn-primary:hover {
 
   background-color: #fff !important;
-  color: #6cc2ed !important;
-  border-color: #6cc2ed !important;
+  color: #1A998E!important;
+  border-color: #1A998E!important;
 }
 
  /* Style for Doctors button */
