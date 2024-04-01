@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IDoctor } from 'src/app/Models/i-doctor';
 import { DoctorService } from 'src/app/Services/doctor.service';
@@ -10,7 +10,7 @@ import { Route, Router } from '@angular/router';
   templateUrl: './all-doctors.component.html',
   styleUrls: ['./all-doctors.component.css']
 })
-export class AllDoctorsComponent implements  OnInit {
+export class AllDoctorsComponent implements  AfterViewInit {
 
   headElements = ['Name', 'Email','password','National ID', 'Specialty', 'DOB','Gender','Governorate','Address', 'Phone', 'AppointmentPrice','Edit', 'Remove'];
 
@@ -23,7 +23,7 @@ export class AllDoctorsComponent implements  OnInit {
 
   constructor(private fb: FormBuilder, private doctorService: DoctorService ,private router :Router) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.loadDoctors();
   }
 

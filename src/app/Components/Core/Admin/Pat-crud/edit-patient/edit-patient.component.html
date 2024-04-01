@@ -32,7 +32,7 @@
             <input type="email" formControlName="email" id="email" class="form-control" />
 
             <div *ngIf="editForm.get('email')?.errors && editForm.get('email')?.touched" class="text-danger m-1">
-              <p *ngIf="editForm.get('email')?.getError('email')" class="m-0">Email is InValid should be
+              <p *ngIf="editForm.get('email')?.getError('pattern')" class="m-0">Email is InValid should be
                 (email@gmail.com)</p>
               <p *ngIf="editForm.get('email')?.getError('required')" class="m-0">Email is Required</p>
             </div>
@@ -67,21 +67,21 @@
 
           <!-- ----------------------- Date Of Birth ----------------------- -->
           <div class="mb-3">
-            <label for="dateOfBirth" class="mb-2">Date Of Birth</label>
-            <input type="date" formControlName="dateOfBirth" id="dateOfBirth" class="form-control" />
+            <label for="dob" class="mb-2">Date Of Birth</label>
+            <input type="date" formControlName="dob" id="dob" class="form-control" [min]="dateMin" [max]="dateMax" />
 
-            <div *ngIf="editForm.get('dateOfBirth')?.errors && editForm.get('dateOfBirth')?.touched"
+            <div *ngIf="editForm.get('dob')?.errors && editForm.get('dob')?.touched"
               class="text-danger m-1">
-              <p *ngIf="editForm.get('dateOfBirth')?.getError('min')" class="m-0">Can't Enter date less than 1964</p>
-              <p *ngIf="editForm.get('dateOfBirth')?.getError('max')" class="m-0">Can't Enter date more than 1999</p>
-              <p *ngIf="editForm.get('dateOfBirth')?.getError('required')" class="m-0">date Of Birth is Required</p>
+              <p *ngIf="editForm.get('dob')?.getError('min')" class="m-0">Can't Enter date less than 1964</p>
+              <p *ngIf="editForm.get('dob')?.getError('max')" class="m-0">Can't Enter date more than 1999</p>
+              <p *ngIf="editForm.get('dob')?.getError('required')" class="m-0">date Of Birth is Required</p>
             </div>
           </div>
 
             <!-- ----------------------- Phone  ----------------------- -->
             <div class="mb-3">
               <label for="phone" class="mb-2">Phone</label>
-              <input type="tel" formControlName="phone" id="phone" class="form-control" />
+              <input type="tel" formControlName="phone" id="phone" class="form-control" (input)="enforceMinMaxPhone($event)"/>
 
               <div *ngIf="editForm.get('phone')?.errors && editForm.get('phone')?.touched" class="text-danger m-1">
                 <p *ngIf="editForm.get('phone')?.getError('pattern')" class="m-0">Phone must be 11 digits and must start

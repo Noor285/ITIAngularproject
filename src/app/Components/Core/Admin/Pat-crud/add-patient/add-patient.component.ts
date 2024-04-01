@@ -14,14 +14,18 @@ import { IPatientAdd } from 'src/app/Models/patientAddDTO';
 })
 export class AddPatientComponent {
 
+    date: Date = new Date();
+    dateMax: string = new Date(this.date.getFullYear() - 18, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
+    dateMin: string = new Date(this.date.getFullYear() - 100, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
+
   constructor(private router: Router,private patientService: PatientService) { }
 
   createForm:FormGroup = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]),
       password : new FormControl(null),
       phone : new FormControl(null , [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
-      dateOfBirth: new FormControl('', [Validators.required]),
+      dob: new FormControl('', [Validators.required]),
       gender: new FormControl(Gender.PreferNotToSay, [Validators.required]),
       status:new FormControl(Status.Active, [Validators.required]),
     })
@@ -34,6 +38,7 @@ handleAdd(createForm:FormGroup)
       createForm.value.gender = +createForm.value.gender;
       createForm.value.status = +createForm.value.status;
       createForm.value.password = "123456789sS";
+      createForm.value.phone = `${createForm.value.phone}`
       let patient : IPatient = createForm.value;
       let patientAdd : IPatientAdd = {
         patient : patient,
@@ -57,6 +62,17 @@ handleAdd(createForm:FormGroup)
       this.createForm.markAllAsTouched();
     }
 }
+
+enforceMinMaxPhone(el : any) {
+    el = el.target;
+    console.log(el.value.split("").length);
+    if(el.value.split("").length > 10)
+    {
+        console.log(el.value.split("").slice(0,11).join(""));
+        let elBefore = el.value.split("").slice(0,11).join("");
+        this.createForm.controls['phone'].setValue(elBefore);
+    }
+  }
 
 
 // addPatient(formData: FormGroup): void {

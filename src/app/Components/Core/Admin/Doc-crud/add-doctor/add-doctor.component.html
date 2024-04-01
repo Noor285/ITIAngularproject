@@ -19,7 +19,7 @@
             <label for="Name" class="mb-2">Name</label>
             <input type="text" formControlName="Name" id="Name" class="form-control" />
             <div *ngIf="createForm.get('Name')?.errors && createForm.get('Name')?.touched" class="text-danger m-1 sm">
-              <p *ngIf="createForm.get('Name')?.getError('minlength')" class="m-0">Name minimum lenth is 3</p>
+              <p *ngIf="createForm.get('Name')?.getError('minlength')" class="m-0">Minimum length is 3</p>
               <p *ngIf="createForm.get('Name')?.getError('pattern')" class="m-0">Enter Characters Only</p>
               <p *ngIf="createForm.get('Name')?.getError('required')" class="m-0">Name is Required</p>
             </div>
@@ -31,7 +31,7 @@
             <input type="Email" formControlName="Email" id="Email" class="form-control" />
 
             <div *ngIf="createForm.get('Email')?.errors && createForm.get('Email')?.touched" class="text-danger m-1">
-              <p *ngIf="createForm.get('Email')?.getError('Email')" class="m-0">Email is InValid should be(Email@gmail.com)</p>
+              <p *ngIf="createForm.get('Email')?.getError('pattern')" class="m-0">Email is InValid should be(Email@gmail.com)</p>
               <p *ngIf="createForm.get('Email')?.getError('required')" class="m-0">Email is Required</p>
             </div>
           </div>
@@ -65,7 +65,7 @@
           <!-- ----------------------- National ID ----------------------- -->
           <div class="mb-3">
             <label for="NationalID" class="mb-2">National ID</label>
-            <input type="text" formControlName="NationalID" id="NationalID" class="form-control" />
+            <input type="number" formControlName="NationalID" id="NationalID" class="form-control" maxlength="14" (input)="enforceMinMaxNationalID($event)"/>
 
             <div *ngIf="createForm.get('NationalID')?.errors && createForm.get('NationalID')?.touched" class="text-danger m-1">
               <p *ngIf="createForm.get('NationalID')?.getError('pattern')" class="m-0">National ID must be 14 numbers And Don't Accept characters</p>
@@ -76,12 +76,12 @@
           <!-- ----------------------- Date Of Birth ----------------------- -->
           <div class="mb-3">
             <label for="DOB" class="mb-2">Date Of Birth</label>
-            <input type="date" formControlName="DOB" id="DOB" class="form-control" />
+            <input type="date" formControlName="DOB" id="DOB" class="form-control" [min]="this.dateMin" [max]="this.dateMax" />
 
             <div *ngIf="createForm.get('DOB')?.errors && createForm.get('DOB')?.touched"
               class="text-danger m-1">
-              <p *ngIf="createForm.get('DOB')?.getError('min')" class="m-0">Can't Enter date less than 1964</p>
-              <p *ngIf="createForm.get('DOB')?.getError('max')" class="m-0">Can't Enter date more than 1999</p>
+              <p *ngIf="createForm.get('DOB')?.getError('min')" class="m-0">Can't Enter date less than {{dateMin}}</p>
+              <p *ngIf="createForm.get('DOB')?.getError('max')" class="m-0">Can't Enter date more than {{dateMax}}</p>
               <p *ngIf="createForm.get('DOB')?.getError('required')" class="m-0">date Of Birth is Required</p>
             </div>
           </div>
@@ -90,7 +90,11 @@
              <!-- ----------------------- Governorate  ----------------------- -->
              <div class="mb-3">
               <label for="Governance" class="mb-2">Governate </label>
-              <input type="text" formControlName="Governance" class="form-control">
+              <select type="text" formControlName="Governance" class="form-control">
+                <ng-container *ngFor="let gov of egyptGovernorates">
+                    <option [value]="gov" readonly>{{gov}}</option>
+                </ng-container>
+              </select>
 
               <div *ngIf="createForm.get('Governance')?.errors && createForm.get('Governance')?.touched"
                 class="text-danger m-1">
@@ -135,7 +139,7 @@
             aria-label=".form-select-lg example">
             <option value="0">Male</option>
             <option value="1">Female</option>
-            <option value="2">PrefetNotToSay</option>
+            <option value="2">Prefer Not To Say</option>
           </select>
 
           <div *ngIf="createForm.get('Gender')?.errors && createForm.get('Gender')?.touched" class="text-danger m-1">
@@ -147,7 +151,7 @@
           <!-- ----------------------- Phone  ----------------------- -->
           <div class="mb-3">
             <label for="Phone" class="mb-2">Phone</label>
-            <input type="tel" formControlName="Phone" id="Phone" class="form-control" />
+            <input type="number" formControlName="Phone" id="Phone" class="form-control" (input)="enforceMinMaxPhone($event)"/>
 
             <div *ngIf="createForm.get('Phone')?.errors && createForm.get('Phone')?.touched" class="text-danger m-1">
               <p *ngIf="createForm.get('Phone')?.getError('pattern')" class="m-0">Phone must be 11 digits and must start

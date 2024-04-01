@@ -13,24 +13,79 @@ import { IDoctorAdd } from 'src/app/Models/doctorAddDTO';
   templateUrl: './add-doctor.component.html',
   styleUrls: ['./add-doctor.component.css']
 })
+
+
 export class AddDoctorComponent implements OnInit ,  AfterViewInit {
 
-  apiError:string = '';
-
+    apiError:string = '';
+    egyptGovernorates: string[] = [
+    "Ad Dakahlia",
+    "Al Bahr al Ahmar",
+    "Al Buhayrah",
+    "Al Fayoum",
+    "Al Gharbia",
+    "Alexandria",
+    "Aswan",
+    "Assyut",
+    "Beni Suef",
+    "Cairo",
+    "Daqahlia",
+    "Damietta",
+    "Faiyum",
+    "Gharbia",
+    "Giza",
+    "Ismailia",
+    "Kafr el-Sheikh",
+    "Luxor",
+    "Matruh",
+    "Minya",
+    "Monufia",
+    "New Valley",
+    "North Sinai",
+    "Port Said",
+    "Qalyubia",
+    "Red Sea",
+    "Sharqia",
+    "South Sinai",
+    "Suez",
+    "Suhag",
+  ];
   constructor(private router: Router,private doctorService: DoctorService) { }
   ngAfterViewInit(): void {
     this.getSpecialities();
   }
 
+  enforceMinMaxPhone(el : any) {
+    el = el.target;
+    console.log(el.value.split("").length);
+    if(el.value.split("").length > 10)
+    {
+        console.log(el.value.split("").slice(0,11).join(""));
+        let elBefore = el.value.split("").slice(0,11).join("");
+        this.createForm.controls['Phone'].setValue(elBefore);
+    }
+  }
+
+  enforceMinMaxNationalID(el : any) {
+    el = el.target;
+    console.log(el.value.split("").length);
+    if(el.value.split("").length > 13)
+    {
+        console.log(el.value.split("").slice(0,14).join(""));
+        let elBefore = el.value.split("").slice(0,14).join("");
+        this.createForm.controls['NationalID'].setValue(elBefore);
+    }
+  }
+
   createForm:FormGroup = new FormGroup({
     Name : new FormControl(null , [Validators.required , Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
-    Email : new FormControl(null , [Validators.required, Validators.email]),
+    Email : new FormControl(null , [Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]),
     password : new FormControl(null),
     NationalID : new FormControl(null , [Validators.required , Validators.pattern(/^[0-9]{14}$/)]),
     SpecialityID : new FormControl(null , [Validators.required]),
-    DOB : new FormControl(null , [Validators.required , Validators.min(new Date(1960, 12, 1).getTime()), Validators.max(new Date(2024, 2, 29).getTime())]),
-    Gender : new FormControl(Gender.PreferNotToSay , [Validators.required]),
-    Governance : new FormControl("", [Validators.required]),
+    DOB : new FormControl(null , [Validators.required]),
+    Gender : new FormControl(Gender.Male , [Validators.required]),
+    Governance : new FormControl("Monufia", [Validators.required]),
     Address : new FormControl(null , [Validators.required]),
     Phone : new FormControl(null , [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
     AppointmentPrice : new FormControl(null , [Validators.required , Validators.min(100) , Validators.max(5000)]),
@@ -39,9 +94,15 @@ export class AddDoctorComponent implements OnInit ,  AfterViewInit {
 
   specialities:any = [];
   selectedSpeciality!: number;
+  date : Date = new Date();
+  dateMax : string = new Date(this.date.getFullYear() - 25 , this.date.getMonth() , this.date.getDay()).toISOString().split("T")[0];
+  dateMin : string = new Date(this.date.getFullYear() - 80 , this.date.getMonth() , this.date.getDay()).toISOString().split("T")[0];
+
 
   gov:any = [];
   ngOnInit(): void {
+    this.dateMax = new Date(this.date.getFullYear() - 25 , this.date.getMonth() , this.date.getDay()).toISOString().split("T")[0];
+    this.dateMin = new Date(this.date.getFullYear() - 80 , this.date.getMonth() , this.date.getDay()).toISOString().split("T")[0];
 
   }
 
@@ -82,7 +143,7 @@ export class AddDoctorComponent implements OnInit ,  AfterViewInit {
         error:(error) =>
         {
           console.error(error);
-          this.apiError = error.message;
+          this.apiError = error.error;
         }
       });
     }

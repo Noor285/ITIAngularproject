@@ -24,6 +24,10 @@ export class EditPatientComponent implements OnInit{
 
   patId :any;
   recePat : any;
+  date: Date = new Date();
+    dateMax: string = new Date(this.date.getFullYear() - 18, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
+    dateMin: string = new Date(this.date.getFullYear() - 100, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
+
 
 
 //  handleUpdate(){}
@@ -36,9 +40,9 @@ export class EditPatientComponent implements OnInit{
   editForm = new FormGroup({
     id: new FormControl(''), // Assuming the patient ID is required for editing
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]),
     phone: new FormControl('', [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
-    dateOfBirth: new FormControl('', [Validators.required]),
+    dob: new FormControl('', [Validators.required]),
     gender: new FormControl(Gender.PreferNotToSay, [Validators.required]),
     status: new FormControl(Status.Active),
   });
@@ -54,11 +58,23 @@ export class EditPatientComponent implements OnInit{
       this.editForm.controls['id'].setValue(this.recePat.id);
       this.editForm.controls['name'].setValue(this.recePat.name);
       this.editForm.controls['email'].setValue(this.recePat.email)
-      this.editForm.controls['dateOfBirth'].setValue(this.recePat.dob)
+      this.editForm.controls['dob'].setValue(new Date(res.dob).toLocaleDateString("en-CA"))
       this.editForm.controls['gender'].setValue(this.recePat.gender)
       this.editForm.controls['phone'].setValue(this.recePat.phone)
       this.editForm.controls['status'].setValue(this.recePat.status)
     })
+  }
+  
+
+  enforceMinMaxPhone(el : any) {
+    el = el.target;
+    console.log(el.value.split("").length);
+    if(el.value.split("").length > 10)
+    {
+        console.log(el.value.split("").slice(0,11).join(""));
+        let elBefore = el.value.split("").slice(0,11).join("");
+        this.editForm.controls['phone'].setValue(elBefore);
+    }
   }
 
   handleEdit(): void {
@@ -66,6 +82,7 @@ export class EditPatientComponent implements OnInit{
     console.log(this.editForm.value);
     this.editForm.value.gender = +this.editForm.value.gender!;
     this.editForm.value.status = +this.editForm.value.status!;
+    this.editForm.value.phone = `${this.editForm.value.phone}`;
 
     console.log(this.editForm);
      this.PatientService.editPatient(this.editForm.value as IPatient).subscribe({
