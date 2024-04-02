@@ -54,11 +54,9 @@
                             <div class="input-group">
                                 <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"
                                     id="password" class="form-control" />
-                                <div class="input-group-append">
                                     <span class="input-group-text" (click)="togglePasswordVisibility()">
                                         <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
                                     </span>
-                                </div>
                             </div>
 
                             <div *ngIf="createForm.get('password')?.errors && createForm.get('password')?.touched"
@@ -87,11 +85,9 @@
                             <div class="input-group">
                                 <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="confirmPassword"
                                     class="form-control" />
-                                <div class="input-group-append">
                                     <span class="input-group-text" (click)="togglePasswordVisibility()">
                                         <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
                                     </span>
-                                </div>
                             </div>
 
                             <div *ngIf="createForm.get('confirmPassword')?.errors && createForm.get('confirmPassword')?.touched"

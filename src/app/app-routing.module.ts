@@ -27,6 +27,7 @@ import { DoctorHomeComponent } from './Components/Core/Doctor/doctor-home/doctor
 import { ChangePasswordComponent } from './Components/Shared/change-password/change-password.component';
 import { DoctorDetailsComponent } from './Components/Core/Patient/doctor-details/doctor-details.component';
 import { BookAppointmentComponent } from './Components/Core/Patient/book-appointment/book-appointment.component';
+import { EditScheduleComponent } from './Components/Core/Doctor/edit-schedule/edit-schedule.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -58,6 +59,7 @@ const routes: Routes = [
   {path: 'doctor/profile' , component:DoctorProfileComponent },
   {path: 'doctor/profile/edit/:docId' , component:EditDoctorProfileComponent },
   {path: 'doctor/appointment/req', component: AppointmentRequestsComponent},
+  {path: 'doctor/schedule/edit', component: EditScheduleComponent},
 
 
 

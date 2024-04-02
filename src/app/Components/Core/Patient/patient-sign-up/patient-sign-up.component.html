@@ -42,14 +42,12 @@
 
                         <div class="mb-3">
                             <label for="password" class="mb-2">Password</label>
-                            <div class="input-group">
-                                <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"
+                                <div class="input-group">
+                                    <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"
                                     id="password" class="form-control" />
-                                <div class="input-group-append">
                                     <span class="input-group-text" (click)="togglePasswordVisibility()">
                                         <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
                                     </span>
-                                </div>
                             </div>
 
                             <div *ngIf="createForm.get('password')?.errors && createForm.get('password')?.touched"
@@ -76,13 +74,12 @@
                         <div class="form-group mb-3">
                             <label for="confirmPassword" class="mb-2">Confirm Password</label>
                             <div class="input-group">
-                                <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="confirmPassword"
+                                
+                                    <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="confirmPassword"
                                     class="form-control" />
-                                <div class="input-group-append">
                                     <span class="input-group-text" (click)="togglePasswordVisibility()">
                                         <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
                                     </span>
-                                </div>
                             </div>
 
                             <div *ngIf="createForm.get('confirmPassword')?.errors && createForm.get('confirmPassword')?.touched"

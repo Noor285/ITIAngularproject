@@ -36,8 +36,8 @@
               <div class="mb-3">
                 <label for="password" class="mb-2">Password</label>
                 <div class="input-group">
-                    <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" id="password" class="form-control" />
-                    <div class="input-group-append">
+                    <div class="input-group">
+                        <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" id="password" class="form-control" />
                         <span class="input-group-text" (click)="togglePasswordVisibility()">
                             <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
                         </span>

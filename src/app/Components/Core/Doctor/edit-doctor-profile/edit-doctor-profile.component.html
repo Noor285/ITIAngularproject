@@ -30,7 +30,7 @@
                     <!-- ----------------------- Email ----------------------- -->
                     <div class="mb-3">
                         <label for="email" class="mb-2">Email</label>
-                        <input type="email" formControlName="email" id="email" class="form-control" />
+                        <input type="email" formControlName="email" id="email" class="form-control" readonly/>
 
                         <div *ngIf="editForm.get('email')?.errors && editForm.get('email')?.touched"
                             class="text-danger m-1">
@@ -70,7 +70,7 @@
                     <div class="mb-3">
                         <label for="nationalId" class="mb-2">National ID</label>
                         <input type="number" formControlName="nationalId" id="nationalId" class="form-control"
-                            (input)="enforceMinMaxNationalID($event)" />
+                            (input)="enforceMinMaxNationalID($event)" readonly/>
 
                         <div *ngIf="editForm.get('nationalId')?.errors && editForm.get('nationalId')?.touched"
                             class="text-danger m-1">
