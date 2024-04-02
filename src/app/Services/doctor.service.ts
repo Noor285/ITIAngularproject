@@ -44,6 +44,10 @@ export class DoctorService {
     getAllAppoint(id: any): Observable<any> {
         return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Requested/doctor=${id}`)
     }
+
+    getAllAppointNoReq(id: any): Observable<any> {
+        return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Others/doctor=${id}`)
+    }
     acceptAppoint(id: any): Observable<any> {
         return this.httpClient.patch(`https://localhost:7013/api/Doctor/Appointment/Confirm/${id}`, "")
     }
