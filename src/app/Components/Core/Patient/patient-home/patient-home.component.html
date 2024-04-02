@@ -47,15 +47,16 @@
             <p class="headingDocCard  fw-bolde h1">Meet Our Professional Doctors</p>
         </div>
 
-        <div class="col-4 mb-5" *ngFor="let doc of Doctors">
+        <div class="col-6 mb-5" *ngFor="let doc of Doctors">
 
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <div class="card-body">
-                    <p class="card-title h3">{{doc['doctor'].name}}</p>
-                    <p class="card-title h4">{{doc['speciality'].name}}</p>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a routerLink= "/patient/book" class="btn btn-send ">Show Doctor</a>
+                    <p class="card-title h1">Dr.{{doc['doctor'].name}}</p>
+                    <p class="card-title h4">Speciality: {{doc['speciality'].name}}</p>
+                    <p class="card-title h4">Governance: {{doc['doctor'].governance}}</p>
+                    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p> -->
+                    <a [routerLink]= "['/doctor' , 'profile' , doc['doctor'].id]" class="btn btn-send ">Show Doctor</a>
                 </div>
             </div>
         </div>
