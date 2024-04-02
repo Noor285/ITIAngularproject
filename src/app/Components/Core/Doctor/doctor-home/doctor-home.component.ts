@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class DoctorHomeComponent {
 
+    backgroundUrl: any = 'assets/home/Vector.png';
+
 }

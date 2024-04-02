@@ -1,0 +1,231 @@
+<!-- <div class="container">
+    <div class="card">
+        <div class="form__name">
+            Scheduling Form
+        </div>
+        <div class="time__container">
+            <div class="section">
+                <div class="box fw-bolder">
+                </div><span>Edit Your &amp; Schedual</span>
+            </div>
+            <form action="" class="form__time">
+                <div class="week">
+                    <div class="text-center">
+                        <h2>Satueday</h2> -->
+                        <!-- <label for="date" class="fw-bolder">Saturday</label> -->
+                    <!-- </div>
+                    <div class="time">
+                        <label for="time">pm</label> <input id="time" type="time">
+                        <label for="time">am</label> <input id="time" type="time">
+                    </div>
+                </div> -->
+
+                <!-- <div class="week">
+                    <div class="text-center">
+                        <h2>Sunday</h2> -->
+                        <!-- <label for="date" class="fw-bolder">Sunday</label> -->
+                    <!-- </div>
+                    <div class="time">
+                        <label for="time">pm</label> <input id="time" type="time">
+                        <label for="time">am</label> <input id="time" type="time">
+                    </div>
+                </div>
+                <div class="week">
+                    <div class="text-center">
+                        <h2>Monday</h2> -->
+
+                        <!-- <label for="date" class="fw-bolder">Monday</label> -->
+                    <!-- </div>
+                    <div class="time">
+                        <label for="time">pm</label> <input id="time" type="time">
+                        <label for="time">am</label> <input id="time" type="time">
+                    </div>
+                </div>
+                <div class="week">
+                    <div class="text-center">
+                        <h2>Tusday</h2> -->
+                        <!-- <label for="date" class="fw-bolder">Tusday</label> -->
+                    <!-- </div>
+                    <div class="time">
+                        <label for="time">pm</label> <input id="time" type="time">
+                        <label for="time">am</label> <input id="time" type="time">
+                    </div>
+                </div>
+                <div class="week">
+                    <div class="text-center">
+                        <h2>Wednesday</h2> -->
+                        <!-- <label for="date" class="fw-bolder">Wednesday</label> -->
+                    <!-- </div>
+                    <div class="time">
+                        <label for="time">pm</label> <input id="time" type="time">
+                        <label for="time">am</label> <input id="time" type="time">
+                    </div>
+                </div>
+                <div class="week">
+                    <div class="text-center">
+                        <h2>Thursday</h2> -->
+                        <!-- <label for="date" class="fw-bolder">Thursday</label> -->
+                    <!-- </div>
+                    <div class="time">
+                        <label for="time">pm</label> <input id="time" type="time">
+                        <label for="time">am</label> <input id="time" type="time">
+                    </div>
+                </div>
+                <div class="week">
+                    <div class="text-center">
+                        <h2>Feiday</h2> -->
+                        <!-- <label for="date" class="fw-bolder">Friday</label> -->
+                    <!-- </div>
+                    <div class="time">
+                        <label for="time">pm</label> <input id="time" type="time">
+                        <label for="time">am</label> <input id="time" type="time">
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div> -->
+
+
+        <!-- <div class="form__confirmation">
+            <button>Confirm Information</button>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+
+
+
+<div class="w-75 mx-auto py-4">
+    <div class="container mt-5 p-5">
+        <div class="card shadow">
+
+
+            <div class="card-body">
+                <!-- (ngSubmit)="handleEdit()" -->
+                <form [formGroup]="editSchedualForm" (ngSubmit)="handleEdit()" class="w-50">
+
+
+                    <!-- <label>ID</label>
+            <input type="number" formControlName="id" id="id" class="form-control"> -->
+
+                    <!-- ----------------------- Name ----------------------- -->
+                    <div class="mb-3">
+
+                        <label for="name" class="mb-2">saturday</label>
+                        <input placeholder="aka 10pm : 7am" type="text" formControlName="saturday" id="saturday"
+                            class="form-control" />
+                        <div *ngIf="editSchedualForm.get('saturday')?.errors && editSchedualForm.get('name')?.touched"
+                            class="text-danger m-1 sm">
+                            <p *ngIf="editSchedualForm.get('saturday')?.getError('required')" class="m-0">saturday
+                                is
+                                Required
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label for="name" class="mb-2">sunday</label>
+                        <input type="text" formControlName="sunday" id="sunday" class="form-control" />
+                        <div *ngIf="editSchedualForm.get('sunday')?.errors && editSchedualForm.get('name')?.touched"
+                            class="text-danger m-1 sm">
+                            <p *ngIf="editSchedualForm.get('sunday')?.getError('required')" class="m-0">sunday is
+                                Required
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+
+                        <label for="name" class="mb-2">monday</label>
+                        <input type="text" formControlName="monday" id="monday" class="form-control" />
+                        <div *ngIf="editSchedualForm.get('monday')?.errors && editSchedualForm.get('name')?.touched"
+                            class="text-danger m-1 sm">
+                            <p *ngIf="editSchedualForm.get('monday')?.getError('required')" class="m-0">monday is
+                                Required
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+
+                        <label for="name" class="mb-2">saturday</label>
+                        <input type="text" formControlName="saturday" id="saturday" class="form-control" />
+                        <div *ngIf="editSchedualForm.get('saturday')?.errors && editSchedualForm.get('name')?.touched"
+                            class="text-danger m-1 sm">
+                            <p *ngIf="editSchedualForm.get('saturday')?.getError('required')" class="m-0">saturday
+                                is
+                                Required
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+
+                        <label for="name" class="mb-2">tuesday</label>
+                        <input type="text" formControlName="tuesday" id="tuesday" class="form-control" />
+                        <div *ngIf="editSchedualForm.get('tuesday')?.errors && editSchedualForm.get('name')?.touched"
+                            class="text-danger m-1 sm">
+                            <p *ngIf="editSchedualForm.get('tuesday')?.getError('required')" class="m-0">tuesday is
+                                Required
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+
+                        <label for="name" class="mb-2">wednesday</label>
+                        <input type="text" formControlName="wednesday" id="wednesday" class="form-control" />
+                        <div *ngIf="editSchedualForm.get('wednesday')?.errors && editSchedualForm.get('name')?.touched"
+                            class="text-danger m-1 sm">
+                            <p *ngIf="editSchedualForm.get('wednesday')?.getError('required')" class="m-0">wednesday
+                                is
+                                Required
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+
+                        <label for="name" class="mb-2">thursday</label>
+                        <input type="text" formControlName="thursday" id="thursday" class="form-control" />
+                        <div *ngIf="editSchedualForm.get('thursday')?.errors && editSchedualForm.get('name')?.touched"
+                            class="text-danger m-1 sm">
+                            <p *ngIf="editSchedualForm.get('thursday')?.getError('required')" class="m-0">thursday
+                                is
+                                Required
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-success ">Edit Schedule</button>
+
+                    </div>
+                </form>
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>

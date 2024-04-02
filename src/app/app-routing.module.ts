@@ -28,50 +28,52 @@ import { ChangePasswordComponent } from './Components/Shared/change-password/cha
 import { DoctorDetailsComponent } from './Components/Core/Patient/doctor-details/doctor-details.component';
 import { BookAppointmentComponent } from './Components/Core/Patient/book-appointment/book-appointment.component';
 import { DoctorAppointmentsComponent } from './Components/Core/Doctor/doctor-appointments/doctor-appointments.component';
+import { EditSchedualComponent } from './Components/Core/Doctor/edit-schedual/edit-schedual.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'contact', component: ContactusComponent },
+    { path: '', component: HomeComponent },
+    { path: 'home', component: HomeComponent },
+    { path: 'contact', component: ContactusComponent },
 
-  {path: 'signin' , component:PatientSignInComponent, title:'Sign In' },
-  {path: 'changepass' , component:ChangePasswordComponent, title:'change password' },
+    { path: 'signin', component: PatientSignInComponent, title: 'Sign In' },
+    { path: 'changepass', component: ChangePasswordComponent, title: 'change password' },
 
-  { path: 'patient/signup', component: PatientSignUpComponent , title:'Patient Sign Up '},
-  { path: 'patient/home', component: PatientHomeComponent , title:'Patient Home '},
-  {path: 'patient/allpatients' , component:AllPatientsComponent, title:'Show All Patients' },
-  {path:'patient/add', component: AddPatientComponent , title:'Add Patient'},
-  {path: 'patient/edit/:patId' , component:EditPatientComponent },
-  {path: 'patient/profile' , component:PatientProfileComponent },
-  {path: 'patient/profile/edit/:patId' , component:EditPatientProfileComponent },
-  {path: 'patient/docdetails' , component:DoctorDetailsComponent  },
-  {path: 'patient/book' , component:BookAppointmentComponent  },
-  {path: 'patient/patientprofial/payment' , component:PaymentComponent  },
-  {path: 'patient/patientprofial/paymentdetails' , component:PaymentDetailsComponent },
-  {path: 'patient/appointment' , component:AllAppointmentsComponent},
+    { path: 'patient/signup', component: PatientSignUpComponent, title: 'Patient Sign Up ' },
+    { path: 'patient/home', component: PatientHomeComponent, title: 'Patient Home ' },
+    { path: 'patient/allpatients', component: AllPatientsComponent, title: 'Show All Patients' },
+    { path: 'patient/add', component: AddPatientComponent, title: 'Add Patient' },
+    { path: 'patient/edit/:patId', component: EditPatientComponent },
+    { path: 'patient/profile', component: PatientProfileComponent },
+    { path: 'patient/profile/edit/:patId', component: EditPatientProfileComponent },
+    { path: 'patient/docdetails', component: DoctorDetailsComponent },
+    { path: 'patient/book', component: BookAppointmentComponent },
+    { path: 'patient/patientprofial/payment', component: PaymentComponent },
+    { path: 'patient/patientprofial/paymentdetails', component: PaymentDetailsComponent },
+    { path: 'patient/appointment', component: AllAppointmentsComponent },
 
-  {path: 'doctor/signup' , component:DoctorSignUpComponent, title:'Doctor Sign Up ' },
-  {path: 'doctor/home' , component:DoctorHomeComponent, title:'Doctor Home' },
-  {path: 'doctor/alldoctors' , component:AllDoctorsComponent, title:'Show All Doctors' },
-  {path:'doctor/add', component: AddDoctorComponent , title:'Add Doctor'},
-  {path: 'doctor/edit/:docId' , component:EditDoctorComponent },
-  {path: 'doctor/profile' , component:DoctorAppointmentComponent },
-  {path: 'doctor/profile/:docId' , component:DoctorAppointmentComponent },
-  {path: 'doctor/profile/edit/:docId' , component:EditDoctorProfileComponent },
-  {path: 'doctor/appointment/req', component: AppointmentRequestsComponent},
-  {path: 'doctor/appointments', component: DoctorAppointmentsComponent},
-  
+    { path: 'doctor/signup', component: DoctorSignUpComponent, title: 'Doctor Sign Up ' },
+    { path: 'doctor/home', component: DoctorHomeComponent, title: 'Doctor Home' },
+    { path: 'doctor/alldoctors', component: AllDoctorsComponent, title: 'Show All Doctors' },
+    { path: 'doctor/add', component: AddDoctorComponent, title: 'Add Doctor' },
+    { path: 'doctor/edit/:docId', component: EditDoctorComponent },
+    { path: 'doctor/profile', component: DoctorAppointmentComponent },
+    { path: 'doctor/profile/:docId', component: DoctorAppointmentComponent },
+    { path: 'doctor/profile/edit/:docId', component: EditDoctorProfileComponent },
+    { path: 'doctor/appointment/req', component: AppointmentRequestsComponent },
+    { path: 'doctor/appointments', component: DoctorAppointmentsComponent },
+    //   {path: 'doctor/schedual/dscription/:id', component:DscriptionSchedualComponent},
+    { path: 'doctor/schedual/edit/:id', component: EditSchedualComponent },
 
 
 
 
-  { path:'unauthorized', component:UnauthorizedComponent, title:'Unauthorized Access'},
-  { path: '**', component: NotfoundComponent }
+    { path: 'unauthorized', component: UnauthorizedComponent, title: 'Unauthorized Access' },
+    { path: '**', component: NotfoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 
 export class AppRoutingModule { }

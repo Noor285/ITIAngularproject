@@ -63,4 +63,20 @@ export class DoctorService {
         return this.httpClient.get<IDoctor>(`https://localhost:7013/api/Doctor/Details/${id}`)
     }
 
+
+    docotrSchedualDetails(id: any) : Observable<any>
+    {
+      return this.httpClient.get(`https://localhost:7013/api/Doctor/Schedule/${id}`)
+    }
+  
+  
+    getSchedule(doctorId: number): Observable<any> {
+      return this.httpClient.get<any>(`https://localhost:7013/api/Doctor/Schedule/${doctorId}`);
+    }
+  
+    editSchedule(scheduleData: any): Observable<any> {
+      return this.httpClient.put<any>('https://localhost:7013/api/Doctor/Schedule/Edit', scheduleData);
+    }
+  
+
 }

@@ -1,7 +1,7 @@
 .signup-btn{
   margin-right:120px;
   width: 228px;
-  background: #43acc2;
+  background: #1A998E;
   box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.25);
   font-weight: 400;
   border-radius: 15px;
@@ -11,7 +11,7 @@
 }
 .heading-home
 {
-  color: #43acc2;
+  color: #1A998E;
 }
 .loginbtn {
   margin-right: 120px;
@@ -21,7 +21,7 @@
   border-radius: 15px;
   font-size: 24px;
   font-style: bolder;
-  color: #43acc2;
+  color: #1A998E;
   background: #FFFFFF;
 
 }
@@ -39,20 +39,20 @@ padding: 2rem 2rem;
 }
 
 .custom-btn {
-  background-color: #6cc2ed;
+  background-color: #1A998E;
   color: #fff !important;
-  border-color: #6cc2ed;
+  border-color: #1A998E;
   text-transform: capitalize;
 }
 
 .custom-btn:hover {
   background-color: #fff;
-  color: #6cc2ed !important;
-  border-color: #6cc2ed;
+  color: #1A998E !important;
+  border-color: #1A998E;
 }
 
 .headColor{
-  color: #6cc2ed;
+  color: #1A998E;
 }
 .Pinfo{
   color:#000000;
@@ -79,7 +79,7 @@ padding: 2rem 2rem;
   border-radius:25px ;
 }
 .appointInfo{
-  border: #6cc2ed 2px solid;
+  border: #1A998E 2px solid;
   border-radius: 20px;
 }
 

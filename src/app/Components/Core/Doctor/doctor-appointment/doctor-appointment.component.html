@@ -67,7 +67,8 @@
           <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
           <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
           <button *ngIf="role == 'patient'" class="book-btn  m-3 p-3" type="button" (click)="bookApp(6)"  [disabled]="docProfileData.schedule.saturday == '0'"> Book </button>
-          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
+          <!-- <button *ngIf="role == 'doctor'" [routerLink]="['/doctor','schedual','edit',':id']" class="book-btn  m-3 p-3" type="button"> Edit </button> -->
+          <button *ngIf="role == 'doctor'" [routerLink]="['/doctor/schedual/edit', id ]" class="book-btn  m-3 p-3" type="button"> Edit </button>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 col-lg-3">
