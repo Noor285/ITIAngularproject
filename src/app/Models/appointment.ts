@@ -1,11 +1,11 @@
 import { AppStatus } from "../Enums/AppStatus";
 
 export interface IAppointment {
-  id: number;
-  date: Date;
+  id: number | undefined ;
+  date: string;
   order: number;
   status: AppStatus;
-  createdDate: Date;
+  createdDate: string;
   doctorID: number;
   patientID: number;
 }
