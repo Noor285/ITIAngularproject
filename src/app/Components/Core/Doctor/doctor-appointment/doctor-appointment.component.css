@@ -1,5 +1,12 @@
 
-
+#editProBtn{
+    font-size: 1.6rem;
+    background-color: #6bc1ed;
+    color: #FFFFFF;
+    width:10rem;
+    border-radius: 15px;
+  }
+  
 h1{
   font-weight: 200;
   font-size: 48px;
