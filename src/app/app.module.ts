@@ -62,8 +62,7 @@ import { EditDoctorProfileComponent } from './Components/Core/Doctor/edit-doctor
 import { PatientHomeComponent } from './Components/Core/Patient/patient-home/patient-home.component';
 import { DoctorHomeComponent } from './Components/Core/Doctor/doctor-home/doctor-home.component';
 import { ChangePasswordComponent } from './Components/Shared/change-password/change-password.component';
-import { EditScheduleComponent } from './Components/Core/Doctor/edit-schedule/edit-schedule.component';
-
+import { DoctorAppointmentsComponent } from './Components/Core/Doctor/doctor-appointments/doctor-appointments.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +99,7 @@ import { EditScheduleComponent } from './Components/Core/Doctor/edit-schedule/ed
     PatientHomeComponent,
     DoctorHomeComponent,
     ChangePasswordComponent,
-    EditScheduleComponent
+    DoctorAppointmentsComponent
   ],
   imports: [
     RatingModule,
