@@ -24,6 +24,9 @@ import { EditDoctorProfileComponent } from './Components/Core/Doctor/edit-doctor
 import { EditPatientProfileComponent } from './Components/Core/Patient/edit-patient-profile/edit-patient-profile.component';
 import { PatientHomeComponent } from './Components/Core/Patient/patient-home/patient-home.component';
 import { DoctorHomeComponent } from './Components/Core/Doctor/doctor-home/doctor-home.component';
+import { ChangePasswordComponent } from './Components/Shared/change-password/change-password.component';
+import { DoctorDetailsComponent } from './Components/Core/Patient/doctor-details/doctor-details.component';
+import { BookAppointmentComponent } from './Components/Core/Patient/book-appointment/book-appointment.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,17 +34,18 @@ const routes: Routes = [
   { path: 'contact', component: ContactusComponent },
 
   {path: 'signin' , component:PatientSignInComponent, title:'Sign In' },
-
+  {path: 'changepass' , component:ChangePasswordComponent, title:'change password' },
 
   { path: 'patient/signup', component: PatientSignUpComponent , title:'Patient Sign Up '},
   { path: 'patient/home', component: PatientHomeComponent , title:'Patient Home '},
   {path: 'patient/allpatients' , component:AllPatientsComponent, title:'Show All Patients' },
   {path:'patient/add', component: AddPatientComponent , title:'Add Patient'},
-  {path: 'patient/edit/:patId' , component:EditPatientComponent , },
-  // title:'Edit Patient'
-  {path: 'patient/profile' , component:PatientProfileComponent , },
+  {path: 'patient/edit/:patId' , component:EditPatientComponent },
+  {path: 'patient/profile' , component:PatientProfileComponent },
   {path: 'patient/profile/edit/:patId' , component:EditPatientProfileComponent },
-  {path: 'patient/patientprofial/payment' , component:PaymentComponent , },
+  {path: 'patient/docdetails' , component:DoctorDetailsComponent  },
+  {path: 'patient/book' , component:BookAppointmentComponent  },
+  {path: 'patient/patientprofial/payment' , component:PaymentComponent  },
   {path: 'patient/patientprofial/paymentdetails' , component:PaymentDetailsComponent },
   {path: 'patient/appointment' , component:AllAppointmentsComponent},
 
@@ -66,7 +70,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 
 export class AppRoutingModule { }

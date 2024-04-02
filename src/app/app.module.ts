@@ -61,6 +61,7 @@ import { EditPatientProfileComponent } from './Components/Core/Patient/edit-pati
 import { EditDoctorProfileComponent } from './Components/Core/Doctor/edit-doctor-profile/edit-doctor-profile.component';
 import { PatientHomeComponent } from './Components/Core/Patient/patient-home/patient-home.component';
 import { DoctorHomeComponent } from './Components/Core/Doctor/doctor-home/doctor-home.component';
+import { ChangePasswordComponent } from './Components/Shared/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { DoctorHomeComponent } from './Components/Core/Doctor/doctor-home/doctor
     EditPatientProfileComponent,
     EditDoctorProfileComponent,
     PatientHomeComponent,
-    DoctorHomeComponent
+    DoctorHomeComponent,
+    ChangePasswordComponent
   ],
   imports: [
     RatingModule,

@@ -7,71 +7,56 @@ import { IDoctorAdd } from '../Models/doctorAddDTO';
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DoctorService {
-  // httpOption: { headers: HttpHeaders; };
 
-  constructor(private httpClient: HttpClient) {
-    // this.httpOption={
-    //   headers:new HttpHeaders({
-    //     'Content-Type':'application/json',
-    //     'Access-Control-Allow-Origin':'*',
-    //     'Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Accept',
-    //     Authorization: `https://localhost:7013/api/User/Login__${localStorage.getItem('token')}`
-    //   })
-    // };
-  }
+    constructor(private httpClient: HttpClient) { }
 
-  getAllDoctors(): Observable<IDoctor[]> {
-    return this.httpClient.get<IDoctor[]>(`https://localhost:7013/api/Doctor/Details`)};
+    getAllDoctors(): Observable<IDoctor[]> {
+        return this.httpClient.get<IDoctor[]>(`https://localhost:7013/api/Doctor/Details`)
+    };
 
-  addDoctor(doctor: IDoctorAdd): Observable<IDoctorAdd> {
-    return this.httpClient.post<IDoctorAdd>(`https://localhost:7013/api/Doctor/Create`, doctor);
-  }
+    addDoctor(doctor: IDoctorAdd): Observable<IDoctorAdd> {
+        return this.httpClient.post<IDoctorAdd>(`https://localhost:7013/api/Doctor/Create`, doctor);
+    }
 
-  editDoctor(updatedDoctor: IDoctor2): Observable<any> {
-    console.log(updatedDoctor)
-    return this.httpClient.put<IDoctor2>(`https://localhost:7013/api/Doctor/Update`, updatedDoctor);
-  }
+    editDoctor(updatedDoctor: IDoctor2): Observable<any> {
+        console.log(updatedDoctor)
+        return this.httpClient.put<IDoctor2>(`https://localhost:7013/api/Doctor/Update`, updatedDoctor);
+    }
 
-  getDoctorById(doctortId: number): Observable<IDoctor2> {
-    return this.httpClient.get<IDoctor2>(`https://localhost:7013/api/Doctor/${doctortId}`);
-  }
+    getDoctorById(doctortId: number): Observable<IDoctor2> {
+        return this.httpClient.get<IDoctor2>(`https://localhost:7013/api/Doctor/${doctortId}`);
+    }
 
-  deleteDoctor(doctorId: number): Observable<void> {
-    return this.httpClient.delete<void>(`https://localhost:7013/api/Doctor/Delete/${doctorId}`);
-  }
+    deleteDoctor(doctorId: number): Observable<void> {
+        return this.httpClient.delete<void>(`https://localhost:7013/api/Doctor/Delete/${doctorId}`);
+    }
 
 
-  getAllSpecialities(): Observable<any> {
-    return this.httpClient.get<any>(`https://localhost:7013/api/Doctor/Speciality`); // Adjust the URL as per your API endpoint
-  }
+    getAllSpecialities(): Observable<any> {
+        return this.httpClient.get<any>(`https://localhost:7013/api/Doctor/Speciality`);
+    }
 
-  // https://localhost:7013/api/Doctor/Appointment/Others/doctor=1
 
-  /* Start edit appoint component */
-  getAllAppoint(id:any):Observable<any>
-  {
-    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Requested/doctor=${id}`)
-  }
-  acceptAppoint(id:any):Observable<any>
-  {
-    return this.httpClient.patch(`https://localhost:7013/api/Doctor/Appointment/Confirm/${id}`,"")
-  }
-  cancelAppoint(id:any):Observable<any>
-  {
-    return this.httpClient.patch(`https://localhost:7013/api/Doctor/Appointment/Reject/${id}`,"")
-  }
-  getComingAppoint(id:any):Observable<any>
-  {
-    return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Accepted/doctor/${id}`);
-  }
-  /* End edit appoint component */
+    /* Start edit appoint component */
+    getAllAppoint(id: any): Observable<any> {
+        return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Requested/doctor=${id}`)
+    }
+    acceptAppoint(id: any): Observable<any> {
+        return this.httpClient.patch(`https://localhost:7013/api/Doctor/Appointment/Confirm/${id}`, "")
+    }
+    cancelAppoint(id: any): Observable<any> {
+        return this.httpClient.patch(`https://localhost:7013/api/Doctor/Appointment/Reject/${id}`, "")
+    }
+    getComingAppoint(id: any): Observable<any> {
+        return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Accepted/doctor/${id}`);
+    }
+    /* End edit appoint component */
 
-  getProfileDoc(id:any):Observable<any>
-  {
-    return this.httpClient.get<IDoctor>(`https://localhost:7013/api/Doctor/Details/${id}`)
-  }
+    getProfileDoc(id: any): Observable<any> {
+        return this.httpClient.get<IDoctor>(`https://localhost:7013/api/Doctor/Details/${id}`)
+    }
 
 }

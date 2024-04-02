@@ -48,3 +48,27 @@ label{
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn-outline-success {
+    color: #d8876b !important;
+    border-color: #d8876b !important;
+  }
+  
+  .btn-outline-success:hover {
+    background-color: #d8876b !important;
+    color: #fff !important;
+  }
+  
+  .btn-success {
+    background-color: #d8876b !important;
+    color: #fff !important;
+    border-color: #d8876b !important;
+    
+  }
+  
+  .btn-success:hover {
+  
+    background-color: #fff !important;
+    color: #d8876b !important;
+    border-color: #d8876b !important;
+  }

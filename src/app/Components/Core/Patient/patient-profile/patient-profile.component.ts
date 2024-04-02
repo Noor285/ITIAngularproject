@@ -70,4 +70,11 @@ export class PatientProfileComponent implements OnInit{
 
   }
 
+  chanePass(patId :any)
+  {
+    console.log(patId);
+    this.router.navigate([`/changepass/${patId}`]);
+
+  }
+
 }
