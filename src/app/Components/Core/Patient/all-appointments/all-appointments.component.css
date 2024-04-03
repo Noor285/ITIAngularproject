@@ -43,3 +43,15 @@
   border-radius: 20px;
 }
 
+.user-rating-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-rating img{
+    margin-right: 2px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}

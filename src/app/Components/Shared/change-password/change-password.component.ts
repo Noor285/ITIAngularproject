@@ -12,7 +12,7 @@ import { loginDTO } from 'src/app/Models/logindto';
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css']
 })
-export class ChangePasswordComponent implements OnInit{
+export class ChangePasswordComponent{
 
     isLoading : boolean = false;
     apiError:string = '';
@@ -20,114 +20,55 @@ export class ChangePasswordComponent implements OnInit{
     id: any = localStorage.getItem("id") ?? "";
     role: any = localStorage.getItem("role") ?? "";
 
-    changePass! : ChangePass [];
-    loginDTO! :loginDTO [];
+    changeForm: FormGroup;
 
-
-    updatedForm !:FormGroup;
-    oldPass !: FormControl;
-    newPass !: FormControl;
-    confirmNewPass !: FormControl;
-
-    // signInForm !: FormGroup;
-
-    constructor(private fb: FormBuilder,private authService:AuthService , private router: Router) { 
-        // this.signInForm = this.fb.group({
-        //     password: [null, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*)(?=.*[^\s]).{8,}$/)]],
-        //     newPassword: [null, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*)(?=.*[^\s]).{8,}$/)]],
-        //     confirmPassword: [null, [Validators.required]],
-        // }, { validator: this.passwordMatchValidator });
+    constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
+        // Initialize FormGroup with FormBuilder
+        // , Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*)(?=.*[^\s]).{8,}$/)]
+        this.changeForm = this.fb.group({
+            userID : this.id,
+            userRole : this.role,
+            password: [null, [Validators.required]],
+            newPassword: [null, [Validators.required]],
+            // confirmPassword: [null, [Validators.required]],
+        }, { validator: this.passwordMatchValidator });
     }
-    ngOnInit(): void {
-        this.oldPass = new FormControl('', [Validators.required]);
-        this.newPass = new FormControl('', [Validators.required]);
-        this.confirmNewPass = new FormControl('', [Validators.required]);
-        
-
-        this.updatedForm = this.fb.group({
-            'oldPassword' : this.oldPass,
-            'newPassword' : this.newPass,
-            'confirmPassword' : this.confirmNewPass,
-        });
-
-    }
-    
-    onSubmit():void
-    {
-        if(this.updatedForm.valid){
-            this.authService.PatientAndDoctorSignIn(this.id).subscribe((res) => {
-                if(res.role){
-                    let userData = this.updatedForm.value;
-                    userData.role = res.role;
-                    this.authService.changePassword(userData).subscribe((res) => {
-                        console.log(res);
-                        
-                    })
-                }
-              
-            })
-        }
-    };
-
   
-    // onSubmit(): void {
-    //   if (this.signInForm.valid) {
-    //     const formData = this.signInForm.value;
-    //     this.authService.changePassword(formData).subscribe(
-    //       response => {
-    //         console.log('Password changed successfully.');
-    //         // Handle success response if needed
-    //       },
-    //       error => {
-    //         console.error('Failed to change password:', error);
-    //         // Handle error response if needed
-    //       }
-    //     );
-    //   } else {
-    //     this.signInForm.markAllAsTouched();
-    //   }
-    // }
-
-
   
-     handleSignIn()
+     handleChangePass()
      {
-    //    if (this.signInForm.valid) {
-    //     console.log(this.signInForm.value);
-    //    this.authService.changePassword(this.id).subscribe({
-    //      next:(Response)=>{
-    //        if(Response.role === 'doctor'){
-    //        localStorage.setItem('role' , Response.role)
-    //        this.authService.setRole(Response.role);
-    //        localStorage.setItem("id",Response.id);
-    //        this.router.navigate(['/doctor/home'])
-    //        }
-    //        if(Response .role === 'patient'){
-    //          localStorage.setItem('role' , Response.role)
-    //          localStorage.setItem("id",Response.id);
-    //          this.authService.setRole(Response.role);
-    //          this.router.navigate(['/patient/home'])
-    //        }
-    //        if(Response .role === 'admin'){
-    //         localStorage.setItem('role' , Response.role)
-    //         this.authService.setRole(Response.role);
-    //         this.router.navigate(['/home'])
-    //       }
-    //     },
-    //       error: (errors : HttpErrorResponse) => {
-    //         console.log(errors);
-    //         this.apiError = errors.error;
-    //        }
+        console.log('hiiii');
+        
+      //  this.isLoading =true;
+       if (this.changeForm.valid) {
+        console.log(this.changeForm.value);
+       this.authService.changePassword(this.changeForm.value).subscribe({
+         next:(Response)=>{
+          //  this.isLoading=false;
+          console.log(Response);
+          
+           if(Response.role === 'doctor'){
+           this.router.navigate(['/doctor/home'])
+           }
+           if(Response .role === 'patient'){
+            console.log(this.changeForm.value);
+             this.router.navigate(['/patient/home'])
+           }
+        },
+          error: (errors : HttpErrorResponse) => {
+            console.log(errors);
+            this.apiError = errors.error;
+           }
   
-    //    })
-    //   }
-    //   else
-    //   {
-    //     this.signInForm.markAllAsTouched();
-    //   }
+       })
+      }
+      else
+      {
+        this.changeForm.markAllAsTouched();
+      }
   
      }
-  
+
 
   showOldPassword: boolean = false;
   showNewPassword: boolean = false;
@@ -143,7 +84,7 @@ export class ChangePasswordComponent implements OnInit{
     }
 }
      passwordMatchValidator(formGroup: FormGroup) {
-        const password = formGroup.get('password')?.value;
+        const password = formGroup.get('newPassword')?.value;
         const confirmPassword = formGroup.get('confirmPassword')?.value;
 
         if (password !== confirmPassword && confirmPassword !== '') {

@@ -11,24 +11,24 @@ import { DoctorService } from 'src/app/Services/doctor.service';
 })
 export class BookAppointmentComponent {
 
-    Doctors: IDoctor[] = [];
+    // Doctors: IDoctor[] = [];
 
-    appointments : IAppointment[] = [];
+    // appointments : IAppointment[] = [];
 
-    id: any = localStorage.getItem("id") ?? "";
+    // id: any = localStorage.getItem("id") ?? "";
 
-    constructor(private doctorService: DoctorService ,private router :Router) {}
+    // constructor(private doctorService: DoctorService ,private router :Router) {}
 
 
-    ngAfterViewInit(): void {
-        this.loadDoctors();
-      }
+    // ngAfterViewInit(): void {
+    //     this.loadDoctors();
+    //   }
     
-      loadDoctors(): void {
-        this.doctorService.getDoctorById(this.id).subscribe(() => {
-          this.Doctors = this.id;
-          console.log(this.Doctors);
+    //   loadDoctors(): void {
+    //     this.doctorService.getDoctorById(this.id).subscribe(() => {
+    //       this.Doctors = this.id;
+    //       console.log(this.Doctors);
     
-        });
-      }
+    //     });
+    //   }
 }

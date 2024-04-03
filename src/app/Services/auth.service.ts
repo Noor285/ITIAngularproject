@@ -29,14 +29,14 @@ export class AuthService {
 
   changePassword(userData:userInfo):Observable<any>
   {
-    const resetPasswordViewModel = {
-        OldPassword : userData.oldpass,
-        Password : userData.newPass,
-        ConfirmPassword : userData.newPass,
-        Email : userData.email,
-        Role : userData.role
+    // const resetPasswordViewModel = {
+    //     OldPassword : userData.oldpass,
+    //     Password : userData.newPass,
+    //     ConfirmPassword : userData.newPass,
+    //     Email : userData.email,
+    //     Role : userData.role
 
-    }
+    // }
     return this.httpClient.patch(`https://localhost:7013/api/User/changepassword`, userData)
   }
 

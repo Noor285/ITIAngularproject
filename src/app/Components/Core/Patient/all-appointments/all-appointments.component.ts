@@ -1,6 +1,6 @@
 import { ISingleDocAppointment } from './../../../../Models/SingleDoctorAppointment';
-import { AfterViewInit, Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IAppointment } from 'src/app/Models/appointment';
 import { DoctorService } from 'src/app/Services/doctor.service';
 import { PatientService } from 'src/app/Services/patient.service';
@@ -11,39 +11,60 @@ import { PatientService } from 'src/app/Services/patient.service';
   styleUrls: ['./all-appointments.component.css']
 })
 export class AllAppointmentsComponent implements AfterViewInit {
-  constructor(private _PatientService:PatientService , private _DoctorService:DoctorService){}
-  ngAfterViewInit(): void {
 
-    this._PatientService.getAllAppointments(1).subscribe((res)=>{
-      this.appointmentDocs = res;
-      console.log(res);
-    });
-  }
-  appointmentDocs! : ISingleDocAppointment[];
-  id:any =1;
-  patientProfile:any;
-  rateDialog: boolean = false;
-  selectedRating:any;
-  additionalNotes: string = '';
-  rateForm!: FormGroup;
+    appointmentDocs! : ISingleDocAppointment[];
+    id: any = localStorage.getItem("id") ?? "";
 
-  showDialog() {
 
-    this.rateDialog= true;
-  }
+    constructor(private _PatientService:PatientService , private _DoctorService:DoctorService){}
 
-  submitRating(form: any, event: Event) {
-    // Prevent default form submission behavior
-    event.preventDefault();
+    ngAfterViewInit(): void {
   
-    // Process your form submission here
-    console.log("Submitted Rating:", this.selectedRating);
-    console.log("Additional Notes:", this.additionalNotes);
-    console.log(form.value);
-    // Close the dialog
-    this.rateDialog = false;
+      this._PatientService.getAllAppointments(1).subscribe((res)=>{
+        this.appointmentDocs = res;
+        console.log(res);
+      });
+    }
+   
+    public rateForm:FormGroup = new FormGroup({
+        rating:new FormControl(""),
+        discription:new FormControl(""),
+      });
+    
+    
+    
+      submitRating(formData:FormGroup){
+        console.log(formData.value.rating);
+        console.log("Additional Notes:", formData.value.discription);
+        this._PatientService.postpatientRate(formData.value).subscribe((res)=>{
+                console.log(res);
+              });
+
+        formData.reset();
+
+      }
   
-    // Reset the form after submission
-    form.resetForm();
-  }
+
+    // showDialog() {
+  
+    //   this.rateDialog= true;
+    // }
+  
+  
+    // submitRating(form: any) {
+    //   // Process your form submission here
+    //   console.log("Submitted Rating:", this.selectedRating);
+    //   console.log("Additional Notes:", this.additionalNotes);
+    //   console.log(form.value);
+    //   // this._PatientService.postpatientRate(form.value).subscribe((res)=>{
+    //   //   console.log(res);
+    //   // });
+  
+  
+    //   // Reset the form after submission
+    //   form.resetForm();
+  
+    // }
+
+
 }
