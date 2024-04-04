@@ -9,6 +9,8 @@
 # Node
 /node_modules
 /src/assets/profilepic
+/src/assets/certificates
+/src/assets/nid
 npm-debug.log
 yarn-error.log
 
