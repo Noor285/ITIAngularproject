@@ -1,11 +1,15 @@
+import { UserService } from './../../../../Services/user.service';
 import { IAppointment } from './../../../../Models/appointment';
 import { Status } from './../../../../Enums/Status';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppStatus } from 'src/app/Enums/AppStatus';
 import { DoctorService } from 'src/app/Services/doctor.service';
 import { PatientService } from 'src/app/Services/patient.service';
+import { changePic } from 'src/app/Models/changePic';
+import { userInfo } from 'src/app/Models/userInfo';
+import { userBasicInfo } from 'src/app/Models/userBasicInfo';
 
 @Component({
   selector: 'app-doctor-appointment',
@@ -21,7 +25,7 @@ export class DoctorAppointmentComponent implements OnInit ,AfterViewInit {
   imgSrc : string = "assets/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg"
   dates : Date[] | null[] = [null,null,null,null,null,null,null]
   order : number | undefined ;
-  constructor(private activatedroute: ActivatedRoute,private _DoctorService:DoctorService,private router:Router,private _snackBar: MatSnackBar, private _PatientService:PatientService){
+  constructor(private _userService:UserService ,private activatedroute: ActivatedRoute,private _DoctorService:DoctorService,private router:Router,private _snackBar: MatSnackBar, private _PatientService:PatientService){
   
 }
     ngAfterViewInit(): void {
@@ -93,6 +97,59 @@ export class DoctorAppointmentComponent implements OnInit ,AfterViewInit {
     
     console.log();
   }
+
+  @ViewChild("file") file : ElementRef | undefined;
+  uploadEvent(){
+    
+    this.file?.nativeElement.click()
+  }
+
+  uploadPicture(e : Event){
+    let target = e.target as HTMLInputElement;
+    
+    let upload : changePic = {
+        id : this.id,
+        role: this.role,
+        file: target.files == null ? null : target.files[0]
+    }
+    let form : FormData = new FormData();
+    form.append("id",`${this.id}`);
+    form.append("role",this.role);
+    if(target.files)
+    form.append("file",target.files[0]);
+    this._userService.ChangeProfilePicture(form).subscribe((res)=>{
+        console.log(res)
+        this._DoctorService.getProfileDoc(this.docID).subscribe((res)=>{
+            this.docProfileData=res;
+            console.log(this.docProfileData);
+          })
+    },
+    (error)=>{
+        console.log(error)
+    })
+    
+  }
+
+  deletePicture(){
+    let user : userBasicInfo = {
+        id: this.id,
+        role: this.role
+    }
+
+    this._userService.DeleteProfilePicture(user).subscribe((res)=>{
+        console.log(res)
+        this._DoctorService.getProfileDoc(this.docID).subscribe((res)=>{
+            this.docProfileData=res;
+            console.log(this.docProfileData);
+          })
+    },
+    (error)=>{
+        console.log(error)
+    }
+    )
+  }
+
+
 
   
 }

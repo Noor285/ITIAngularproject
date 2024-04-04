@@ -1,8 +1,15 @@
 <div class="container">
-  <div class="row my-4 ">
+  <div class="row my-4 justify-content-center">
 
-    <div class="col-md-10  text-center">
-      <h1 class="doctorJob fw-bolder text-center"> Doctor's Profile </h1>
+    <div class="col-12  text-center">
+      <h1 class="doctorJob fw-bolder text-center">Profile</h1>
+    </div>
+    <div class="imgcontainer ">
+        <button (click)="deletePicture()" *ngIf="role == 'doctor' && docProfileData.doctor.picPath.split('profilepic')[1].split('.')[0] != 'defaultDoc'" class="btn btn-danger deleteBtn"><i class="bi bi-trash"></i></button>
+        <img class="mx-auto d-block profilePic col-12" [src]="'../../../../..'+docProfileData.doctor.picPath.split('/src')[1]" alt="Doctor's Profile Picture">
+        <button (click)="uploadEvent()" *ngIf="role == 'doctor'" class="btn btn-success uploadBtn"><i class="bi bi-upload"></i></button>
+        <input (input)="uploadPicture($event)" class="d-none" type="file" #file >
+        
     </div>
   </div>
   <div class="row  ">
@@ -42,8 +49,22 @@
         <p class="Pinfo text-center">{{docProfileData.doctor.address}}</p>
       </span>
     </div>
-    <div *ngIf="role == 'doctor'" class=" col-md-1">
-        <a name="editProfile" id="editProBtn"(click)="navDoc(docProfileData.doctor.id)" class="btn" role="button"> Edit your profile</a>
+    <ng-container *ngIf="role == 'doctor'">
+        <div class="col-md-6">
+            <h4 class="headColor fw-bolder"> Date of Birth </h4>
+            <span class="bg-light">
+              <p class="Pinfo text-center">{{docProfileData.doctor.dob | date}}</p>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <h4 class="headColor fw-bolder"> National ID </h4>
+            <span class="bg-light">
+              <p class="Pinfo text-center">{{docProfileData.doctor.nationalID}}</p>
+            </span>
+          </div>
+    </ng-container>
+    <div *ngIf="role == 'doctor'" class="col-12 text-center">
+        <a name="editProfile" id="editProBtn"(click)="navDoc(docProfileData.doctor.id)" class="btn w-50" role="button"> Edit Profile</a>
     </div>
   </div>
 

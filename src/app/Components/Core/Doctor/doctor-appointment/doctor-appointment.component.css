@@ -88,3 +88,35 @@ font-size: 20px;
 
 
 }
+
+.profilePic{
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    border: 1px solid;
+    text-align: center;
+}
+
+.uploadBtn{
+    position: absolute;
+    top: 162px;
+    left: 171px;
+    border-radius: 0;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.deleteBtn{
+    position: absolute;
+    top: 0px;
+    left: 171px;
+    border-radius: 0;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.imgcontainer{
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
