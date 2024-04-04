@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { userInfo } from '../Models/userInfo';
 import { ChangePass } from '../Models/changePass';
+import { changePic } from '../Models/changePic';
+import { userBasicInfo } from '../Models/userBasicInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +20,12 @@ export class UserService {
 
   ChangePassword(change : ChangePass) : Observable<ChangePass>{
     return this.httpClient.patch<ChangePass>('https://localhost:7013/api/User/changepassword',change)
+  }
+
+  ChangeProfilePicture(change : FormData) : Observable<FormData>{
+    return this.httpClient.patch<FormData>(`https://localhost:7013/api/User/changepfp`,change);
+  }
+  DeleteProfilePicture(deleteus : userBasicInfo) : Observable<userBasicInfo>{
+    return this.httpClient.patch<userBasicInfo>(`https://localhost:7013/api/User/deletepfp`,deleteus);
   }
 }
