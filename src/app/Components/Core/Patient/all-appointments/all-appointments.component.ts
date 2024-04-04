@@ -10,6 +10,7 @@ import { PatientService } from 'src/app/Services/patient.service';
   templateUrl: './all-appointments.component.html',
   styleUrls: ['./all-appointments.component.css']
 })
+
 export class AllAppointmentsComponent implements AfterViewInit {
 
     appointmentDocs! : ISingleDocAppointment[];
@@ -20,7 +21,7 @@ export class AllAppointmentsComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
   
-      this._PatientService.getAllAppointments(1).subscribe((res)=>{
+      this._PatientService.getAllAppointments(this.id).subscribe((res)=>{
         this.appointmentDocs = res;
         console.log(res);
       });
@@ -43,28 +44,5 @@ export class AllAppointmentsComponent implements AfterViewInit {
         formData.reset();
 
       }
-  
-
-    // showDialog() {
-  
-    //   this.rateDialog= true;
-    // }
-  
-  
-    // submitRating(form: any) {
-    //   // Process your form submission here
-    //   console.log("Submitted Rating:", this.selectedRating);
-    //   console.log("Additional Notes:", this.additionalNotes);
-    //   console.log(form.value);
-    //   // this._PatientService.postpatientRate(form.value).subscribe((res)=>{
-    //   //   console.log(res);
-    //   // });
-  
-  
-    //   // Reset the form after submission
-    //   form.resetForm();
-  
-    // }
-
 
 }

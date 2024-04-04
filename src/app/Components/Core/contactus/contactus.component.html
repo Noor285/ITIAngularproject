@@ -7,20 +7,25 @@
                     <p class="h4 mb-4">Contact us</p>
                     <!-- Name -->
                     <div class="Name">
-                        <input type="text" formControlName="name" class="form-control mb-4" placeholder="Name" id="validationCustom01" required 
-                        [ngClass]="{
-                          'is-valid': nameConttrol.valid,
-                          'is-invalid': (nameConttrol.errors && (nameConttrol.touched || (nameConttrol.value && nameConttrol.value.includes(' ')))) ||(isSubmitted && !nameConttrol.valid)
-                        }"/>
-                       
+                        <input 
+                            type="text" formControlName="from_name" class="form-control mb-4" placeholder="Name" id="validationCustom01" required 
+                            [ngClass]="{
+                                'is-valid': nameConttrol.valid,
+                                'is-invalid': (nameConttrol.errors && (nameConttrol.touched || (nameConttrol.value && nameConttrol.value.includes(' ')))) || (nameConttrol.errors && nameConttrol.errors['pattern']) || (isSubmitted && !nameConttrol.valid)
+                            }"/>
+                                           
                         <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Name is required and must be greater than 3 letters</div>
+                        <div class="invalid-feedback">
+                            <span *ngIf="nameConttrol.errors?.['required']">Name is required and must be greater than 3 letters</span>
+                            <span *ngIf="nameConttrol.errors?.['pattern']">Name must contain only letters and spaces</span>
+                        </div>
                     </div>
                    
           
                     <!-- Email -->
                     <div class="Email">
-                        <input type="email" formControlName="email" class="form-control mb-4" placeholder="Email" id="validationCustom02" required 
+                        <input
+                        type="email"  formControlName="from_email" class="form-control mb-4" placeholder="Email" id="validationCustom02" required 
                         [ngClass]="{
                           'is-valid': emailConttrol.valid,
                           'is-invalid': (emailConttrol.errors && (emailConttrol.touched || (emailConttrol.value && emailConttrol.value.includes(' ')))) ||(isSubmitted && !emailConttrol.valid)
@@ -41,6 +46,8 @@
                     <div class="invalid-feedback">Message is required and must be greater than 7 letters </div>
                 
                     </div>
+
+                    <!-- {{contactForm.value | json}} -->
                     
                    
                     <!-- Send button -->

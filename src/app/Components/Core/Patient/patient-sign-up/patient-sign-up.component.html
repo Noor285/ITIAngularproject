@@ -6,6 +6,9 @@
             <div class="col-md-5">
                 <div class="login-container m-5">
                     <p class="h1" style="color: #1A998E;">Sign-up</p>
+                    <div *ngIf="showAlert" class="alert alert-success container ml-5 w-75" role="alert">
+                        Sign Up is Successfully.
+                    </div>
                     <form (ngSubmit)="handleAdd(createForm)" class="m-3" [formGroup]="createForm">
                         <!-- ----------------------- Name ----------------------- -->
                         <div class="mb-3">
@@ -42,12 +45,12 @@
 
                         <div class="mb-3">
                             <label for="password" class="mb-2">Password</label>
-                                <div class="input-group">
-                                    <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"
+                            <div class="input-group">
+                                <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"
                                     id="password" class="form-control" />
-                                    <span class="input-group-text" (click)="togglePasswordVisibility()">
-                                        <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
-                                    </span>
+                                <span class="input-group-text" (click)="togglePasswordVisibility('password')">
+                                    <i class="{{ showPassword ? 'far fa-eye' : 'far fa-eye-slash' }} text-main"></i>
+                                </span>
                             </div>
 
                             <div *ngIf="createForm.get('password')?.errors && createForm.get('password')?.touched"
@@ -74,12 +77,13 @@
                         <div class="form-group mb-3">
                             <label for="confirmPassword" class="mb-2">Confirm Password</label>
                             <div class="input-group">
-                                
-                                    <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="confirmPassword"
-                                    class="form-control" />
-                                    <span class="input-group-text" (click)="togglePasswordVisibility()">
-                                        <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
-                                    </span>
+
+                                <input type="{{ showConfirmPassword ? 'text' : 'password' }}"
+                                    formControlName="confirmPassword" class="form-control" />
+                                <span class="input-group-text" (click)="togglePasswordVisibility('confirmPassword')">
+                                    <i
+                                        class="{{ showConfirmPassword ? 'far fa-eye' : 'far fa-eye-slash' }} text-main"></i>
+                                </span>
                             </div>
 
                             <div *ngIf="createForm.get('confirmPassword')?.errors && createForm.get('confirmPassword')?.touched"

@@ -50,6 +50,7 @@ export class PatientService {
     getpatientProfileById(patientId: number): Observable<any> {
         return this.httpClient.get<IPatient>(`https://localhost:7013/api/Patient/${patientId}`);
     }
+    
     postpatientRate(bodyOfreview: any): Observable<IPatient> {
         return this.httpClient.post<IPatient>(`https://localhost:7013/api/Patient/Review/Add`, bodyOfreview);
     }

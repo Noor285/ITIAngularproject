@@ -8,6 +8,7 @@ import { IDoctor } from 'src/app/Models/i-doctor';
 import { AuthService } from 'src/app/Services/auth.service';
 import { DoctorService } from 'src/app/Services/doctor.service';
 
+
 @Component({
     selector: 'app-doctor-sign-up',
     templateUrl: './doctor-sign-up.component.html',
@@ -121,41 +122,47 @@ export class DoctorSignUpComponent implements OnInit, AfterViewInit {
         })
     }
 
+    showAlert: boolean = false;
 
     handleAdd(createForm: FormGroup) {
-        console.log(createForm.value);
-        if (createForm.valid) {
-            createForm.value.Gender = +createForm.value.Gender;
-            createForm.value.Status = +createForm.value.Status;
-            createForm.value.SpecialityID = +createForm.value.SpecialityID;
-            let doctor: IDoctor = createForm.value;
-            let doctorAdd: IDoctorAdd = {
-                Doctor: doctor,
-                password: createForm.value.password
-            };
+        this.showAlert = true;
+            console.log(createForm.value);
+            if (createForm.valid) {
+                createForm.value.Gender = +createForm.value.Gender;
+                createForm.value.Status = +createForm.value.Status;
+                createForm.value.SpecialityID = +createForm.value.SpecialityID;
+                let doctor: IDoctor = createForm.value;
+                let doctorAdd: IDoctorAdd = {
+                    Doctor: doctor,
+                    password: createForm.value.password
+                };
 
-
-            this.doctorService.addDoctor(doctorAdd).subscribe({
-                next: (response) => {
-                    console.log('Doctor added successfully:', response);
-                    this.router.navigate(['/signin']);
-                },
-                error: (error) => {
-                    console.error(error);
-                    this.apiError = error.error;
-                }
-            });
-        }
-        else {
-            this.createForm.markAllAsTouched();
-        }
+                this.doctorService.addDoctor(doctorAdd).subscribe({
+                    next: (response) => {
+                        console.log('Doctor added successfully:', response);
+                        this.router.navigate(['/signin']);
+                    },
+                    error: (error) => {
+                        console.error(error);
+                        this.apiError = error.error;
+                    }
+                });
+            }
+            else {
+                this.createForm.markAllAsTouched();
+            }
     }
 
 
     showPassword: boolean = false;
+    showConfirmPassword: boolean = false;
 
-    togglePasswordVisibility(): void {
-        this.showPassword = !this.showPassword;
+    togglePasswordVisibility(field: string): void {
+        if (field === 'password') {
+            this.showPassword = !this.showPassword;
+        } else if (field === 'confirmPassword') {
+            this.showConfirmPassword = !this.showConfirmPassword;
+        }
     }
 
     passwordMatchValidator(formGroup: FormGroup) {

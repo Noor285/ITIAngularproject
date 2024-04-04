@@ -6,6 +6,9 @@
         <div *ngIf="apiError.length > 0" class="text-danger mt-3">
           {{apiError}}
         </div>
+        <div *ngIf="showAlert == true" class="alert alert-success container ml-5 w-75" role="alert">
+            Sign Up is Successfully.
+        </div>
       </div>
 
       <div class="card-body">
@@ -39,7 +42,7 @@
                     <div class="input-group">
                         <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" id="password" class="form-control" />
                         <span class="input-group-text" (click)="togglePasswordVisibility()">
-                            <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
+                            <i class="{{ showPassword ? 'far fa-eye' : 'far fa-eye-slash' }} text-main"></i>
                         </span>
                     </div>
                 </div>

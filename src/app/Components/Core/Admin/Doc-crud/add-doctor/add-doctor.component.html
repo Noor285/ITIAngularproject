@@ -68,7 +68,7 @@
                     <!-- ----------------------- National ID ----------------------- -->
                     <div class="mb-3">
                         <label for="NationalID" class="mb-2">National ID</label>
-                        <input type="number" formControlName="NationalID" id="NationalID" class="form-control"
+                        <input type="text" formControlName="NationalID" id="NationalID" class="form-control"
                             maxlength="14" (input)="enforceMinMaxNationalID($event)" />
 
                         <div *ngIf="createForm.get('NationalID')?.errors && createForm.get('NationalID')?.touched"
@@ -167,7 +167,7 @@
                     <!-- ----------------------- Phone  ----------------------- -->
                     <div class="mb-3">
                         <label for="Phone" class="mb-2">Phone</label>
-                        <input type="number" formControlName="Phone" id="Phone" class="form-control"
+                        <input type="tel" formControlName="Phone" id="Phone" class="form-control"
                             (input)="enforceMinMaxPhone($event)" />
 
                         <div *ngIf="createForm.get('Phone')?.errors && createForm.get('Phone')?.touched"

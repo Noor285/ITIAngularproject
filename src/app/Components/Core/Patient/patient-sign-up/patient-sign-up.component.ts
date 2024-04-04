@@ -36,7 +36,10 @@ export class PatientSignUpComponent {
         }, { validator: this.passwordMatchValidator });
     }
 
+    showAlert: boolean = false;
+
     handleAdd(createForm: FormGroup) {
+        this.showAlert = true;
         if (createForm.valid) {
             createForm.value.gender = +createForm.value.gender;
             createForm.value.status = +createForm.value.status;
@@ -75,9 +78,14 @@ export class PatientSignUpComponent {
     }
 
     showPassword: boolean = false;
+    showConfirmPassword: boolean = false;
 
-    togglePasswordVisibility(): void {
-        this.showPassword = !this.showPassword;
+    togglePasswordVisibility(field: string): void {
+        if (field === 'password') {
+            this.showPassword = !this.showPassword;
+        } else if (field === 'confirmPassword') {
+            this.showConfirmPassword = !this.showConfirmPassword;
+        }
     }
 
     passwordMatchValidator(formGroup: FormGroup) {

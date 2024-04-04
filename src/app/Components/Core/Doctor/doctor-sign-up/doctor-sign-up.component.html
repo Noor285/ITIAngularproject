@@ -6,6 +6,9 @@
                 <div *ngIf="apiError.length > 0" class="text-danger mt-3">
                     {{apiError}}
                 </div>
+                <div *ngIf="showAlert" class="alert alert-success container ml-5 w-75" role="alert">
+                    Sign Up is Successfully.
+                </div>
             </div>
 
             <div class="card-body">
@@ -54,9 +57,9 @@
                             <div class="input-group">
                                 <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"
                                     id="password" class="form-control" />
-                                    <span class="input-group-text" (click)="togglePasswordVisibility()">
-                                        <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
-                                    </span>
+                                <span class="input-group-text" (click)="togglePasswordVisibility('password')">
+                                    <i class="{{ showPassword ? 'far fa-eye' : 'far fa-eye-slash' }} text-main"></i>
+                                </span>
                             </div>
 
                             <div *ngIf="createForm.get('password')?.errors && createForm.get('password')?.touched"
@@ -83,11 +86,12 @@
                         <div class="form-group mb-3">
                             <label for="confirmPassword" class="mb-2">Confirm Password</label>
                             <div class="input-group">
-                                <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="confirmPassword"
-                                    class="form-control" />
-                                    <span class="input-group-text" (click)="togglePasswordVisibility()">
-                                        <i class="{{ showPassword ? 'fas fa-eye' : 'fas fa-eye-slash' }} text-main"></i>
-                                    </span>
+                                <input type="{{ showConfirmPassword ? 'text' : 'password' }}"
+                                    formControlName="confirmPassword" class="form-control" />
+                                <span class="input-group-text" (click)="togglePasswordVisibility('confirmPassword')">
+                                    <i
+                                        class="{{ showConfirmPassword ? 'far fa-eye' : 'far fa-eye-slash' }} text-main"></i>
+                                </span>
                             </div>
 
                             <div *ngIf="createForm.get('confirmPassword')?.errors && createForm.get('confirmPassword')?.touched"
@@ -251,7 +255,7 @@
                         <!-- ----------------------- Phone  ----------------------- -->
                         <div class="mb-3">
                             <label for="Phone" class="mb-2">Phone</label>
-                            <input type="text" formControlName="Phone" id="Phone" class="form-control"
+                            <input type="tel" formControlName="Phone" id="Phone" class="form-control"
                                 (input)="enforceMinMaxPhone($event)" />
 
                             <div *ngIf="createForm.get('Phone')?.errors && createForm.get('Phone')?.touched"
@@ -264,7 +268,7 @@
                             </div>
                         </div>
 
-                        
+
                     </div>
 
                     <div class="col-md-1"></div>
