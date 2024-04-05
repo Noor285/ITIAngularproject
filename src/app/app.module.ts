@@ -64,6 +64,7 @@ import { DoctorHomeComponent } from './Components/Core/Doctor/doctor-home/doctor
 import { ChangePasswordComponent } from './Components/Shared/change-password/change-password.component';
 import { DoctorAppointmentsComponent } from './Components/Core/Doctor/doctor-appointments/doctor-appointments.component';
 import { EditSchedualComponent } from './Components/Core/Doctor/edit-schedual/edit-schedual.component';
+import { CarouselModule } from 'primeng/carousel';
 
 
 @NgModule({
@@ -139,7 +140,8 @@ import { EditSchedualComponent } from './Components/Core/Doctor/edit-schedual/ed
     MatDialogModule,
     MatOptionModule,
     DatePipe,
-    DialogModule
+    DialogModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

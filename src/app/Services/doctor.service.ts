@@ -78,5 +78,12 @@ export class DoctorService {
       return this.httpClient.put<any>('https://localhost:7013/api/Doctor/Schedule/Edit', scheduleData);
     }
   
+    addCertificate(cert:FormData): Observable<FormData>{
+        return this.httpClient.post<FormData>('https://localhost:7013/api/Doctor/Document/Add',cert)
+    }
+
+    deleteCertificate(certID:number): Observable<number>{
+        return this.httpClient.delete<number>(`https://localhost:7013/api/Doctor/Document/Delete/${certID}`)
+    }
 
 }
