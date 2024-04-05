@@ -28,15 +28,15 @@ export class AllAppointmentsComponent implements AfterViewInit {
     }
    
     public rateForm:FormGroup = new FormGroup({
-        rating:new FormControl(""),
-        discription:new FormControl(""),
+        score:new FormControl(""),
+        notes:new FormControl(""),
       });
     
     
     
       submitRating(formData:FormGroup){
-        console.log(formData.value.rating);
-        console.log("Additional Notes:", formData.value.discription);
+        console.log(formData.value.score);
+        console.log("Additional Notes:", formData.value.notes);
         this._PatientService.postpatientRate(formData.value).subscribe((res)=>{
                 console.log(res);
               });
