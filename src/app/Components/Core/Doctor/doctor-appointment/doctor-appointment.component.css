@@ -120,3 +120,52 @@ font-size: 20px;
     height: 200px;
     position: relative;
 }
+
+.cert {
+    width: 300px;
+    height: 300px;
+}
+
+.cert:hover {
+    box-shadow: 0 0 20px 5px rgba(26,153,142,0.7);
+}
+
+:host ::ng-deep {
+    .product-item {
+        .product-item-content {
+            border: 1px solid var(--surface-d);
+            border-radius: 3px;
+            margin: .3rem;
+            text-align: center;
+            padding: 2rem 0;
+        }
+    
+        .product-image {
+            width: 50%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+        }
+    }
+}
+
+.uploadCert{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border-radius: 0;
+    border-top-right-radius: var(--bs-card-border-radius);
+    border-bottom-left-radius: var(--bs-card-border-radius);
+}
+
+.deleteCert{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border-radius: 0;
+    border-bottom-left-radius: var(--bs-border-radius);
+}
+
+.certContain{
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
