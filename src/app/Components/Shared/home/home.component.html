@@ -1,98 +1,59 @@
 <header class="secondHome" [ngStyle]="{'background': 'url(' + backgroundUrl + ') no-repeat 0 0 / cover'}">
-  <div class="container py-3">
-    <div class="row py-5">
-        <div class="col-lg-6">
-            <div class="mt-5">
-                <p class="h1">Welcome to our website!</p>
-                <p class="h6">At TABEBK , we're dedicated to simplifying your healthcare experience.</p>
-                <p class="h6"> Just like Vezeeta, we strive to connect you with trusted healthcare professionals and
-                    facilitate seamless appointments.
-                </p>
-                <p class="h6"> Whether you're looking for a doctor's appointment, seeking specialist care, or scheduling a
-                    check-up, we've got you covered.
-                </p>
-                <p class="h6"> Our user-friendly platform is designed to make booking appointments effortless, saving you
-                    time and hassle. Explore our services today and take the first step towards prioritizing your health with
-                    ease.
-                </p>
+    <div class="container py-3">
+        <div class="row py-5">
+            <div class="col-lg-6">
+                <div class="mt-5">
+                    <p class="h1">Welcome to our website!</p>
+                    <p class="h6">At TABEBK , we're dedicated to simplifying your healthcare experience.</p>
+                    <p class="h6"> Just like Vezeeta, we strive to connect you with trusted healthcare professionals and
+                        facilitate seamless appointments.
+                    </p>
+                    <p class="h6"> Whether you're looking for a doctor's appointment, seeking specialist care, or
+                        scheduling a
+                        check-up, we've got you covered.
+                    </p>
+                    <p class="h6"> Our user-friendly platform is designed to make booking appointments effortless,
+                        saving you
+                        time and hassle. Explore our services today and take the first step towards prioritizing your
+                        health with
+                        ease.
+                    </p>
+                </div>
             </div>
-          </div>
-      <div class="col-md-6">
-        <img class="w-100 my-2 py-3 img-home " src="assets/doctor/cuate.png" alt="PicOfHome">
-      </div>
+            <div class="col-md-6">
+                <img class="w-100 my-2 py-3 img-home " src="assets/doctor/cuate.png" alt="PicOfHome">
+            </div>
+        </div>
     </div>
-  </div>
 </header>
 
 
 
-<div class="container">
-  <div class="row py-2 my-3">
-    <div class="row py-2 my-3">
-      <div class="text-center">
-        <h2 class="text-danger  fw-bolder ">Our Doctors</h2>
+<div class="card my-5">
+    <div class="text-center">
         <h1 class="headingDocCard py-4 my-3 fw-bolde">Meet Our Professional Doctors</h1>
+    </div>
+    <p-carousel [value]="Doctors" [numVisible]="3" [numScroll]="3" [circular]="false"
+        [responsiveOptions]="responsiveOptions">
+        <ng-template let-doc pTemplate="item">
+            <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                <div class="mb-3">
+                    <img [src]="imgSrc" [alt]="doc.name" class="w-6 shadow-2" />
+                </div>
+                <div>
+                    <p class="h1 mt-0 mb-3">Dr.{{doc['doctor'].name}}</p>
 
-      </div>
-    </div>
-    <div id="carouselExampleInterval" class="carousel slide w-50 m-auto" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-          <div class="row">
-            <div class="col-md col-sm-6">
-              <div class="card text-center w-100">
-                <!-- <img [src]="imgSrc" class="card-img-top w-100" alt="doc1"> -->
-                <div class="card-body">
-                  <p class="card-title fw-bolder fs-5">Dr:&nbsp;Ahmed Gamal</p>
-                  <h6 class="fw-bolder"><i class="fa fa-map-marker py-2"></i> Beni-Suif</h6>
-                  <h6 class="fw-bolder fs-5 text-success">TotalRate :&nbsp;4</h6>
-                  <a routerLink="/signin" class="btn btn-primary">See more</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-          <div class="row">
-            <div class="col-md col-sm-6">
-                <div class="card text-center w-100">
-                    <!-- <img [src]="imgSrc" class="card-img-top w-100" alt="doc1"> -->
-                    <div class="card-body">
-                      <p class="card-title fw-bolder fs-5">Dr:&nbsp;Ahmed Gamal</p>
-                      <h6 class="fw-bolder"><i class="fa fa-map-marker py-2"></i> Beni-Suif</h6>
-                      <h6 class="fw-bolder fs-5 text-success">TotalRate :&nbsp;4</h6>
-                      <a routerLink="/signin" class="btn btn-primary">See more</a>
+                    <p class="h4 mb-1">Speciality: {{doc['speciality'].name}}</p>
+                    <p class="h5 mt-0 mb-3">Dr.{{doc['doctor'].description}}</p>
+                    <p class="h5 mt-0 mb-3">Dr.{{doc['doctor'].governance}}</p>
+
+                    <a [routerLink]="['/doctor' , 'profile' , doc['doctor'].id]" class="btn btn-send ">Show Doctor</a>
+
+                    <div class="mt-5 flex align-items-center justify-content-center gap-2">
+
                     </div>
-                  </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col-md col-sm-6">
-              <div class="card text-center w-100">
-                <!-- <img [src]="imgSrc" class="card-img-top w-100" alt="doc1"> -->
-                <div class="card-body">
-                  <p class="card-title fw-bolder fs-5">Dr:&nbsp;</p>
-                  <h6 class="fw-bolder"><i class="fa fa-map-marker py-2"></i> </h6>
-                  <h6 class="fw-bolder fs-5 text-success">TotalRate :&nbsp;</h6>
-                  <a class="btn btn-primary">See more</a>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-  </div>
+        </ng-template>
+    </p-carousel>
 </div>

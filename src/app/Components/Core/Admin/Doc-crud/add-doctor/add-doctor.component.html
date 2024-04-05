@@ -133,8 +133,7 @@
 
                         <select formControlName="SpecialityID" class="form-select form-select-md mb-3">
 
-                            <option *ngFor="let speciality of specialities" [value]="speciality.id ">{{ speciality.name
-                                }}
+                            <option *ngFor="let speciality of specialities" [value]="speciality.id ">{{ speciality.name }}
                             </option>
 
                         </select>
@@ -143,6 +142,20 @@
                             class="text-danger m-1">
                             <p *ngIf="createForm.get('SpecialityID')?.getError('required')" class="m-0">speciality is
                                 Required</p>
+                        </div>
+                    </div>
+
+                      <!-- ----------------------- Description  ----------------------- -->
+                      <div class="mb-3">
+                        <label for="Description" class="mb-2">Description</label>
+                        <input type="text" formControlName="Description" id="Description" class="form-control" />
+
+                        <div *ngIf="createForm.get('Description')?.errors && createForm.get('Description')?.touched"
+                            class="text-danger m-1">
+                            <p *ngIf="createForm.get('Description')?.getError('pattern')" class="m-0">Description must be 11 digits
+                                and must start
+                                with 010 or 011 or 012 or 015</p>
+                            <p *ngIf="createForm.get('Description')?.getError('required')" class="m-0">Description is Required</p>
                         </div>
                     </div>
 

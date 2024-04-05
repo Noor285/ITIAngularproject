@@ -81,6 +81,7 @@ export class AddDoctorComponent implements OnInit, AfterViewInit {
         password: new FormControl(null),
         NationalID: new FormControl(null, [Validators.required, Validators.pattern(/^[0-9]{14}$/)]),
         SpecialityID: new FormControl(null, [Validators.required]),
+        Description : new FormControl(null),
         DOB: new FormControl(null, [Validators.required]),
         Gender: new FormControl(Gender.Male, [Validators.required]),
         Governance: new FormControl("Monufia", [Validators.required]),
@@ -88,6 +89,7 @@ export class AddDoctorComponent implements OnInit, AfterViewInit {
         Phone: new FormControl(null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
         AppointmentPrice: new FormControl(null, [Validators.required, Validators.min(100), Validators.max(5000)]),
         Status: new FormControl(Status.Active),
+        picPath:new FormControl(null),
     })
 
     specialities: any = [];
@@ -123,6 +125,8 @@ export class AddDoctorComponent implements OnInit, AfterViewInit {
             createForm.value.Gender = +createForm.value.Gender;
             createForm.value.Status = +createForm.value.Status;
             createForm.value.SpecialityID = +createForm.value.SpecialityID;
+            // createForm.value.Description = +createForm.value.Description;
+            // createForm.value.PicPath = 'assets/profilepic/defaultDoc.png';
             createForm.value.password = "123456789sS";
             let doctor: IDoctor = createForm.value;
             let doctorAdd: IDoctorAdd = {

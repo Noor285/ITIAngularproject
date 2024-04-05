@@ -41,24 +41,30 @@
     </div>
 </header>
 
-<div class="container mt-5 py-5">
-    <div class="row">
-        <div class="text-center py-5 my-5">
-            <p class="headingDocCard  fw-bolde h1">Meet Our Professional Doctors</p>
-        </div>
+<div class="card my-5">
+    <div class="text-center">
+        <h1 class="headingDocCard py-4 my-3 fw-bolde">Meet Our Professional Doctors</h1>
+    </div>
+    <p-carousel [value]="Doctors" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template let-doc pTemplate="item">
+            <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                <div class="mb-3">
+                    <img [src]="imgSrc" [alt]="doc.name" class="w-6 shadow-2" />
+                </div>
+                <div>
+                    <p class="h1 mt-0 mb-3">Dr.{{doc['doctor'].name}}</p>
 
-        <div class="col-6 mb-5" *ngFor="let doc of Doctors">
+                    <p class="h4 mb-1">Speciality: {{doc['speciality'].name}}</p>
+                    <p class="h5 mt-0 mb-3">Dr.{{doc['doctor'].description}}</p>
+                    <p class="h5 mt-0 mb-3">Dr.{{doc['doctor'].governance}}</p>
 
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-title h1">Dr.{{doc['doctor'].name}}</p>
-                    <p class="card-title h4">Speciality: {{doc['speciality'].name}}</p>
-                    <p class="card-title h4">Governance: {{doc['doctor'].governance}}</p>
-                    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p> -->
-                    <a [routerLink]= "['/doctor' , 'profile' , doc['doctor'].id]" class="btn btn-send ">Show Doctor</a>
+                    <a [routerLink]="['/doctor' , 'profile' , doc['doctor'].id]" class="btn btn-send ">Show Doctor</a>
+
+                    <div class="mt-5 flex align-items-center justify-content-center gap-2">
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </ng-template>
+    </p-carousel>
 </div>

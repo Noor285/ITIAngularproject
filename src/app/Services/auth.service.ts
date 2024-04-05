@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { Observable , BehaviorSubject} from 'rxjs';
 import { userInfo } from '../Models/userInfo';
+import { ChangePass } from '../Models/changePass';
 
 @Injectable({
   providedIn: 'root'
@@ -27,17 +28,8 @@ export class AuthService {
     return this.httpClient.post(`https://localhost:7013/api/User/Login`, userData)
   }
 
-  changePassword(userData:userInfo):Observable<any>
-  {
-    // const resetPasswordViewModel = {
-    //     OldPassword : userData.oldpass,
-    //     Password : userData.newPass,
-    //     ConfirmPassword : userData.newPass,
-    //     Email : userData.email,
-    //     Role : userData.role
-
-    // }
-    return this.httpClient.patch(`https://localhost:7013/api/User/changepassword`, userData)
+  ChangePassword(change : ChangePass) : Observable<ChangePass>{
+    return this.httpClient.patch<ChangePass>('https://localhost:7013/api/User/changepassword',change)
   }
 
 }

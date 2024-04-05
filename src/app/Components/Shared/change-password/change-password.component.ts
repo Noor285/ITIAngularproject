@@ -18,7 +18,7 @@ export class ChangePasswordComponent {
     apiError: string = '';
 
     id: any = localStorage.getItem("id") ?? "";
-    role: any = localStorage.getItem("role") ?? "";
+    userRole: any = localStorage.getItem("role") ?? "";
 
     changeForm: FormGroup;
 
@@ -27,7 +27,7 @@ export class ChangePasswordComponent {
         // , Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*)(?=.*[^\s]).{8,}$/)]
         this.changeForm = this.fb.group({
             userID: this.id,
-            userRole: this.role,
+            userRole: this.userRole,
             password: [null, [Validators.required]],
             newPassword: [null, [Validators.required]],
             // confirmPassword: [null, [Validators.required]],
@@ -40,14 +40,14 @@ export class ChangePasswordComponent {
         this.showAlert = true;
         if (this.changeForm.valid) {
             console.log(this.changeForm.value);
-            this.authService.changePassword(this.changeForm.value).subscribe({
+            this.authService.ChangePassword(this.changeForm.value).subscribe({
                 next: (Response) => {
                     console.log(Response);
 
-                    if (Response.role === 'doctor') {
+                    if (Response.userRole === 'doctor') {
                         this.router.navigate(['/doctor/home'])
                     }
-                    if (Response.role === 'patient') {
+                    if (Response.userRole === 'patient') {
                         console.log(this.changeForm.value);
                         this.router.navigate(['/patient/home'])
                     }

@@ -61,6 +61,7 @@ export class DoctorSignUpComponent implements OnInit, AfterViewInit {
             confirmPassword: [null, [Validators.required]],
             NationalID: [null, [Validators.required, Validators.pattern(/^[0-9]{14}$/)]],
             SpecialityID: [null, [Validators.required]],
+            Description: [null],
             DOB: [null, [Validators.required]],
             Gender: [Gender.Male, [Validators.required]],
             Governance: ["Monufia", [Validators.required]],
@@ -68,6 +69,7 @@ export class DoctorSignUpComponent implements OnInit, AfterViewInit {
             Phone: [null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]],
             AppointmentPrice: [null, [Validators.required, Validators.min(100), Validators.max(5000)]],
             Status: [Status.Active],
+            picPath:[null],
         }, { validator: this.passwordMatchValidator });
     }
 
@@ -125,32 +127,33 @@ export class DoctorSignUpComponent implements OnInit, AfterViewInit {
     showAlert: boolean = false;
 
     handleAdd(createForm: FormGroup) {
-        this.showAlert = true;
-            console.log(createForm.value);
-            if (createForm.valid) {
-                createForm.value.Gender = +createForm.value.Gender;
-                createForm.value.Status = +createForm.value.Status;
-                createForm.value.SpecialityID = +createForm.value.SpecialityID;
-                let doctor: IDoctor = createForm.value;
-                let doctorAdd: IDoctorAdd = {
-                    Doctor: doctor,
-                    password: createForm.value.password
-                };
+        // this.showAlert = true;
+        console.log(createForm.value);
+        if (createForm.valid) {
+            createForm.value.Gender = +createForm.value.Gender;
+            createForm.value.Status = +createForm.value.Status;
+            createForm.value.SpecialityID = +createForm.value.SpecialityID;
+            let doctor: IDoctor = createForm.value;
+            let doctorAdd: IDoctorAdd = {
+                Doctor: doctor,
+                password: createForm.value.password
+            };
 
-                this.doctorService.addDoctor(doctorAdd).subscribe({
-                    next: (response) => {
-                        console.log('Doctor added successfully:', response);
-                        this.router.navigate(['/signin']);
-                    },
-                    error: (error) => {
-                        console.error(error);
-                        this.apiError = error.error;
-                    }
-                });
-            }
-            else {
-                this.createForm.markAllAsTouched();
-            }
+            this.doctorService.addDoctor(doctorAdd).subscribe({
+                next: (response) => {
+                    console.log('Doctor added successfully:', response);
+                    this.showAlert = true;
+                    this.router.navigate(['/signin']);
+                },
+                error: (error) => {
+                    console.error(error);
+                    this.apiError = error.error;
+                }
+            });
+        }
+        else {
+            this.createForm.markAllAsTouched();
+        }
     }
 
 
