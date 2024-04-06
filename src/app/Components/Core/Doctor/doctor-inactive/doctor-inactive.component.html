@@ -17,7 +17,7 @@
             <div class="imgcontainer">
                 <button (click)="uploadCertEvent()" *ngIf="!cert" class="btn btn-success uploadBtn"><i
                         class="bi bi-upload"></i></button>
-                <!-- <input (input)="uploadCert($event)" class="d-none" type="file" #certAdd> -->
+                <input (input)="uploadCert($event)" class="d-none" type="file" #certAdd>
                 <img [src]="certificates[0] ? '../../../../..'+certificates[0].path.split('/src')[1] : ''" alt="" class="imgcontainer" [ngClass]="{
                     'd-none': !cert,
                 }">

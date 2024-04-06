@@ -68,25 +68,25 @@ export class DoctorInactiveComponent implements OnInit {
         });
     }
 
-    // uploadCert(e: Event) {
-    //     let target = e.target as HTMLInputElement;
-    //     let form: FormData = new FormData();
-    //     form.append("doctorID", `${this.id}`);
-    //     if (target.files)
-    //         form.append("document", target.files[0]);
-    //     form.append("doctype", `${DocumentType.Certificate}`);
-    //     this.docService.addCertificate(form).subscribe((res) => {
-    //         console.log(res)
-    //         this.docService.GetNidCert(this.id).subscribe((res) => {
-    //             console.log(res);
-    //             this.nid = res.nid != null;
-    //             this.cert = res.certificates != null;
-    //             this.certificates = res.certificates;
-    //             this.nidDoc = res.nid;
-    //         },
-    //             (err) => {
-    //                 console.log(err);
-    //             });
-    //     });
-    // }
+    uploadCert(e: Event) {
+        let target = e.target as HTMLInputElement;
+        let form: FormData = new FormData();
+        form.append("doctorID", `${this.id}`);
+        if (target.files)
+            form.append("document", target.files[0]);
+        form.append("doctype", `${DocumentType.Certificate}`);
+        this.docService.addCertificate(form).subscribe((res) => {
+            console.log(res)
+            this.docService.GetNidCert(this.id).subscribe((res) => {
+                console.log(res);
+                this.nid = res.nid != null;
+                this.cert = res.certificates != null;
+                this.certificates = res.certificates;
+                this.nidDoc = res.nid;
+            },
+                (err) => {
+                    console.log(err);
+                });
+        });
+    }
 }
