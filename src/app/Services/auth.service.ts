@@ -1,3 +1,4 @@
+import { Status } from './../Enums/Status';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { Observable , BehaviorSubject} from 'rxjs';
@@ -11,6 +12,7 @@ export class AuthService {
 
    userData!: userInfo;
    role : string = localStorage.getItem("role") ?? "";
+   status : Status = parseInt(localStorage.getItem("status") ?? "") as Status;
 
   constructor(private httpClient:HttpClient) { }
 
@@ -21,6 +23,14 @@ export class AuthService {
 
   public setRole(role:string){
     this.role = role;
+  }
+
+  public setStatus(status:Status){
+    this.status = status
+  }
+
+  public returnStatus(){
+    return this.status;
   }
 
   PatientAndDoctorSignIn(userData:userInfo):Observable<any>

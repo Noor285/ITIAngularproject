@@ -86,4 +86,8 @@ export class DoctorService {
         return this.httpClient.delete<number>(`https://localhost:7013/api/Doctor/Document/Delete/${certID}`)
     }
 
+    GetNidCert(docID:number) : Observable<any>{
+        return this.httpClient.get<any>(`https://localhost:7013/Document/nid&cert/${docID}`);
+    }
+
 }
