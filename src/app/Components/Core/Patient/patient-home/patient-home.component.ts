@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IDoctor } from 'src/app/Models/i-doctor';
 import { DoctorService } from 'src/app/Services/doctor.service';
@@ -8,13 +8,14 @@ import { DoctorService } from 'src/app/Services/doctor.service';
   templateUrl: './patient-home.component.html',
   styleUrls: ['./patient-home.component.css']
 })
-export class PatientHomeComponent {
+export class PatientHomeComponent implements AfterViewInit {
 
     backgroundUrl: any = 'assets/home/Vector.png';
 
     Doctors: IDoctor[] = [];
 
     constructor(private doctorService: DoctorService ,private router :Router) {}
+
 
 
     ngAfterViewInit(): void {

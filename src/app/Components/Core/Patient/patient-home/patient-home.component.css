@@ -105,6 +105,11 @@
     border: #1A998E 2px solid;
     border-radius: 20px;
   }
+
+  .imgcontainer{
+    width: 200px;
+    height: 200px;
+  }
   
   
   

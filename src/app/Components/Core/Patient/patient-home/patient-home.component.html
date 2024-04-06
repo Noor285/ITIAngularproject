@@ -49,14 +49,14 @@
         <ng-template let-doc pTemplate="item">
             <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
                 <div class="mb-3">
-                    <img [src]="imgSrc" [alt]="doc.name" class="w-6 shadow-2" />
+                    <img [src]="'../../../../..'+doc['doctor'].picPath.split('/src')[1]" [alt]="doc.name" class="w-6 imgcontainer shadow-2" />
                 </div>
                 <div>
                     <p class="h1 mt-0 mb-3">Dr.{{doc['doctor'].name}}</p>
 
                     <p class="h4 mb-1">Speciality: {{doc['speciality'].name}}</p>
-                    <p class="h5 mt-0 mb-3">Dr.{{doc['doctor'].description}}</p>
-                    <p class="h5 mt-0 mb-3">Dr.{{doc['doctor'].governance}}</p>
+                    <p class="h5 mt-0 mb-3">{{doc['doctor'].description}}</p>
+                    <p class="h5 mt-0 mb-3">{{doc['doctor'].governance}}</p>
 
                     <a [routerLink]="['/doctor' , 'profile' , doc['doctor'].id]" class="btn btn-send ">Show Doctor</a>
 
