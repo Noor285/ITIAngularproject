@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Status } from 'src/app/Enums/Status';
 import { AuthService } from 'src/app/Services/auth.service';
 @Component({
     selector: 'app-sign-in',
@@ -31,14 +32,20 @@ export class PatientSignInComponent {
                     if (Response.role === 'doctor') {
                         this.showAlert = true;
                         localStorage.setItem('role', Response.role)
-                        this.authService.setRole(Response.role);
                         localStorage.setItem("id", Response.id);
+                        localStorage.setItem("status",Response.status)
+                        this.authService.setRole(Response.role);
+                        this.authService.setStatus(Response.status)
+                        if(Response.status == Status.Active)
                         this.router.navigate(['/doctor/home'])
                     }
                     if (Response.role === 'patient') {
                         localStorage.setItem('role', Response.role)
                         localStorage.setItem("id", Response.id);
+                        localStorage.setItem("status",Response.status)
                         this.authService.setRole(Response.role);
+                        this.authService.setStatus(Response.status)
+                        if(Response.status == Status.Active)
                         this.router.navigate(['/patient/home'])
                     }
                     if (Response.role === 'admin') {
