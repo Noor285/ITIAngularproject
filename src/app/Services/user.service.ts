@@ -25,7 +25,20 @@ export class UserService {
   ChangeProfilePicture(change : FormData) : Observable<FormData>{
     return this.httpClient.patch<FormData>(`https://localhost:7013/api/User/changepfp`,change);
   }
+
   DeleteProfilePicture(deleteus : userBasicInfo) : Observable<userBasicInfo>{
     return this.httpClient.patch<userBasicInfo>(`https://localhost:7013/api/User/deletepfp`,deleteus);
+  }
+
+  ActivateAccount(account : any) : Observable<any>{
+    return this.httpClient.patch<any>(`https://localhost:7013/api/Admin/Account/Activate`,account);
+  }
+
+  RejectAccount(account : any) : Observable<any>{
+    return this.httpClient.patch<any>(`https://localhost:7013/api/Admin/Account/Reject`,account);
+  }
+
+  BanAccount(account : any) : Observable<any>{
+    return this.httpClient.patch<any>(`https://localhost:7013/api/Admin/Account/Banned`,account);
   }
 }
