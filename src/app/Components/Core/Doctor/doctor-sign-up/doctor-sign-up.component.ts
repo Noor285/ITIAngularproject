@@ -68,7 +68,7 @@ export class DoctorSignUpComponent implements OnInit, AfterViewInit {
             Address: [null, [Validators.required]],
             Phone: [null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]],
             AppointmentPrice: [null, [Validators.required, Validators.min(100), Validators.max(5000)]],
-            Status: [Status.Active],
+            Status: [Status.Inactive],
             picPath:[null],
         }, { validator: this.passwordMatchValidator });
     }
