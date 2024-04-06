@@ -22,18 +22,10 @@ export class PatientProfileComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    if(Number.isNaN(this.id))
-    {
-      alert("you are not logged in");
-      this.router.navigate(['patient/signin']);
-      return;
-    }
-    else if (this.role != "patient")
-    {
-      alert("you are not authorized to enter this page");
-      this.router.navigate(['unauthorized']);
-      return;
-    }
+        if (isNaN(this.id)) this.router.navigate(['signin']);
+        if (this.role != "patient") {
+            this.router.navigate(['unauthorized']);
+        }
     this._PatientService.getpatientProfileById(this.id).subscribe((res)=>{
       this.patientProfile=res;
       console.log(this.patientProfile);
