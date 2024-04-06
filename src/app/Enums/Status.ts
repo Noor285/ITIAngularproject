@@ -1,1 +1,1 @@
-export enum Status { Active , Inactive , Banned }
+export enum Status { Active , Inactive , Banned, Rejected }
