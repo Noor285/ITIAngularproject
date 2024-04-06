@@ -20,6 +20,7 @@
             <td style="padding: 20px;">National ID</td>
             <td style="padding: 20px;">Governorate</td>
             <td style="padding: 20px;">Address</td>
+            <td style="padding: 20px">Status</td>
             <td style="padding: 20px;">Edit</td>
             <td style="padding: 20px;">Delete</td>
           </tr>
@@ -50,7 +51,9 @@
             <td style="padding-left: 2rem;">
               {{doc.doctor?.address}}
             </td>
-
+            <td [ngClass]="{'text-success' : doc.doctor.status == 0, 'text-warning':doc.doctor.status == 1 , 'text-danger': doc.doctor.status == 2 || doc.doctor.status == 3}">
+                {{doc.doctor.status | accountStatus}}
+            </td>
             <td style="padding-left: 1rem;">
               <button class="btn btn-info" #docId [value]="doc.doctor.id" (click)="navDoc(doc.doctor.id)">Edit</button>
             </td>
