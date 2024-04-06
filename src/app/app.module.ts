@@ -68,6 +68,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { DoctorRejectComponent } from './Components/Core/Doctor/doctor-reject/doctor-reject.component';
 import { DoctorInactiveComponent } from './Components/Core/Doctor/doctor-inactive/doctor-inactive.component';
 import { AccountStatusPipe } from './Components/pipe/account-status.pipe';
+import { DoctorBannedComponent } from './Components/Shared/banned/banned.component';
+import { VerificationDocumentsComponent } from './Components/Core/Admin/verification-documents/verification-documents.component';
 
 
 @NgModule({
@@ -111,6 +113,8 @@ import { AccountStatusPipe } from './Components/pipe/account-status.pipe';
     DoctorRejectComponent,
     DoctorInactiveComponent,
     AccountStatusPipe,
+    DoctorBannedComponent,
+    VerificationDocumentsComponent,
   ],
   imports: [
     RatingModule,

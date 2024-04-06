@@ -31,6 +31,8 @@ import { DoctorAppointmentsComponent } from './Components/Core/Doctor/doctor-app
 import { EditSchedualComponent } from './Components/Core/Doctor/edit-schedual/edit-schedual.component';
 import { DoctorRejectComponent } from './Components/Core/Doctor/doctor-reject/doctor-reject.component';
 import { DoctorInactiveComponent } from './Components/Core/Doctor/doctor-inactive/doctor-inactive.component';
+import { DoctorBannedComponent } from './Components/Shared/banned/banned.component';
+import { VerificationDocumentsComponent } from './Components/Core/Admin/verification-documents/verification-documents.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -56,6 +58,7 @@ const routes: Routes = [
     { path: 'doctor/signup', component: DoctorSignUpComponent, title: 'Doctor Sign Up ' },
     { path: 'doctor/home', component: DoctorHomeComponent, title: 'Doctor Home' },
     { path: 'doctor/alldoctors', component: AllDoctorsComponent, title: 'Show All Doctors' },
+    { path: 'doctor/verify/:docId', component: VerificationDocumentsComponent, title:'Verification Documents'},
     { path: 'doctor/add', component: AddDoctorComponent, title: 'Add Doctor' },
     { path: 'doctor/edit/:docId', component: EditDoctorComponent, title:"Edit Doctor" },
     { path: 'doctor/profile', component: DoctorAppointmentComponent, title:"My Profile" },
@@ -66,6 +69,7 @@ const routes: Routes = [
     //   {path: 'doctor/schedual/dscription/:id', component:DscriptionSchedualComponent},
     { path: 'doctor/rejected' , component:DoctorRejectComponent , title:"Rejected"},
     { path: 'doctor/inactive' , component:DoctorInactiveComponent , title:"Inactive"},
+    { path: 'banned' , component:DoctorBannedComponent , title:"Banned"},
     { path: 'doctor/schedual/edit/:id', component: EditSchedualComponent },
 
 
