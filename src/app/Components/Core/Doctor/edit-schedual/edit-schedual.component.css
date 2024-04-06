@@ -191,27 +191,3 @@ input[type=date] {
     padding: 10px 55px;
 }
 
-button {
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 1px;
-    background-color: #1A998E;
-    border: 1px solid #DADDE8;
-    color: #fff;
-    padding: 18px;
-    border-radius: 5px;
-    outline: none;
-    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    left: 350px;
-    margin-bottom: 20px;
-}
-
-button:hover {
-    background-color: #1293e1;
-}
-
-button:active {
-    background-color: #1083c8;
-}
