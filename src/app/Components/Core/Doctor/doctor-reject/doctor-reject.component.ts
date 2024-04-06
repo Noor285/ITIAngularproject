@@ -10,7 +10,7 @@ import { Status } from 'src/app/Enums/Status';
 export class DoctorRejectComponent implements OnInit {
     constructor(private router:Router){}
     ngOnInit(): void {
-        if(this.status != Status.Rejected && this.role != "doctor"){
+        if(this.status != Status.Rejected || this.role != "doctor"){
             this.router.navigate(['unauthorized']);
         }
     }

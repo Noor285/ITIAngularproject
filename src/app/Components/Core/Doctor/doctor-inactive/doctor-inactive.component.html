@@ -6,7 +6,8 @@
                 <button (click)="uploadEvent()" *ngIf="!nid" class="btn btn-success uploadBtn"><i
                         class="bi bi-upload"></i></button>
                 <input (input)="uploadPicture($event)" class="d-none" type="file" #file>
-                <img [src]="nidDoc ? '../../../../..'+nidDoc.path.split('/src')[1] : ''" alt="" class="imgcontainer" [ngClass]="{
+                <img [src]="nidDoc ? '../../../../..'+nidDoc.path.split('/src')[1] : ''" alt="" class="imgcontainer"
+                    [ngClass]="{
                     'd-none': !nid,
                 }">
             </div>
@@ -18,7 +19,8 @@
                 <button (click)="uploadCertEvent()" *ngIf="!cert" class="btn btn-success uploadBtn"><i
                         class="bi bi-upload"></i></button>
                 <input (input)="uploadCert($event)" class="d-none" type="file" #certAdd>
-                <img [src]="certificates[0] ? '../../../../..'+certificates[0].path.split('/src')[1] : ''" alt="" class="imgcontainer" [ngClass]="{
+                <img [src]="certificates ? '../../../../..'+certificates[0].path.split('/src')[1] : ''" alt=""
+                    class="imgcontainer" [ngClass]="{
                     'd-none': !cert,
                 }">
             </div>
@@ -26,5 +28,18 @@
     </div>
 </div>
 <div class="container" *ngIf="cert == true && nid == true">
-    <h1>Please await admin response</h1>
+
+    <div class="px-4 py-5 my-5 text-center">
+        <img class="d-block mx-auto " src="assets/waiting.jpg" alt="" width="300" height="200" />
+
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Please await admin response ....</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-send btn-lg px-3 gap-2 custom-btn" [routerLink]="['/']"> Back to
+                    home </button>
+
+            </div>
+        </div>
+    </div>
+
 </div>

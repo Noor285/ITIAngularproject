@@ -12,10 +12,10 @@ import { DoctorService } from 'src/app/Services/doctor.service';
 export class DoctorInactiveComponent implements OnInit {
     constructor(private router: Router, private docService: DoctorService) { }
     ngOnInit(): void {
-        if (this.status != Status.Inactive && this.role != "doctor") {
+        if (isNaN(this.id)) this.router.navigate(['signin']);
+        if (this.status != Status.Inactive || this.role != "doctor") {
             this.router.navigate(['unauthorized']);
         }
-        if (isNaN(this.id)) this.router.navigate(['signin']);
         this.docService.GetNidCert(this.id).subscribe((res) => {
             console.log(res);
             this.nid = res.nid != null;
