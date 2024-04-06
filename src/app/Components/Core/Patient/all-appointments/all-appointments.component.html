@@ -3,6 +3,12 @@
     <div class="row">
         <section class="appointInfo">
             <div class="row  py-4 justify-content-around">
+                <div class="col-md-1">
+                    <h3 class="headColor fw-bolder"> Order </h3>
+                    <span class="bg-light">
+                        <p class="Pinfo text-center"> {{app.appointement.order}} </p>
+                    </span>
+                </div>
                 <div class="col-md-3 ">
                     <h3 class="headColor fw-bolder">Date</h3>
                     <span class="bg-light">
@@ -29,8 +35,8 @@
                 <div class="button-container text-end " [ngClass]="{
         'd-none': app.appointement.status != 0,
       }">
-                    <button type="button" class="btn btn-primary btn-lg px-3 gap-2 custom-btn me-2"
-                        data-bs-toggle="modal" data-bs-target="#exampleModal"> Rate Doctor</button>
+                    <button [ngClass]="{'d-none': GetDate(app.appointement.date)}" type="button" class="btn btn-primary btn-lg px-3 gap-2 custom-btn me-2"
+                        data-bs-toggle="modal" (click)="SetDocID(app.doctor.id,app.appointement.date)" data-bs-target="#exampleModal"> Rate Doctor</button>
                 </div>
             </div>
         </section>
