@@ -38,6 +38,12 @@ export class PatientSignInComponent {
                         this.authService.setStatus(Response.status)
                         if(Response.status == Status.Active)
                         this.router.navigate(['/doctor/home'])
+                        else if(Response.status == Status.Inactive)
+                            this.router.navigate(['/doctor/inactive'])
+                        else if(Response.status == Status.Rejected)
+                            this.router.navigate(['/doctor/rejected'])
+                        else if(Response.status == Status.Banned)
+                            this.router.navigate(['/banned'])
                     }
                     if (Response.role === 'patient') {
                         localStorage.setItem('role', Response.role)
@@ -47,6 +53,8 @@ export class PatientSignInComponent {
                         this.authService.setStatus(Response.status)
                         if(Response.status == Status.Active)
                         this.router.navigate(['/patient/home'])
+                        else if(Response.status == Status.Banned)
+                            this.router.navigate(['/banned'])
                     }
                     if (Response.role === 'admin') {
                         localStorage.setItem('role', Response.role)
