@@ -93,6 +93,7 @@ export class AddDoctorComponent implements OnInit, AfterViewInit {
     })
 
     specialities: any = [];
+    role: string = localStorage.getItem("role") ?? "";
     selectedSpeciality!: number;
     date: Date = new Date();
     dateMax: string = new Date(this.date.getFullYear() - 25, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
@@ -103,7 +104,9 @@ export class AddDoctorComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
         this.dateMax = new Date(this.date.getFullYear() - 25, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
         this.dateMin = new Date(this.date.getFullYear() - 80, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
-
+        if (this.role != "admin") {
+            this.router.navigate(['unauthorized']);
+        }
     }
 
     getSpecialities(): void {

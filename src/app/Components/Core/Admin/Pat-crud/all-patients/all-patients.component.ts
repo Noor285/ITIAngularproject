@@ -24,7 +24,12 @@ export class AllPatientsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPatients();
-  }
+    if (this.role != "admin") {
+        this.router.navigate(['unauthorized']);
+    }
+}
+
+role: string = localStorage.getItem("role") ?? "";
 
   loadPatients(): void {
     this.patientService.getAllPatients().subscribe((Patients: IPatient[]) => {

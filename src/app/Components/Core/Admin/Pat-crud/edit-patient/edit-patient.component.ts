@@ -40,8 +40,9 @@ export class EditPatientComponent implements OnInit {
 
 
     ngOnInit(): void {
-
-
+        if (this.role != "admin") {
+            this.router.navigate(['unauthorized']);
+        }
         this.PatientService.getPatientById(this.patId).subscribe((res) => {
             console.log(res);
             this.recePat = res;
@@ -54,6 +55,8 @@ export class EditPatientComponent implements OnInit {
             this.editForm.controls['status'].setValue(this.recePat.status)
         })
     }
+
+    role: string = localStorage.getItem("role") ?? "";
 
 
     enforceMinMaxPhone(el: any) {

@@ -11,7 +11,7 @@ import { DoctorService } from 'src/app/Services/doctor.service';
     templateUrl: './edit-doctor.component.html',
     styleUrls: ['./edit-doctor.component.css']
 })
-export class EditDoctorComponent implements AfterViewInit {
+export class EditDoctorComponent implements AfterViewInit, OnInit {
 
 
     apiError: string = '';
@@ -59,6 +59,13 @@ export class EditDoctorComponent implements AfterViewInit {
         this.docId = this.activatedroute.snapshot.paramMap.get("docId");
         console.log(this.docId);
     }
+    ngOnInit(): void {
+        if (this.role != "admin") {
+            this.router.navigate(['unauthorized']);
+        }
+    }
+
+    role: string = localStorage.getItem("role") ?? "";
 
     editForm: FormGroup = new FormGroup({
         id: new FormControl(null),

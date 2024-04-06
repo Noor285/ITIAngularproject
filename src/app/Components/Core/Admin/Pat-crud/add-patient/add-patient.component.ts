@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PatientService } from 'src/app/Services/patient.service';
@@ -12,13 +12,21 @@ import { IPatientAdd } from 'src/app/Models/patientAddDTO';
   templateUrl: './add-patient.component.html',
   styleUrls: ['./add-patient.component.css']
 })
-export class AddPatientComponent {
+export class AddPatientComponent implements OnInit {
 
     date: Date = new Date();
     dateMax: string = new Date(this.date.getFullYear() - 18, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
     dateMin: string = new Date(this.date.getFullYear() - 100, this.date.getMonth(), this.date.getDay()).toISOString().split("T")[0];
 
   constructor(private router: Router,private patientService: PatientService) { }
+
+  ngOnInit(): void {
+    if (this.role != "admin") {
+        this.router.navigate(['unauthorized']);
+    }
+}
+
+role: string = localStorage.getItem("role") ?? "";
 
   createForm:FormGroup = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]),
