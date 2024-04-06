@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Gender } from 'src/app/Enums/Gender';
@@ -10,7 +10,7 @@ import { DoctorService } from 'src/app/Services/doctor.service';
   templateUrl: './edit-doctor-profile.component.html',
   styleUrls: ['./edit-doctor-profile.component.css']
 })
-export class EditDoctorProfileComponent {
+export class EditDoctorProfileComponent implements AfterViewInit, OnInit {
 
   docId :any = localStorage.getItem("id") ?? "";
   apiError: string = '';
@@ -56,6 +56,18 @@ export class EditDoctorProfileComponent {
   constructor(private router: Router, private activatedroute: ActivatedRoute, private doctorService: DoctorService) {
       this.docId = this.activatedroute.snapshot.paramMap.get("docId");
       console.log(this.docId);
+  }
+  id:number = parseInt(localStorage.getItem("id") ?? "");
+  role:string = localStorage.getItem("role") ?? "";
+  status: Status = parseInt(localStorage.getItem("status")??"") as Status;
+  ngOnInit(): void {
+      if (isNaN(this.id)) this.router.navigate(['signin']);
+      if (this.role != "doctor") {
+          this.router.navigate(['unauthorized']);
+      }
+      if (this.status == Status.Rejected) this.router.navigate(['doctor/rejected']);
+      if (this.status == Status.Inactive) this.router.navigate(['doctor/inactive']);
+      if (this.status == Status.Banned) this.router.navigate(['banned']);
   }
 
   editForm: FormGroup = new FormGroup({
