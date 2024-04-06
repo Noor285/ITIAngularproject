@@ -29,6 +29,8 @@ import { DoctorDetailsComponent } from './Components/Core/Patient/doctor-details
 import { BookAppointmentComponent } from './Components/Core/Patient/book-appointment/book-appointment.component';
 import { DoctorAppointmentsComponent } from './Components/Core/Doctor/doctor-appointments/doctor-appointments.component';
 import { EditSchedualComponent } from './Components/Core/Doctor/edit-schedual/edit-schedual.component';
+import { DoctorRejectComponent } from './Components/Core/Doctor/doctor-reject/doctor-reject.component';
+import { DoctorInactiveComponent } from './Components/Core/Doctor/doctor-inactive/doctor-inactive.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -55,13 +57,15 @@ const routes: Routes = [
     { path: 'doctor/home', component: DoctorHomeComponent, title: 'Doctor Home' },
     { path: 'doctor/alldoctors', component: AllDoctorsComponent, title: 'Show All Doctors' },
     { path: 'doctor/add', component: AddDoctorComponent, title: 'Add Doctor' },
-    { path: 'doctor/edit/:docId', component: EditDoctorComponent },
-    { path: 'doctor/profile', component: DoctorAppointmentComponent },
-    { path: 'doctor/profile/:docId', component: DoctorAppointmentComponent },
-    { path: 'doctor/profile/edit/:docId', component: EditDoctorProfileComponent },
-    { path: 'doctor/appointment/req', component: AppointmentRequestsComponent },
-    { path: 'doctor/appointments', component: DoctorAppointmentsComponent },
+    { path: 'doctor/edit/:docId', component: EditDoctorComponent, title:"Edit Doctor" },
+    { path: 'doctor/profile', component: DoctorAppointmentComponent, title:"My Profile" },
+    { path: 'doctor/profile/:docId', component: DoctorAppointmentComponent, title:"Doctor Profile" },
+    { path: 'doctor/profile/edit/:docId', component: EditDoctorProfileComponent, title:"Edit Profile" },
+    { path: 'doctor/appointment/req', component: AppointmentRequestsComponent, title:"Requested Appointments" },
+    { path: 'doctor/appointments', component: DoctorAppointmentsComponent, title:"Appointments" },
     //   {path: 'doctor/schedual/dscription/:id', component:DscriptionSchedualComponent},
+    { path: 'doctor/rejected' , component:DoctorRejectComponent , title:"Rejected"},
+    { path: 'doctor/inactive' , component:DoctorInactiveComponent , title:"Inactive"},
     { path: 'doctor/schedual/edit/:id', component: EditSchedualComponent },
 
 

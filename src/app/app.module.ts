@@ -65,6 +65,9 @@ import { ChangePasswordComponent } from './Components/Shared/change-password/cha
 import { DoctorAppointmentsComponent } from './Components/Core/Doctor/doctor-appointments/doctor-appointments.component';
 import { EditSchedualComponent } from './Components/Core/Doctor/edit-schedual/edit-schedual.component';
 import { CarouselModule } from 'primeng/carousel';
+import { DoctorRejectComponent } from './Components/Core/Doctor/doctor-reject/doctor-reject.component';
+import { DoctorInactiveComponent } from './Components/Core/Doctor/doctor-inactive/doctor-inactive.component';
+import { AccountStatusPipe } from './Components/pipe/account-status.pipe';
 
 
 @NgModule({
@@ -105,6 +108,9 @@ import { CarouselModule } from 'primeng/carousel';
     ChangePasswordComponent,
     DoctorAppointmentsComponent,
     EditSchedualComponent,
+    DoctorRejectComponent,
+    DoctorInactiveComponent,
+    AccountStatusPipe,
   ],
   imports: [
     RatingModule,
