@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Status } from 'src/app/Enums/Status';
 import { DoctorService } from 'src/app/Services/doctor.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { DoctorService } from 'src/app/Services/doctor.service';
   templateUrl: './appointment-requests.component.html',
   styleUrls: ['./appointment-requests.component.css']
 })
-export class AppointmentRequestsComponent implements AfterViewInit {
+export class AppointmentRequestsComponent implements AfterViewInit , OnInit {
   id:number = parseInt(localStorage.getItem("id") ?? "");
   role:string = localStorage.getItem("role") ?? "";
   errRespon: any;
@@ -19,6 +20,17 @@ export class AppointmentRequestsComponent implements AfterViewInit {
   comingAppoint:any=[];
   backgroundUrl: any = 'assets/home/Vector.png';
   constructor(private _DoctorService: DoctorService, private _snackBar: MatSnackBar,private router:Router, private _ActivatedRoute:ActivatedRoute) { }
+  status: Status = parseInt(localStorage.getItem("status")??"") as Status;
+  ngOnInit(): void {
+        if (isNaN(this.id)) this.router.navigate(['signin']);
+        if (this.role != "doctor") {
+            this.router.navigate(['unauthorized']);
+        }
+        if (this.status == Status.Rejected) this.router.navigate(['doctor/rejected']);
+        if (this.status == Status.Inactive) this.router.navigate(['doctor/inactive']);
+        if (this.status == Status.Banned) this.router.navigate(['banned']);
+    }
+
 
   observerForAccept={
     next:(data:any)=> {console.log(data);this.msgOfAcc();this.ngAfterViewInit();},

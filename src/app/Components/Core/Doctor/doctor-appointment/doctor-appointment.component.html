@@ -1,90 +1,121 @@
 <div class="container">
-  <div class="row my-4 justify-content-center">
+    <div class="row my-4 justify-content-center">
 
-    <div class="col-12  text-center">
-      <h1 class="doctorJob fw-bolder text-center">Profile</h1>
+        <div class="col-12  text-center">
+            <h1 class="doctorJob fw-bolder text-center">Profile</h1>
+        </div>
+        <div class="imgcontainer ">
+            <button (click)="deletePicture()"
+                *ngIf="role == 'doctor' && docProfileData.doctor.picPath.split('profilepic/')[1] != 'defaultDoc.png'"
+                class="btn btn-danger deleteBtn"><i class="bi bi-trash"></i></button>
+            <img class="mx-auto d-block profilePic col-12"
+                [src]="'../../../../..'+docProfileData.doctor.picPath.split('/src')[1]" alt="Doctor's Profile Picture">
+            <button (click)="uploadEvent()" *ngIf="role == 'doctor'" class="btn btn-success uploadBtn"><i
+                    class="bi bi-upload"></i></button>
+            <input (input)="uploadPicture($event)" class="d-none" type="file" #file>
+
+        </div>
     </div>
-    <div class="imgcontainer ">
-        <button (click)="deletePicture()" *ngIf="role == 'doctor' && docProfileData.doctor.picPath.split('profilepic/')[1] != 'defaultDoc.png'" class="btn btn-danger deleteBtn"><i class="bi bi-trash"></i></button>
-        <img class="mx-auto d-block profilePic col-12" [src]="'../../../../..'+docProfileData.doctor.picPath.split('/src')[1]" alt="Doctor's Profile Picture">
-        <button (click)="uploadEvent()" *ngIf="role == 'doctor'" class="btn btn-success uploadBtn"><i class="bi bi-upload"></i></button>
-        <input (input)="uploadPicture($event)" class="d-none" type="file" #file >
-        
-    </div>
-  </div>
-  <div class="row  ">
-    <div class="col-md-6 ">
-      <h4 class="headColor fw-bolder"> Name </h4>
-      <span class="bg-light">
-        <p class="Pinfo text-center"> {{docProfileData.doctor.name}} </p>
-      </span>
-    </div>
-    <div class="col-md-6">
-      <h4 class="headColor fw-bolder"> Specialties </h4>
-      <span class="bg-light">
-        <p class="Pinfo text-center"> {{docProfileData.speciality.name}} </p>
-      </span>
-    </div>
-    <div class="col-md-6 ">
-      <h4 class="headColor fw-bolder"> E-mail </h4>
-      <span class="bg-light">
-        <p class="Pinfo text-center">{{docProfileData.doctor.email}}</p>
-      </span>
-    </div>
-    <div class="col-md-6">
-      <h4 class="headColor fw-bolder"> Governance </h4>
-      <span class="bg-light">
-        <p class="Pinfo text-center">{{docProfileData.doctor.governance}}</p>
-      </span>
-    </div>
-    <div class="col-md-6">
-      <h4 class="headColor fw-bolder"> Phone Number </h4>
-      <span class="bg-light">
-        <p class="Pinfo text-center">{{docProfileData.doctor.phone}}</p>
-      </span>
-    </div>
-    <div class="col-md-6">
-      <h4 class="headColor fw-bolder"> Address </h4>
-      <span class="bg-light">
-        <p class="Pinfo text-center">{{docProfileData.doctor.address}}</p>
-      </span>
-    </div>
-    <ng-container *ngIf="role == 'doctor'">
+    <div class="row  ">
+        <div class="col-md-6 ">
+            <h4 class="headColor fw-bolder"> Name </h4>
+            <span class="bg-light">
+                <p class="Pinfo text-center"> {{docProfileData.doctor.name}} </p>
+            </span>
+        </div>
         <div class="col-md-6">
-            <h4 class="headColor fw-bolder"> Date of Birth </h4>
+            <h4 class="headColor fw-bolder"> Specialties </h4>
             <span class="bg-light">
-              <p class="Pinfo text-center">{{docProfileData.doctor.dob | date}}</p>
+                <p class="Pinfo text-center"> {{docProfileData.speciality.name}} </p>
             </span>
-          </div>
-          <div class="col-md-6">
-            <h4 class="headColor fw-bolder"> National ID </h4>
+        </div>
+        <div class="col-md-6 ">
+            <h4 class="headColor fw-bolder"> E-mail </h4>
             <span class="bg-light">
-              <p class="Pinfo text-center">{{docProfileData.doctor.nationalID}}</p>
+                <p class="Pinfo text-center">{{docProfileData.doctor.email}}</p>
             </span>
-          </div>
-    </ng-container>
-    <div *ngIf="role == 'doctor'" class="col-12 text-center">
-        <a name="editProfile" id="editProBtn"(click)="navDoc(docProfileData.doctor.id)" class="btn w-50" role="button"> Edit Profile</a>
+        </div>
+        <div class="col-md-6">
+            <h4 class="headColor fw-bolder"> Governance </h4>
+            <span class="bg-light">
+                <p class="Pinfo text-center">{{docProfileData.doctor.governance}}</p>
+            </span>
+        </div>
+        <div class="col-md-6">
+            <h4 class="headColor fw-bolder"> Phone Number </h4>
+            <span class="bg-light">
+                <p class="Pinfo text-center">{{docProfileData.doctor.phone}}</p>
+            </span>
+        </div>
+        <div class="col-md-6">
+            <h4 class="headColor fw-bolder"> Address </h4>
+            <span class="bg-light">
+                <p class="Pinfo text-center">{{docProfileData.doctor.address}}</p>
+            </span>
+        </div>
+        <ng-container *ngIf="role == 'doctor'">
+            <div class="col-md-6">
+                <h4 class="headColor fw-bolder"> Date of Birth </h4>
+                <span class="bg-light">
+                    <p class="Pinfo text-center">{{docProfileData.doctor.dob | date}}</p>
+                </span>
+            </div>
+            <div class="col-md-6">
+                <h4 class="headColor fw-bolder"> National ID </h4>
+                <span class="bg-light">
+                    <p class="Pinfo text-center">{{docProfileData.doctor.nationalID}}</p>
+                </span>
+            </div>
+            <!-- <div class="col-md-6">
+              <h4 class="headColor fw-bolder"> Appointment Price</h4>
+              <span class="bg-light">
+                <p class="Pinfo text-center">{{docProfileData.doctor.appointmentPrice}}</p>
+              </span>
+            </div> -->
+        </ng-container>
+        <div *ngIf="role == 'doctor'" class="col-12 text-center">
+            <a name="editProfile" id="editProBtn" (click)="navDoc(docProfileData.doctor.id)" class="btn w-50"
+                role="button"> Edit Profile</a>
+        </div>
     </div>
-  </div>
 
 </div>
 
 <div class="card mt-3 container" style="position: relative;">
-    <button (click)="uploadCertEvent()" *ngIf="role == 'doctor'" class="btn btn-success uploadCert"><i class="bi bi-upload"></i></button>
-    
+    <button (click)="uploadCertEvent()" *ngIf="role == 'doctor'" class="btn btn-success uploadCert"><i
+            class="bi bi-upload"></i></button>
 
-    <p-carousel [value]="docProfileData.certificates" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+
+    <p-carousel [value]="docProfileData.certificates" [numVisible]="3" [numScroll]="3" [circular]="false"
+        [responsiveOptions]="responsiveOptions">
         <ng-template pTemplate="header">
             <h2>Certificates</h2>
-            <input (input)="uploadCert($event)" class="d-none" type="file" #certAdd >
+            <input (input)="uploadCert($event)" class="d-none" type="file" #certAdd>
         </ng-template>
         <ng-template let-cert pTemplate="item">
             <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
                 <div class="mb-3 certContain">
-                        <button (click)="deleteCert(cert.id)" *ngIf="role == 'doctor'" class="btn btn-danger deleteCert"><i class="bi bi-trash"></i></button>
-                        <img [src]="'../../../../..'+cert.path.split('/src')[1]"
-                        class="w-6 shadow-2 cert" />
+                    <button (click)="deleteCert(cert.id)" *ngIf="role == 'doctor'" class="btn btn-danger deleteCert"><i
+                            class="bi bi-trash"></i></button>
+                    <img [src]="'../../../../..'+cert.path.split('/src')[1]" class="w-6 shadow-2 cert" />
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+<div class="card my-5">
+    <div class="text-center">
+        <h2 class="headingDocCard py-4 my-3 fw-bolde">Reviews</h2>
+    </div>
+    <p-carousel [value]="docProfileData.reviews" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template let-rev pTemplate="item">
+            <div class=" card w-25 border-1 surface-border border-round m-2 text-center py-5 px-3">
+                <div>
+                    <p class="h3 mt-0 mb-3">{{rev.patient.gender == 0 ? "Mr." : rev.patient.gender == 1 ? "Mrs." : ""}}{{rev.patient.name}}  <sub>says</sub></p>
+                    
+                    <p class="h4 mb-1">{{rev.review.notes}}</p>
+                    <p-rating [cancel]="false" [disabled]="true" [ngModel]="rev.review.score"></p-rating>
+                    <p class="h5 mt-0 mb-3">{{rev.review.date | date}}</p>
                 </div>
             </div>
         </ng-template>
@@ -92,95 +123,28 @@
 </div>
 
 <div class="container">
-  <div class="row">
-    <div class="text-center">
-      <h3 class="av-appoint py-5"><i class="fa fa-calendar  "></i> Available appointments</h3>
-
-    </div>
-
-
-
     <div class="row">
-      <div class="col-md-6 col-sm-12 col-lg-3">
-        <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Saturday</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">{{dates[6]?.toDateString()}}</i> </h4>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.saturday == '0'}">{{docProfileData.schedule.saturday == "0" ? "Not Avaliable" : docProfileData.schedule.saturday}}</i> </h4>
-          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
-          <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button *ngIf="role == 'patient'" class="book-btn  m-3 p-3" type="button" (click)="bookApp(6)"  [disabled]="docProfileData.schedule.saturday == '0'"> Book </button>
-          <!-- <button *ngIf="role == 'doctor'" [routerLink]="['/doctor','schedual','edit',':id']" class="book-btn  m-3 p-3" type="button"> Edit </button> -->
-          <button *ngIf="role == 'doctor'" [routerLink]="['/doctor/schedual/edit', id ]" class="book-btn  m-3 p-3" type="button"> Edit </button>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-12 col-lg-3">
-        <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Sunday</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">{{dates[0]?.toDateString()}}</i> </h4>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.sunday == '0'}">{{docProfileData.schedule.sunday == "0" ? "Not Avaliable" : docProfileData.schedule.sunday}}</i> </h4>
-          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
-          <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button *ngIf="role == 'patient'" class="book-btn  m-3 p-3" type="button" (click)="bookApp(0)" [disabled]="docProfileData.schedule.sunday == '0'"> Book </button>
-          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-12 col-lg-3">
-        <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Monday</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">{{dates[1]?.toDateString()}}</i> </h4>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.monday== '0'}">{{docProfileData.schedule.monday == "0" ? "Not Avaliable" : docProfileData.schedule.monday}}</i> </h4>
-          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
-          <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button *ngIf="role == 'patient'" class="book-btn  m-3 p-3" type="button" (click)="bookApp(1)" [disabled]="docProfileData.schedule.monday == '0'"> Book </button>
-          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-12 col-lg-3">
-        <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Tuesday</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">{{dates[2]?.toDateString()}}</i> </h4>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.tuesday == '0'}">{{docProfileData.schedule.tuesday == "0" ? "Not Avaliable" : docProfileData.schedule.tuesday}}</i> </h4>
-          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
-          <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button *ngIf="role == 'patient'" class="book-btn  m-3 p-3" type="button" (click)="bookApp(2)" [disabled]="docProfileData.schedule.tuesday == '0'"> Book </button>
-          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-12 col-lg-3">
-        <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Wednesday</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">{{dates[3]?.toDateString()}}</i> </h4>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock" [ngClass]="{'text-danger': docProfileData.schedule.wednesday == '0'}">{{docProfileData.schedule.wednesday == "0" ? "Not Avaliable" : docProfileData.schedule.wednesday}}</i> </h4>
-          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
-          <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button *ngIf="role == 'patient'" class="book-btn  m-3 p-3" type="button" (click)="bookApp(3)" [disabled]="docProfileData.schedule.wednesday == '0'"> Book </button>
-          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-12 col-lg-3">
-        <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Thursday</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">{{dates[4]?.toDateString()}}</i> </h4>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.thursday == '0'}">{{docProfileData.schedule.thursday == "0" ? "Not Avaliable" : docProfileData.schedule.thursday}}</i> </h4>
-          <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
-          <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button *ngIf="role == 'patient'" class="book-btn  m-3 p-3" type="button" (click)="bookApp(4)" [disabled]="docProfileData.schedule.thursday == '0'"> Book </button>
-          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-12 col-lg-3">
-        <div class="book-card text-center py-2 m-3">
-          <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>Friday</h3>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock ">{{dates[5]?.toDateString()}}</i> </h4>
-          <h4 class="p-3 h5"><i class="fa-solid fa-clock " [ngClass]="{'text-danger': docProfileData.schedule.friday== '0'}">{{docProfileData.schedule.friday == "0" ? "Not Avaliable" : docProfileData.schedule.friday}}</i> </h4>
-                    <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p>
-          <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-          <button *ngIf="role == 'patient'"  class="book-btn  m-3 p-3" type="button" (click)="bookApp(5)" [disabled]="docProfileData.schedule.friday == '0'"> Book </button>
-          <button *ngIf="role == 'doctor'" routerLink="/patient/patientprofial/payment" class="book-btn  m-3 p-3" type="button"> Edit </button>
-        </div>
-      </div>
+        <div class="text-center">
+            <h3 class="av-appoint py-5"><i class="fa fa-calendar  "></i> Available appointments</h3>
 
-    </div>
-
-
-    <!-- end doctorAppointments -->
+        </div>
+        <div class="row schedual">
+            <button *ngIf="role == 'doctor'" [routerLink]="['/doctor/schedual/edit', id ]"
+                class="book-btn m-3 p-3" type="button"> Edit Schedule </button>
+            <button class="appointmentPrice  m-3 p-3" type="button" disabled>{{docProfileData.doctor.appointmentPrice}}
+                EGP</button>
+            <div *ngFor="let days of dates" class="col-md-6 col-sm-12 col-lg-3 day">
+                <div class="book-card text-center py-2 m-3">
+                    <h3 class="card-head h5"> <i class="fa-solid fa-calendar-days me-2  "></i>{{days?.day}}</h3>
+                    <h4 class="p-3 h5"><i class="fa-solid fa-clock ">{{days!.date.toDateString()}}</i> </h4>
+                    <h4 class="p-3 h5"><i class="fa-solid fa-clock "
+                            [ngClass]="{'text-danger': days?.time == '0'}">{{days?.time
+                            == "0" ? "Not Avaliable" : days?.time}}</i> </h4>
+                    <!-- <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p> -->
+                    <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
+                    <button *ngIf="role == 'patient'" class="book2-btn  m-3 p-3" type="button"
+                        (click)="bookApp(days?.date?.getDay())" [disabled]="days?.time == '0'"> Book </button>
+                    <!-- <button *ngIf="role == 'doctor'" [routerLink]="['/doctor','schedual','edit',':id']" class="book-btn  m-3 p-3" type="button"> Edit </button> -->
+                </div>
+            </div>
+        </div>

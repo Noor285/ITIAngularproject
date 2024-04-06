@@ -1,3 +1,4 @@
+import { scheduleDay } from './../../../../Models/scheduleDay';
 import { UserService } from './../../../../Services/user.service';
 import { IAppointment } from './../../../../Models/appointment';
 import { Status } from './../../../../Enums/Status';
@@ -26,40 +27,43 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
     role: string = localStorage.getItem("role") ?? "";
     docProfileData: any;
     imgSrc: string = "assets/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg"
-    dates: Date[] | null[] = [null, null, null, null, null, null, null]
+    dates: scheduleDay[] | null[] | undefined | null = [null, null, null, null, null, null, null]
     order: number | undefined;
     constructor(private _userService: UserService, private activatedroute: ActivatedRoute, private _DoctorService: DoctorService, private router: Router, private _snackBar: MatSnackBar, private _PatientService: PatientService) {
 
     }
+    weekdays: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    weekSchedule: string[] = [];
     ngAfterViewInit(): void {
-        let date: Date = new Date();
-        let number = date.getDay();
-        console.log(number);
-        while (this.dates[number % 7] == null) {
-            this.dates[number % 7] = new Date(date);
 
-            number++;
-            date.setDate(date.getDate() + 1);
-        }
     }
     ngOnInit(): void {
-        if (Number.isNaN(this.id)) {
-            alert("you are not logged in");
-            this.router.navigate(['patient/signin']);
-            return;
-        }
-        else if (this.role != "doctor" && this.role != "patient") {
-            alert("you are not authorized to enter this page");
-            this.router.navigate(['unauthorized']);
-            return;
-        }
         this._DoctorService.getProfileDoc(this.docID).subscribe((res) => {
             this.docProfileData = res;
             console.log(this.docProfileData);
-            for(let cert of this.docProfileData.certificates)
-                {
-                    console.log("../../../../.."+cert.path.split('/src')[1]);
-                }
+            this.weekSchedule.push(this.docProfileData.schedule.sunday)
+            this.weekSchedule.push(this.docProfileData.schedule.monday)
+            this.weekSchedule.push(this.docProfileData.schedule.tuesday)
+            this.weekSchedule.push(this.docProfileData.schedule.wednesday)
+            this.weekSchedule.push(this.docProfileData.schedule.thursday)
+            this.weekSchedule.push(this.docProfileData.schedule.friday)
+            this.weekSchedule.push(this.docProfileData.schedule.saturday)
+            let date: Date = new Date();
+            let number = date.getDay();
+            console.log(this.docProfileData);
+            while (this.dates![number % 7] == null) {
+                this.dates![number % 7] = {
+                    date: new Date(date),
+                    day: this.weekdays[number % 7],
+                    time: this.weekSchedule[number % 7]
+                };
+
+                number++;
+                date.setDate(date.getDate() + 1);
+            }
+            this.dates?.sort((a : any,b : any)=>{
+                return a?.date - b?.date;
+            })
         })
 
     }
@@ -68,9 +72,13 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
         this.router.navigate([`/doctor/profile/edit/${docId}`]);
 
     }
+    status: Status = parseInt(localStorage.getItem("status")??"") as Status;
+    bookApp(day: number | undefined) {
+        
 
-    bookApp(day: number) {
-        let date = this.dates[day]!.toLocaleDateString("en-CA");
+        if (isNaN(this.id)) this.router.navigate(['signin']);
+        if (day == undefined) return;
+        let date = this.dates![day]!.date.toLocaleDateString("en-CA");
         let createdDate = new Date().toLocaleDateString("en-CA");
         let patientID = this.id;
         let doctorID = this.docProfileData.doctor.id;
@@ -87,7 +95,7 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
                 order: parseInt(res),
                 id: undefined
             }
-            if (confirm(`Are you sure you want to book an appointment at ${this.dates[day]?.toDateString()} ?`)) {
+            if (confirm(`Are you sure you want to book an appointment at ${this.dates![day]?.date.toDateString()} ?`)) {
                 this._PatientService.addAppointment(appointment).subscribe((res) => {
                     alert("Appointment made successfully, await the doctor's response")
                 },
@@ -132,7 +140,7 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
             this._DoctorService.getProfileDoc(this.docID).subscribe((res) => {
                 this.docProfileData = res;
                 console.log(this.docProfileData);
-                
+
             })
         },
             (error) => {
@@ -140,14 +148,14 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
             })
     }
 
-    deleteCert(certID:number){
-        if(confirm("Are You sure you want to delete this certificate ?")){
+    deleteCert(certID: number) {
+        if (confirm("Are You sure you want to delete this certificate ?")) {
             this._DoctorService.deleteCertificate(certID).subscribe((res) => {
                 console.log(res)
                 this._DoctorService.getProfileDoc(this.docID).subscribe((res) => {
                     this.docProfileData = res;
                     console.log(this.docProfileData);
-                    
+
                 })
             },
                 (error) => {

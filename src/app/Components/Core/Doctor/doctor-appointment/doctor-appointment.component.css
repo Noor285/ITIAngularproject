@@ -36,57 +36,48 @@ h5{
   padding: 10px;
   margin: 10px;
 }
-.book-btn{
-  background-color: #1A998E;
-  color: #FFFFFF;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-  font-size: 22px;
-  font-weight: 600;
-}
 .headColor{
-  color: #1A998E;
+    color: #1A998E;
 }
 .Pinfo{
-  color:#000000;
-  font-weight: 600;
-  font-size: 1.6rem;
-  max-width: 80%;
-  line-height: 3.5rem;
-  border-radius: 25px;
-  padding: 4px 5px;
-  background: rgba(230, 240, 237, 1);
+    color:#000000;
+    font-weight: 600;
+    font-size: 1.6rem;
+    max-width: 80%;
+    line-height: 3.5rem;
+    border-radius: 25px;
+    padding: 4px 5px;
+    background: rgba(230, 240, 237, 1);
 }
 
 .checked {
-  color: orange;
+    color: orange;
 }
 
 mat-icon {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .custom-select{
-  display: inline-block;
-  width: 100%;
+    display: inline-block;
+    width: 100%;
 }
 .custom-select .select-styled {
-  display: inline-block;
-  padding: 8px 20px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #1A998E;
-  cursor: pointer;
+    display: inline-block;
+    padding: 8px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #1A998E;
+    cursor: pointer;
 }
 
 .custom-select .text-style {
-  padding: 10px;
-font-size: 20px;
-  color:#1A998E;
-
-
+    padding: 10px;
+    font-size: 20px;
+    color:#1A998E;
+    
+    
 }
 
 .profilePic{
@@ -139,7 +130,7 @@ font-size: 20px;
             text-align: center;
             padding: 2rem 0;
         }
-    
+        
         .product-image {
             width: 50%;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
@@ -168,4 +159,53 @@ font-size: 20px;
     width: 300px;
     height: 300px;
     position: relative;
+}
+.schedual{
+    border: 2px solid #1A998E;
+    position: relative;
+    padding: 0;
+    border-radius: 20px;
+}
+
+.book-btn{
+    background-color: #1A998E;
+    color: #FFFFFF;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-top-left-radius: 20px;
+    border: 0;
+    font-size: 22px;
+    font-weight: 600;
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    top: -1px;
+    left: -2px;
+}
+
+.book2-btn{
+    background-color: #1A998E;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.appointmentPrice {
+    background-color: #1A998E;
+    color: #FFFFFF;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-top-right-radius: 20px;
+    border: 0;
+    font-size: 22px;
+    font-weight: 600;
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    top: -1px;
+    right: -2px;
+}
+
+.day{
+    margin-top: 50px;
 }

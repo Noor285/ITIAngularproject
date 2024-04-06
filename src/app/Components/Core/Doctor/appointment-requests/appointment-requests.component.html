@@ -33,8 +33,15 @@
 
         <div class="container mb-3" *ngFor="let app of comingAppoint">
           <div class="row">
+            
             <section class="appointInfo">
               <div class="row  py-4 justify-content-around">
+                <div class="col-md-1">
+                    <h3 class="headColor fw-bolder"> Order </h3>
+                    <span class="bg-light">
+                        <p class="Pinfo text-center"> {{app.appointement.order}} </p>
+                    </span>
+                </div>
                 <div class="col-md-3 ">
                   <h3 class="headColor fw-bolder">Date</h3>
                   <span class="bg-light">
