@@ -33,6 +33,11 @@
     <div class="text-center">
         <h1 class="headingDocCard py-4 my-3 fw-bolde">Meet Our Professional Doctors</h1>
     </div>
+     <!------------ Search Box -------------->
+     <div class="form-outline my-3">
+        <input [(ngModel)]="searchtext" type="search" class="form-control-sm" placeholder="Search" aria-label="search">
+    </div>
+    
     <p-carousel [value]="Doctors" [numVisible]="3" [numScroll]="3" [circular]="false"
         [responsiveOptions]="responsiveOptions">
         <ng-template let-doc pTemplate="item">

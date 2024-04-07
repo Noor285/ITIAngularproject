@@ -16,11 +16,7 @@ export class AllDoctorsComponent implements AfterViewInit, OnInit {
     headElements = ['Name', 'Email', 'password', 'National ID', 'Specialty', 'DOB', 'Gender', 'Governorate', 'Address', 'Phone', 'AppointmentPrice', 'Edit', 'Remove'];
 
     Doctors: IDoctor[] = [];
-    // pagedDoctors: IDoctor[] = [];
-    // currentPage = 1;
-    // pageSize = 10; // Number of items per page
-    // totalPages = 1;
-
+    searchtext :any;
 
     constructor(private doctorService: DoctorService, private router: Router, private userService: UserService) { }
     ngOnInit(): void {

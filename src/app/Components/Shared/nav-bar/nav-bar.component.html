@@ -15,6 +15,8 @@
                 class="nav-link px-2">All Doctors</a></li>
         <li><a *ngIf="authService.returnRole() == 'admin'" routerLink="/patient/allpatients" routerLinkActive="active"
                 class="nav-link px-2">All Patients</a></li>
+        <li><a *ngIf="authService.returnRole() == 'admin'" routerLink="/speciality/allspecialities" routerLinkActive="active"
+                class="nav-link px-2">All Specialities</a></li>
 
         <li><a *ngIf="authService.returnRole() == 'doctor'" routerLink="/doctor/home" routerLinkActive="active"
                 class="nav-link px-2">Home</a></li>
@@ -46,9 +48,10 @@
         <button *ngIf="authService.returnRole() == ''" type="button" class="btn btn-primary"
             routerLink="/patient/signup">Patient Sign-up</button>
     </div>
-    
+
     <div class="d-flex">
-        <button *ngIf="authService.returnRole() != ''" routerLink="/changepass" routerLinkActive="active" class="nav-link px-2">
+        <button *ngIf="authService.returnRole() != ''" routerLink="/changepass" routerLinkActive="active"
+            class="nav-link px-2">
             Settings
             <i style="font-size:24px" class="fa">&#xf013;</i>
         </button>

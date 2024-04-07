@@ -1,11 +1,43 @@
 <div class="w-100 mx-auto py-4">
     <div class="container mt-5 p-5">
 
+        <!------------ Search Box -------------->
+        <div class="form-outline my-3">
+            <input [(ngModel)]="searchtext" type="search" class="form-control-sm" placeholder="Search" aria-label="search">
+        </div>
+
         <div class="card">
-            <p-table [value]="Doctors" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+
+            <!-- <p-table #dt1 [value]="Doctors" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
                 [tableStyle]="{ 'min-width': '50rem' }"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                [rowsPerPageOptions]="[5, 10, 20]">
+                [rowsPerPageOptions]="[5, 10, 20]"> -->
+
+            
+
+
+             <!-- [loading]="loading" -->
+             <p-table
+             #dt1
+             [value]="Doctors"
+             dataKey="id"
+             [rows]="10"
+             [showCurrentPageReport]="true"
+             [rowsPerPageOptions]="[10, 25, 50]"
+             [paginator]="true"
+             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+             [globalFilterFields]="['name', 'specialty.name', 'governance', 'status']"
+             >
+             
+             <ng-template pTemplate="caption">
+                 <div class="flex">
+                     <span class="p-input-icon-left ml-auto">
+                         <i class="pi pi-search"></i>
+                         <!-- <input pInputText type="text" (input)="dt1.filterGlobal($event.target?.value, 'contains')" placeholder="Search keyword" /> -->
+                        </span>
+                 </div>
+             </ng-template>
+
                 <ng-template pTemplate="header">
                     <tr
                         style="font-weight: bold; margin-bottom: 30px; text-align: center; border-bottom: 1px solid #ccc;">
@@ -22,7 +54,7 @@
                         <td class="tdHeader">Delete</td>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-doc>
+                <ng-template pTemplate="body" let-doc |filter:searchtext>
                     <tr>
                         <td style="padding-left: 1rem;">
                             {{doc.doctor?.id}}
@@ -61,11 +93,15 @@
                                 (click)="deleteDoc(doc.doctor.id)">Remove</button>
                         </td>
                         <!-- [ngClass]="{'d-none':doc.doctor.status != 1}" -->
-                        <td >
-                            <button class="btn btn-primary mb-2 col-12" [routerLink]="['/doctor','verify',doc.doctor.id]">Verfication Documents</button>
-                            <button class="btn btn-success mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status == 0}" (click)="ActivateAccount(doc.doctor.id)">Activate</button>
-                            <button class="btn btn-danger mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status != 1}" (click)="RejectAccount(doc.doctor.id)">Reject</button>
-                            <button class="btn btn-danger mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status == 2}" (click)="BanAccount(doc.doctor.id)">Ban</button>
+                        <td>
+                            <button class="btn btn-primary mb-2 col-12"
+                                [routerLink]="['/doctor','verify',doc.doctor.id]">Verfication Documents</button>
+                            <button class="btn btn-success mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status == 0}"
+                                (click)="ActivateAccount(doc.doctor.id)">Activate</button>
+                            <button class="btn btn-danger mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status != 1}"
+                                (click)="RejectAccount(doc.doctor.id)">Reject</button>
+                            <button class="btn btn-danger mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status == 2}"
+                                (click)="BanAccount(doc.doctor.id)">Ban</button>
                         </td>
                     </tr>
                 </ng-template>

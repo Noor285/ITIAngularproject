@@ -33,6 +33,9 @@ import { DoctorRejectComponent } from './Components/Core/Doctor/doctor-reject/do
 import { DoctorInactiveComponent } from './Components/Core/Doctor/doctor-inactive/doctor-inactive.component';
 import { DoctorBannedComponent } from './Components/Shared/banned/banned.component';
 import { VerificationDocumentsComponent } from './Components/Core/Admin/verification-documents/verification-documents.component';
+import { AllSpecialityComponent } from './Components/Core/Admin/Speciality/all-speciality/all-speciality.component';
+import { AddSpecialityComponent } from './Components/Core/Admin/Speciality/add-speciality/add-speciality.component';
+import { EditSpecialityComponent } from './Components/Core/Admin/Speciality/edit-speciality/edit-speciality.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -72,6 +75,9 @@ const routes: Routes = [
     { path: 'banned' , component:DoctorBannedComponent , title:"Banned"},
     { path: 'doctor/schedual/edit/:id', component: EditSchedualComponent },
 
+    { path: 'speciality/allspecialities', component: AllSpecialityComponent, title: 'Show All Specialities' },
+    { path: 'speciality/add', component: AddSpecialityComponent, title: 'Add speciality' },
+    { path: 'speciality/edit/:specId', component: EditSpecialityComponent, title:"Edit speciality" },
 
 
 

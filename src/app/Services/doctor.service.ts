@@ -35,11 +35,6 @@ export class DoctorService {
     }
 
 
-    getAllSpecialities(): Observable<any> {
-        return this.httpClient.get<any>(`https://localhost:7013/api/Doctor/Speciality`);
-    }
-
-
     /* Start edit appoint component */
     getAllAppoint(id: any): Observable<any> {
         return this.httpClient.get(`https://localhost:7013/api/Doctor/Appointment/Requested/doctor=${id}`)
@@ -89,5 +84,33 @@ export class DoctorService {
     GetNidCert(docID:number) : Observable<any>{
         return this.httpClient.get<any>(`https://localhost:7013/Document/nid&cert/${docID}`);
     }
+
+
+    // ************** Speciality *********************
+
+    getAllSpecialities(): Observable<any> {
+        return this.httpClient.get<any>(`https://localhost:7013/api/Doctor/Speciality`);
+    }
+
+    addSpeciality(speciality: Speciality): Observable<Speciality> {
+        return this.httpClient.post<Speciality>(`https://localhost:7013/api/Doctor/Speciality/Add`, speciality);
+    }
+
+    editSpeciality(updatedSpeciality: Speciality): Observable<any> {
+        console.log(updatedSpeciality)
+        return this.httpClient.put<Speciality>(`https://localhost:7013/api/Doctor/Speciality/Edit`, updatedSpeciality);
+    }
+
+    getSpecialityById(SpecialityId: number): Observable<Speciality> {
+        return this.httpClient.get<Speciality>(`https://localhost:7013/api/Doctor/Speciality/${SpecialityId}`);
+    }
+
+    deleteSpeciality(SpecialityId: number): Observable<void> {
+        return this.httpClient.delete<void>(`https://localhost:7013/api/Doctor/Speciality/Delete/${SpecialityId}`);
+    }
+
+
+    // ************** End Speciality *********************
+
 
 }

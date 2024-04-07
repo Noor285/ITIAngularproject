@@ -39,7 +39,7 @@ export class PatientSignUpComponent {
     showAlert: boolean = false;
 
     handleAdd(createForm: FormGroup) {
-        this.showAlert = true;
+        // this.showAlert = true;
         if (createForm.valid) {
             createForm.value.gender = +createForm.value.gender;
             createForm.value.status = +createForm.value.status;

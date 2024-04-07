@@ -14,6 +14,7 @@ export class HomeComponent {
     backgroundUrl: any = 'assets/home/Vector.png';
 
     Doctors: IDoctor[] = [];
+    searchtext :any;
 
     constructor(private doctorService: DoctorService, private router: Router) { }
 
