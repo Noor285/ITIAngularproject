@@ -28,17 +28,50 @@
 </header>
 
 
+<!-- -------------------------- Our Services ------------------------------------------ -->
 
-<div class="card my-5">
-    <div class="text-center">
-        <h1 class="headingDocCard py-4 my-3 fw-bolde">Meet Our Professional Doctors</h1>
+<div class="container my-5">
+    <div class="row py-5">
+        <div class="col-md-4 py text-center">
+            <h2 class="heading-home fs-3 fw-bolder"> Our Services </h2>
+            <img src="assets/home/Group.png" alt="services">
+        </div>
+        <div class="offset-1 col-md-3">
+            <div class="ourDoctor text-center p-2">
+                <img class="p-2" src="assets/home/Doctor Male.png" alt="Doctor Male">
+                <h3 class="heading-home fw-bold mt-2"> Our Docotrs</h3>
+                <p class=" p-2">Our website provides services for doctors,
+                     allowing them to control their schedules, add appointments,
+                      and approve or reject patient requests.
+                </p>
+            </div>
+        </div>
+        <div class="offset-1 col-md-3">
+            <div class="scanDicribe text-center p-2">
+                <img class="py-2" src="assets/home/scan 1.png" alt="scan">
+                <h3 class="heading-home fw-bold py-2">Our Patients</h3>
+                <p class=" p-2">Our website offers services for patients,
+                     allowing them to find the suitable doctor in the available specialties and choose the convenient day for them.
+                </p>
+            </div>
+        </div>
     </div>
-    <p-carousel [value]="Doctors" [numVisible]="3" [numScroll]="3" [circular]="false"
+</div>
+
+<!-- -------------------------- Our Doctors ------------------------------------------ -->
+
+<div class="container card my-5">
+    <div class="text-center">
+        <p class="h1 headingDocCard mt-5 fw-bolde">Meet Our Professional Doctors</p>
+    </div>
+
+    <p-carousel #dt1 [value]="Doctors" [numVisible]="3" [numScroll]="3" [circular]="false"
         [responsiveOptions]="responsiveOptions">
+
         <ng-template let-doc pTemplate="item">
             <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
                 <div class="mb-3">
-                    <img [src]="imgSrc" [alt]="doc.name" class="w-6 shadow-2" />
+                    <!-- <img [src]="imgSrc" [alt]="doc.name" class="w-6 shadow-2" /> -->
                 </div>
                 <div>
                     <p class="h1 mt-0 mb-3">Dr.{{doc['doctor'].name}}</p>

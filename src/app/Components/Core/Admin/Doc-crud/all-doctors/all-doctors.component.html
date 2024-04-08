@@ -2,10 +2,30 @@
     <div class="container mt-5 p-5">
 
         <div class="card">
-            <p-table [value]="Doctors" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
-                [tableStyle]="{ 'min-width': '50rem' }"
-                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                [rowsPerPageOptions]="[5, 10, 20]">
+
+
+             <p-table
+             #dt1
+             [value]="Doctors"
+             dataKey="id"
+             [rows]="5"
+             [tableStyle]="{ 'min-width': '50rem' }"
+             [showCurrentPageReport]="true"
+             [rowsPerPageOptions]="[5, 10, 20]"
+             [paginator]="true"
+             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+             [globalFilterFields]="['doctor.name', 'speciality.name', 'doctor.governance', 'doctor.status']"
+             >
+             
+             <ng-template pTemplate="caption">
+                 <div class="flex">
+                     <span class="p-input-icon-left ml-auto">
+                         <i class="pi pi-search"></i>
+                         <input pInputText type="text" (input)="dt1.filterGlobal(($any($event.target).value), 'contains')" placeholder="Search keyword" />
+                        </span>
+                 </div>
+             </ng-template>
+
                 <ng-template pTemplate="header">
                     <tr
                         style="font-weight: bold; margin-bottom: 30px; text-align: center; border-bottom: 1px solid #ccc;">
@@ -61,11 +81,15 @@
                                 (click)="deleteDoc(doc.doctor.id)">Remove</button>
                         </td>
                         <!-- [ngClass]="{'d-none':doc.doctor.status != 1}" -->
-                        <td >
-                            <button class="btn btn-primary mb-2 col-12" [routerLink]="['/doctor','verify',doc.doctor.id]">Verfication Documents</button>
-                            <button class="btn btn-success mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status == 0}" (click)="ActivateAccount(doc.doctor.id)">Activate</button>
-                            <button class="btn btn-danger mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status != 1}" (click)="RejectAccount(doc.doctor.id)">Reject</button>
-                            <button class="btn btn-danger mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status == 2}" (click)="BanAccount(doc.doctor.id)">Ban</button>
+                        <td>
+                            <button class="btn btn-primary mb-2 col-12"
+                                [routerLink]="['/doctor','verify',doc.doctor.id]">Verfication Documents</button>
+                            <button class="btn btn-success mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status == 0}"
+                                (click)="ActivateAccount(doc.doctor.id)">Activate</button>
+                            <button class="btn btn-danger mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status != 1}"
+                                (click)="RejectAccount(doc.doctor.id)">Reject</button>
+                            <button class="btn btn-danger mb-2 col-12" [ngClass]="{'d-none':doc.doctor.status == 2}"
+                                (click)="BanAccount(doc.doctor.id)">Ban</button>
                         </td>
                     </tr>
                 </ng-template>

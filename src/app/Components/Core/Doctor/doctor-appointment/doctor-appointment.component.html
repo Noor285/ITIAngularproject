@@ -2,14 +2,14 @@
     <div class="row my-4 justify-content-center">
 
         <div class="col-12  text-center">
-            <h1 class="doctorJob fw-bolder text-center">Profile</h1>
+            <p class="doctorJob h1 fw-bolder text-center">Profile</p>
         </div>
         <div class="imgcontainer ">
             <button (click)="deletePicture()"
                 *ngIf="role == 'doctor' && docProfileData.doctor.picPath.split('profilepic/')[1] != 'defaultDoc.png'"
                 class="btn btn-danger deleteBtn"><i class="bi bi-trash"></i></button>
-            <img class="mx-auto d-block profilePic col-12"
-                [src]="'../../../../..'+docProfileData.doctor.picPath.split('/src')[1]" alt="Doctor's Profile Picture">
+            <!-- <img class="mx-auto d-block profilePic col-12"
+                [src]="'../../../../..'+docProfileData.doctor.picPath.split('/src')[1]" alt="Doctor's Profile Picture"> -->
             <button (click)="uploadEvent()" *ngIf="role == 'doctor'" class="btn btn-success uploadBtn"><i
                     class="bi bi-upload"></i></button>
             <input (input)="uploadPicture($event)" class="d-none" type="file" #file>
@@ -73,7 +73,7 @@
               </span>
             </div> -->
         </ng-container>
-        <div *ngIf="role == 'doctor'" class="col-12 text-center">
+        <div *ngIf="role == 'doctor'" class="col-12 text-center mt-5 mb-4">
             <a name="editProfile" id="editProBtn" (click)="navDoc(docProfileData.doctor.id)" class="btn w-50"
                 role="button"> Edit Profile</a>
         </div>
@@ -81,7 +81,7 @@
 
 </div>
 
-<div class="card mt-3 container" style="position: relative;">
+<div class="card mt-5 container" style="position: relative;">
     <button (click)="uploadCertEvent()" *ngIf="role == 'doctor'" class="btn btn-success uploadCert"><i
             class="bi bi-upload"></i></button>
 
@@ -89,7 +89,7 @@
     <p-carousel [value]="docProfileData.certificates" [numVisible]="3" [numScroll]="3" [circular]="false"
         [responsiveOptions]="responsiveOptions">
         <ng-template pTemplate="header">
-            <h2>Certificates</h2>
+            <p class="h2 text-center my-4">Certificates</p>
             <input (input)="uploadCert($event)" class="d-none" type="file" #certAdd>
         </ng-template>
         <ng-template let-cert pTemplate="item">
@@ -103,9 +103,9 @@
         </ng-template>
     </p-carousel>
 </div>
-<div class="card my-5">
+<div class="card my-5 container">
     <div class="text-center">
-        <h2 class="headingDocCard py-4 my-3 fw-bolde">Reviews</h2>
+        <p class="headingDocCard h2 my-4 fw-bolde">Reviews</p>
     </div>
     <p-carousel [value]="docProfileData.reviews" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
         <ng-template let-rev pTemplate="item">
@@ -125,7 +125,7 @@
 <div class="container">
     <div class="row">
         <div class="text-center">
-            <h3 class="av-appoint py-5"><i class="fa fa-calendar  "></i> Available appointments</h3>
+            <p class="av-appoint py-5 h4"><i class="fa fa-calendar  "></i> Available appointments</p>
 
         </div>
         <div class="row schedual">

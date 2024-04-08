@@ -70,7 +70,12 @@ import { DoctorInactiveComponent } from './Components/Core/Doctor/doctor-inactiv
 import { AccountStatusPipe } from './Components/pipe/account-status.pipe';
 import { DoctorBannedComponent } from './Components/Shared/banned/banned.component';
 import { VerificationDocumentsComponent } from './Components/Core/Admin/verification-documents/verification-documents.component';
-
+import { AddSpecialityComponent } from './Components/Core/Admin/Speciality/add-speciality/add-speciality.component';
+import { EditSpecialityComponent } from './Components/Core/Admin/Speciality/edit-speciality/edit-speciality.component';
+import { AllSpecialityComponent } from './Components/Core/Admin/Speciality/all-speciality/all-speciality.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { ChartModule } from 'primeng/chart';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [
@@ -115,8 +120,14 @@ import { VerificationDocumentsComponent } from './Components/Core/Admin/verifica
     AccountStatusPipe,
     DoctorBannedComponent,
     VerificationDocumentsComponent,
+    AddSpecialityComponent,
+    EditSpecialityComponent,
+    AllSpecialityComponent,
   ],
   imports: [
+    ConfirmPopupModule,
+    ChartModule,
+    InputTextModule,
     RatingModule,
     BrowserModule,
     AppRoutingModule,
@@ -151,7 +162,7 @@ import { VerificationDocumentsComponent } from './Components/Core/Admin/verifica
     MatOptionModule,
     DatePipe,
     DialogModule,
-    CarouselModule
+    CarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

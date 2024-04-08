@@ -1,6 +1,6 @@
 import { ISingleDocAppointment } from './../../../../Models/SingleDoctorAppointment';
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Status } from 'src/app/Enums/Status';
 import { IAppointment } from 'src/app/Models/appointment';
@@ -48,8 +48,8 @@ export class AllAppointmentsComponent implements AfterViewInit, OnInit {
     }
    
     public rateForm:FormGroup = new FormGroup({
-        score:new FormControl(""),
-        notes:new FormControl(""),
+        score:new FormControl("" , Validators.required),
+        notes:new FormControl("" , Validators.required),
         date: new FormControl("")
       });
     

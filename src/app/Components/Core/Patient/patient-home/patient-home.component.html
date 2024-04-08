@@ -41,7 +41,7 @@
     </div>
 </header>
 
-<div class="card my-5">
+<div class="container card my-5">
     <div class="text-center">
         <h1 class="headingDocCard py-4 my-3 fw-bolde">Meet Our Professional Doctors</h1>
     </div>
@@ -49,7 +49,7 @@
         <ng-template let-doc pTemplate="item">
             <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
                 <div class="mb-3">
-                    <img [src]="'../../../../..'+doc['doctor'].picPath.split('/src')[1]" [alt]="doc.name" class="w-6 imgcontainer shadow-2" />
+                    <!-- <img [src]="'../../../../..'+doc['doctor'].picPath.split('/src')[1]" [alt]="doc.name" class="w-6 imgcontainer shadow-2" /> -->
                 </div>
                 <div>
                     <p class="h1 mt-0 mb-3">Dr.{{doc['doctor'].name}}</p>

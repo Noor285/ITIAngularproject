@@ -24,7 +24,6 @@ export class PatientSignInComponent {
     showAlert: boolean = false;
 
     handleSignIn() {
-        // this.showAlert = true;
         if (this.signInForm.valid) {
             console.log(this.signInForm.value);
             this.authService.PatientAndDoctorSignIn(this.signInForm.value).subscribe({
@@ -46,6 +45,7 @@ export class PatientSignInComponent {
                             this.router.navigate(['/banned'])
                     }
                     if (Response.role === 'patient') {
+                        this.showAlert = true;
                         localStorage.setItem('role', Response.role)
                         localStorage.setItem("id", Response.id);
                         localStorage.setItem("status",Response.status)
@@ -57,6 +57,7 @@ export class PatientSignInComponent {
                             this.router.navigate(['/banned'])
                     }
                     if (Response.role === 'admin') {
+                        this.showAlert = true;
                         localStorage.setItem('role', Response.role)
                         this.authService.setRole(Response.role);
                         this.router.navigate(['/home'])
