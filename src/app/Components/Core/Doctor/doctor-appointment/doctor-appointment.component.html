@@ -8,8 +8,8 @@
             <button (click)="deletePicture()"
                 *ngIf="role == 'doctor' && docProfileData.doctor.picPath.split('profilepic/')[1] != 'defaultDoc.png'"
                 class="btn btn-danger deleteBtn"><i class="bi bi-trash"></i></button>
-            <!-- <img class="mx-auto d-block profilePic col-12"
-                [src]="'../../../../..'+docProfileData.doctor.picPath.split('/src')[1]" alt="Doctor's Profile Picture"> -->
+            <img class="mx-auto d-block profilePic col-12"
+                [src]="'../../../../..'+docProfileData.doctor.picPath.split('/src')[1]" alt="Doctor's Profile Picture">
             <button (click)="uploadEvent()" *ngIf="role == 'doctor'" class="btn btn-success uploadBtn"><i
                     class="bi bi-upload"></i></button>
             <input (input)="uploadPicture($event)" class="d-none" type="file" #file>
@@ -109,7 +109,7 @@
     </div>
     <p-carousel [value]="docProfileData.reviews" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
         <ng-template let-rev pTemplate="item">
-            <div class=" card w-25 border-1 surface-border border-round m-2 text-center py-5 px-3">
+            <div class=" card border-1 surface-border border-round m-2 text-center py-5 px-3">
                 <div>
                     <p class="h3 mt-0 mb-3">{{rev.patient.gender == 0 ? "Mr." : rev.patient.gender == 1 ? "Mrs." : ""}}{{rev.patient.name}}  <sub>says</sub></p>
                     
@@ -142,8 +142,8 @@
                             == "0" ? "Not Avaliable" : days?.time}}</i> </h4>
                     <!-- <p class=" text-primary h2">{{docProfileData.doctor.appointmentPrice}} EGP</p> -->
                     <!-- <p class="text-center fs-4 text-danger">Already Booked</p> -->
-                    <button *ngIf="role == 'patient'" class="book2-btn  m-3 p-3" type="button"
-                        (click)="bookApp(days?.date?.getDay())" [disabled]="days?.time == '0'"> Book </button>
+                    <button *ngIf="(role == 'patient' || role == '') && days?.time != '0'" class="book2-btn  m-3 p-3" type="button"
+                        (click)="role == 'patient' ? bookApp(days?.date?.getDay()) : redirectToSignIn()" [disabled]="days?.time == '0'"> Book </button>
                     <!-- <button *ngIf="role == 'doctor'" [routerLink]="['/doctor','schedual','edit',':id']" class="book-btn  m-3 p-3" type="button"> Edit </button> -->
                 </div>
             </div>
