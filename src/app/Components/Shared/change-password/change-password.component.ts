@@ -29,15 +29,13 @@ export class ChangePasswordComponent {
             userID: this.id,
             userRole: this.userRole,
             password: [null, [Validators.required]],
-            newPassword: [null, [Validators.required]],
-            // confirmPassword: [null, [Validators.required]],
+            newPassword: [null, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*)(?=.*[^\s]).{8,}$/)]],
         }, { validator: this.passwordMatchValidator });
     }
 
     showAlert: boolean = false;
 
     handleChangePass() {
-        this.showAlert = true;
         if (this.changeForm.valid) {
             console.log(this.changeForm.value);
             this.authService.ChangePassword(this.changeForm.value).subscribe({
@@ -45,9 +43,12 @@ export class ChangePasswordComponent {
                     console.log(Response);
 
                     if (Response.userRole === 'doctor') {
+                        this.showAlert = true;
+                        console.log(this.changeForm.value);
                         this.router.navigate(['/doctor/home'])
                     }
                     if (Response.userRole === 'patient') {
+                        this.showAlert = true;
                         console.log(this.changeForm.value);
                         this.router.navigate(['/patient/home'])
                     }
