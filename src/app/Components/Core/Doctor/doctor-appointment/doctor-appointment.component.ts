@@ -28,6 +28,7 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
     docProfileData: any;
     imgSrc: string = "assets/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg"
     dates: scheduleDay[] | null[] | undefined | null = [null, null, null, null, null, null, null]
+    datesBeforeSort: scheduleDay[] | null[] | undefined | null = [null, null, null, null, null, null, null];
     order: number | undefined;
     constructor(private _userService: UserService, private activatedroute: ActivatedRoute, private _DoctorService: DoctorService, private router: Router, private _snackBar: MatSnackBar, private _PatientService: PatientService) {
 
@@ -57,6 +58,11 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
                     day: this.weekdays[number % 7],
                     time: this.weekSchedule[number % 7]
                 };
+                this.datesBeforeSort![number % 7] = {
+                    date: new Date(date),
+                    day: this.weekdays[number % 7],
+                    time: this.weekSchedule[number % 7]
+                };
 
                 number++;
                 date.setDate(date.getDate() + 1);
@@ -78,7 +84,7 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
 
         if (isNaN(this.id)) this.router.navigate(['signin']);
         if (day == undefined) return;
-        let date = this.dates![day]!.date.toLocaleDateString("en-CA");
+        let date = this.datesBeforeSort![day]!.date.toLocaleDateString("en-CA");
         let createdDate = new Date().toLocaleDateString("en-CA");
         let patientID = this.id;
         let doctorID = this.docProfileData.doctor.id;
@@ -95,7 +101,7 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
                 order: parseInt(res),
                 id: undefined
             }
-            if (confirm(`Are you sure you want to book an appointment at ${this.dates![day]?.date.toDateString()} ?`)) {
+            if (confirm(`Are you sure you want to book an appointment at ${this.datesBeforeSort![day]?.date.toDateString()} ?`)) {
                 this._PatientService.addAppointment(appointment).subscribe((res) => {
                     alert("Appointment made successfully, await the doctor's response")
                 },
