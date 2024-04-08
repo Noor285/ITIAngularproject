@@ -8,7 +8,7 @@
     <div class="m-5 row">
         <div class="card col-lg-6 m-5" style="width: 18rem;" *ngFor="let doc of Doctors|filter:searchtext">
             <div class="mb-3">
-                <!-- <img [src]="'../../../../..'+doc['doctor'].picPath.split('/src')[1]" [alt]="doc.name" class="w-6 imgcontainer shadow-2" /> -->
+                <img [src]="'../../../../..'+doc['doctor'].picPath.split('/src')[1]" [alt]="doc.name" class="w-6 imgcontainer shadow-2" />
             </div>
             <div class="card-body">
                 <p class="h1 mt-0 mb-3">Dr.{{doc['doctor'].name}}</p>
