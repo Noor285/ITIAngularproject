@@ -57,6 +57,7 @@ const routes: Routes = [
     { path: 'patient/patientprofial/payment', component: PaymentComponent },
     { path: 'patient/patientprofial/paymentdetails', component: PaymentDetailsComponent },
     { path: 'patient/appointment', component: AllAppointmentsComponent },
+    { path: 'patient/docdetails', component: DoctorDetailsComponent },
 
     { path: 'doctor/signup', component: DoctorSignUpComponent, title: 'Doctor Sign Up ' },
     { path: 'doctor/home', component: DoctorHomeComponent, title: 'Doctor Home' },

@@ -12,5 +12,24 @@ import { DoctorService } from 'src/app/Services/doctor.service';
 })
 export class DoctorDetailsComponent {
 
+    Doctors: IDoctor[] = [];
+    searchtext :any;
+
+    constructor(private doctorService: DoctorService ,private router :Router) {}
+
+
+
+    ngAfterViewInit(): void {
+        this.loadDoctors();
+      }
+    
+      loadDoctors(): void {
+        this.doctorService.getAllDoctors().subscribe((doctors: IDoctor[]) => {
+          this.Doctors = doctors;
+          console.log(this.Doctors);
+    
+        });
+      }
+
 
 }

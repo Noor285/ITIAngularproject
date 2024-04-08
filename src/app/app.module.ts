@@ -76,6 +76,7 @@ import { AllSpecialityComponent } from './Components/Core/Admin/Speciality/all-s
 import { InputTextModule } from 'primeng/inputtext';
 import { ChartModule } from 'primeng/chart';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { FilterPipe } from './Pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     AddSpecialityComponent,
     EditSpecialityComponent,
     AllSpecialityComponent,
+    FilterPipe,
   ],
   imports: [
     ConfirmPopupModule,

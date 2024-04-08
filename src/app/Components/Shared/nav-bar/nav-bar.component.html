@@ -15,8 +15,8 @@
                 class="nav-link px-2">All Doctors</a></li>
         <li><a *ngIf="authService.returnRole() == 'admin'" routerLink="/patient/allpatients" routerLinkActive="active"
                 class="nav-link px-2">All Patients</a></li>
-        <li><a *ngIf="authService.returnRole() == 'admin'" routerLink="/speciality/allspecialities" routerLinkActive="active"
-                class="nav-link px-2">All Specialities</a></li>
+        <li><a *ngIf="authService.returnRole() == 'admin'" routerLink="/speciality/allspecialities"
+                routerLinkActive="active" class="nav-link px-2">All Specialities</a></li>
 
         <li><a *ngIf="authService.returnRole() == 'doctor'" routerLink="/doctor/home" routerLinkActive="active"
                 class="nav-link px-2">Home</a></li>
@@ -33,6 +33,8 @@
                 class="nav-link px-2">Patient Profile</a></li>
         <li><a *ngIf="authService.returnRole() == 'patient'" routerLink="/patient/appointment" routerLinkActive="active"
                 class="nav-link px-2">Patient Appointment</a></li>
+        <li><a *ngIf="authService.returnRole() == 'patient'" routerLink="/patient/docdetails" routerLinkActive="active"
+                class="nav-link px-2">All Doctors</a></li>
 
         <li><a routerLink="/contact" routerLinkActive="active" class="nav-link px-2">Contact US</a></li>
 
