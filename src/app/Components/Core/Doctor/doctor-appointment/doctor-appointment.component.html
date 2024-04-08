@@ -8,8 +8,8 @@
             <button (click)="deletePicture()"
                 *ngIf="role == 'doctor' && docProfileData.doctor.picPath.split('profilepic/')[1] != 'defaultDoc.png'"
                 class="btn btn-danger deleteBtn"><i class="bi bi-trash"></i></button>
-            <!-- <img class="mx-auto d-block profilePic col-12"
-                [src]="'../../../../..'+docProfileData.doctor.picPath.split('/src')[1]" alt="Doctor's Profile Picture"> -->
+            <img class="mx-auto d-block profilePic col-12"
+                [src]="'../../../../..'+docProfileData.doctor.picPath.split('/src')[1]" alt="Doctor's Profile Picture">
             <button (click)="uploadEvent()" *ngIf="role == 'doctor'" class="btn btn-success uploadBtn"><i
                     class="bi bi-upload"></i></button>
             <input (input)="uploadPicture($event)" class="d-none" type="file" #file>
