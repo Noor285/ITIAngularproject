@@ -14,7 +14,6 @@ export class HomeComponent {
     backgroundUrl: any = 'assets/home/Vector.png';
 
     Doctors: IDoctor[] = [];
-    searchtext :any;
 
     constructor(private doctorService: DoctorService, private router: Router) { }
 
@@ -50,5 +49,6 @@ export class HomeComponent {
         }
     ];
 
+    
     imgSrc: string = "assets/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg"
 }

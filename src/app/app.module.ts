@@ -73,10 +73,9 @@ import { VerificationDocumentsComponent } from './Components/Core/Admin/verifica
 import { AddSpecialityComponent } from './Components/Core/Admin/Speciality/add-speciality/add-speciality.component';
 import { EditSpecialityComponent } from './Components/Core/Admin/Speciality/edit-speciality/edit-speciality.component';
 import { AllSpecialityComponent } from './Components/Core/Admin/Speciality/all-speciality/all-speciality.component';
-import { FilterPipe } from './Pipes/filter.pipe';
 import { InputTextModule } from 'primeng/inputtext';
-// import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { ChartModule } from 'primeng/chart';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [
@@ -124,9 +123,10 @@ import { InputTextModule } from 'primeng/inputtext';
     AddSpecialityComponent,
     EditSpecialityComponent,
     AllSpecialityComponent,
-    FilterPipe,
   ],
   imports: [
+    ConfirmPopupModule,
+    ChartModule,
     InputTextModule,
     RatingModule,
     BrowserModule,

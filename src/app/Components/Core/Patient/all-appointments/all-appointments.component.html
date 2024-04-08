@@ -57,12 +57,18 @@
             <div class="modal-body">
                 <form [formGroup]="rateForm" (ngSubmit)="submitRating(rateForm)">
                     <div>
-                        <label for="" class="my-2 d-block">Rate your doctor:</label>
+                        <label for="score" class="my-2 d-block">Rate your doctor:</label>
                         <p-rating formControlName="score"></p-rating>
+                        <div *ngIf="rateForm.get('score')?.errors && rateForm.get('score')?.touched" class="text-danger m-1 sm">
+                            <p *ngIf="rateForm.get('score')?.getError('required')" class="m-0">Score is Required select one star at least </p>
+                          </div>
                     </div>
                     <div>
                         <label for="" class="mt-3 mb-2">Add Note:</label>
                         <textarea type="text" class="form-control" formControlName="notes"></textarea>
+                        <div *ngIf="rateForm.get('notes')?.errors && rateForm.get('notes')?.touched" class="text-danger m-1 sm">
+                            <p *ngIf="rateForm.get('notes')?.getError('required')" class="m-0">Note is Required</p>
+                          </div>
                     </div>
 
                     <div class="text-end mt-3">

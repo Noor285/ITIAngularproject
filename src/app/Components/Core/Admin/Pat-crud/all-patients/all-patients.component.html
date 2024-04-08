@@ -2,14 +2,29 @@
   <div class="container mt-5 p-5">
 
     <div class="card">
-      <p-table
-          [value]="patients"
-          [paginator]="true"
-          [rows]="5"
-          [showCurrentPageReport]="true"
-          [tableStyle]="{ 'min-width': '50rem' }"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-          [rowsPerPageOptions]="[5, 10, 20]">
+      
+        <p-table
+        #dt1
+        [value]="patients"
+        dataKey="id"
+        [rows]="5"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['name' , 'phone']"
+        >
+        
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal(($any($event.target).value), 'contains')" placeholder="Search keyword" />
+                   </span>
+            </div>
+        </ng-template>
+
           <ng-template pTemplate="header" >
             <tr style="font-weight: bold;text-align: center; border-bottom: 1px solid #ccc;">
               <td style="padding: 20px;">#</td>
