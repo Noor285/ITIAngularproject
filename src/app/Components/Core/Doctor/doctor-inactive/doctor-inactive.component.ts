@@ -64,7 +64,12 @@ export class DoctorInactiveComponent implements OnInit {
             },
                 (err) => {
                     console.log(err);
+                    alert(err.error);
                 });
+        }, 
+        (err) => {
+            console.log(err);
+            alert(err.error);
         });
     }
 
@@ -86,7 +91,12 @@ export class DoctorInactiveComponent implements OnInit {
             },
                 (err) => {
                     console.log(err);
+                    alert(err.error);
                 });
+        },
+        (err) => {
+            console.log(err);
+            alert(err.error);
         });
     }
 }
