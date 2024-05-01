@@ -15,6 +15,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { IAddDocument } from 'src/app/Models/DocAddDocument';
 import { DocumentType } from 'src/app/Enums/DocumentType';
 
+
 @Component({
     selector: 'app-doctor-appointment',
     templateUrl: './doctor-appointment.component.html',
@@ -26,6 +27,11 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
     docID: number = parseInt(this.activatedroute.snapshot.paramMap.get("docId") ?? `${this.id}`);
     role: string = localStorage.getItem("role") ?? "";
     docProfileData: any;
+    bookDay: number | undefined;
+    bookDate: string | undefined;
+    CertID: number | undefined;
+    modalTitle: string = "";
+    modalBody: string = "";
     imgSrc: string = "assets/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg"
     dates: scheduleDay[] | null[] | undefined | null = [null, null, null, null, null, null, null]
     datesBeforeSort: scheduleDay[] | null[] | undefined | null = [null, null, null, null, null, null, null];
@@ -50,6 +56,7 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
             this.weekSchedule.push(this.docProfileData.schedule.friday)
             this.weekSchedule.push(this.docProfileData.schedule.saturday)
             let date: Date = new Date();
+            date.setDate(date.getDate() + 1);
             let number = date.getDay();
             console.log(this.docProfileData);
             while (this.dates![number % 7] == null) {
@@ -79,9 +86,26 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
 
     }
     status: Status = parseInt(localStorage.getItem("status")??"") as Status;
+    setBookDay(book: number | undefined){
+        this.bookDay = book;
+        if(this.bookDay != undefined)
+        this.bookDate = this.datesBeforeSort![this.bookDay]!.date.toDateString();
+        console.log(this.bookDate);
+    }
+
+    setCertID(certID: number)
+    {
+        this.CertID = certID;
+    }
+
+    getBookDay(){
+        return this.bookDay;
+    }
+    @ViewChild("resultBtn") resultBTN : ElementRef |undefined ;
     bookApp(day: number | undefined) {
         
 
+        this.CloseBTN?.nativeElement.click();
         if (isNaN(this.id)) this.router.navigate(['signin']);
         if (day == undefined) return;
         let date = this.datesBeforeSort![day]!.date.toLocaleDateString("en-CA");
@@ -101,14 +125,16 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
                 order: parseInt(res),
                 id: undefined
             }
-            if (confirm(`Are you sure you want to book an appointment at ${this.datesBeforeSort![day]?.date.toDateString()} ?`)) {
-                this._PatientService.addAppointment(appointment).subscribe((res) => {
-                    alert("Appointment made successfully, await the doctor's response")
-                },
-                    (error) => {
-                        alert(error.error);
-                    })
-            }
+            this._PatientService.addAppointment(appointment).subscribe((res) => {
+                this.modalBody = "Appointment made successfully, await the doctor's response";
+                this.modalTitle = "Success !!"
+                this.resultBTN?.nativeElement.click();
+            },
+                (error) => {
+                    this.modalBody = error.error;
+                    this.modalTitle = "Error"
+                    this.resultBTN?.nativeElement.click();
+                })
         })
 
         console.log();
@@ -117,6 +143,7 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
 
 
     @ViewChild("file") file: ElementRef | undefined;
+    @ViewChild("closeBtn") CloseBTN : ElementRef |undefined ;
     uploadEvent() {
 
         this.file?.nativeElement.click()
@@ -153,9 +180,9 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
                 console.log(error)
             })
     }
-
+    @ViewChild("closeCertBtn") CloseCertBTN : ElementRef |undefined ;
     deleteCert(certID: number) {
-        if (confirm("Are You sure you want to delete this certificate ?")) {
+        this.CloseCertBTN?.nativeElement.click();
             this._DoctorService.deleteCertificate(certID).subscribe((res) => {
                 console.log(res)
                 this._DoctorService.getProfileDoc(this.docID).subscribe((res) => {
@@ -165,9 +192,10 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
                 })
             },
                 (error) => {
-                    alert(error.error);
+                    this.modalBody = error.error;
+                    this.modalTitle = "Error"
+                    this.resultBTN?.nativeElement.click();
                 })
-        }
     }
 
     uploadPicture(e: Event) {
@@ -213,6 +241,10 @@ export class DoctorAppointmentComponent implements OnInit, AfterViewInit {
                 console.log(error)
             }
         )
+    }
+
+    redirectToSignIn(){
+        this.router.navigate(['/signin']);
     }
 
 
