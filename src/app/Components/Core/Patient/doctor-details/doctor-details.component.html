@@ -16,6 +16,8 @@
                 <p class="h4 mb-1">Speciality: {{doc['speciality'].name}}</p>
                 <p class="h5 mt-0 mb-3">{{doc['doctor'].description}}</p>
                 <p class="h5 mt-0 mb-3">{{doc['doctor'].governance}}</p>
+                <p-rating class="d-block mb-2" [cancel]="false" [disabled]="true" [ngModel]="doc['reviewAvg']"></p-rating>
+                
 
                 <a [routerLink]="['/doctor' , 'profile' , doc['doctor'].id]" class="btn btn-send ">Show Doctor</a>
             </div>

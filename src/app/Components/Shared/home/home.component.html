@@ -39,7 +39,7 @@
         <div class="offset-1 col-md-3">
             <div class="ourDoctor text-center p-2">
                 <img class="p-2" src="assets/home/Doctor Male.png" alt="Doctor Male">
-                <h3 class="heading-home fw-bold mt-2"> Our Docotrs</h3>
+                <h3 class="heading-home fw-bold mt-2"> Our Doctors</h3>
                 <p class=" p-2">Our website provides services for doctors,
                      allowing them to control their schedules, add appointments,
                       and approve or reject patient requests.
@@ -71,14 +71,15 @@
         <ng-template let-doc pTemplate="item">
             <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
                 <div class="mb-3">
-                    <!-- <img [src]="imgSrc" [alt]="doc.name" class="w-6 shadow-2" /> -->
+                    <img [src]="'../../../../..'+doc['doctor'].picPath.split('/src')[1] " [alt]="doc.name" class="w-6 shadow-2" />
                 </div>
                 <div>
                     <p class="h1 mt-0 mb-3">Dr.{{doc['doctor'].name}}</p>
 
                     <p class="h4 mb-1">Speciality: {{doc['speciality'].name}}</p>
-                    <p class="h5 mt-0 mb-3">Dr.{{doc['doctor'].description}}</p>
-                    <p class="h5 mt-0 mb-3">Dr.{{doc['doctor'].governance}}</p>
+                    <p class="h5 mt-0 mb-3">{{doc['doctor'].description}}</p>
+                    <p class="h5 mt-0 mb-3">{{doc['doctor'].governance}}</p>
+                    <p-rating class="d-block mb-2" [cancel]="false" [disabled]="true" [ngModel]="doc['reviewAvg']"></p-rating>
 
                     <a [routerLink]="['/doctor' , 'profile' , doc['doctor'].id]" class="btn btn-send ">Show Doctor</a>
 
