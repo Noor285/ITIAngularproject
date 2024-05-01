@@ -45,9 +45,11 @@ export class EditSchedualComponent implements OnInit {
             tuesdayDisabled: [false],
             wednesdayDisabled: [false],
             thursdayDisabled: [false],
-            fridayDisabled: [false]
+            fridayDisabled: [false],
         });
     }
+
+
 
     ngOnInit(): void {
 
