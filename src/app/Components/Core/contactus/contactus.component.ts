@@ -37,8 +37,8 @@ export class ContactusComponent implements OnInit {
       this.isSubmitted = true;
       
       if (this.contactForm.valid) {
-        emailjs.init('T51ZkUPyefJ2ZkoJs'); 
-        let response= await  emailjs.send("service_d7xbr9b","template_35hgo2e",{
+        emailjs.init('8ZSVh7DeWwFChSDnZ'); 
+        let response= await  emailjs.send("service_8isna4r","template_g6t7tvk",{
           from_name: this.contactForm.value.from_name,
           to_name: this.contactForm.value.to_name,
           from_email: this.contactForm.value.from_email,
